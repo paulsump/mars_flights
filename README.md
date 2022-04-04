@@ -1,3 +1,33 @@
+## My Short Version...
+
+Showcase and notify the next rocket launch. Show details about upcoming rocket launches.
+
+### TODO - Fetch
+
+- Next Launch Counter: 'https://github.com/r-spacex/SpaceX-API/blob/master/docs/launches/v4/next.md'
+- Upcoming
+  Launches: 'https://github.com/r-spacex/SpaceX-API/blob/master/docs/launches/v4/upcoming.md'
+- a fallback when an error occurs
+- Docs: 'https://github.com/r-spacex/SpaceX-API/#readme'
+
+### TODO - UI
+
+- Follow 'designs' folder.
+- The countdown is live and specify days, hours, minutes, and seconds.
+- The 'Upcoming Launches' screen/section should display the mission name, date, and launchpad like
+  in the design.
+- The countdown and upcoming launches table can be implemented either in separate screens (implement
+  navigation)
+  or simply with different sections in the page, try to make them intuitive and fluid.
+
+### TODO - UI Later
+
+- Add a share button for social media platforms to share the next launch with friends
+- Each launch should have a 'Bookmark' or 'Favorite' button that adds it to a separate 'Favorites'
+  section. Use of the localStorage API here (either save the launches data or its id)
+
+## Original...
+
 ### Objective
 
 Your assignment is to implement a website showcasing and notifying visitors about the next SpaceX
@@ -15,8 +45,8 @@ Everyone is counting on you!
 ### Tasks
 
 - Implement assignment using:
-    - Language: **Dart**
-    - Framework: **Flutter**
+  - Language: **Dart**
+  - Framework: **Flutter**
 - Build out the project to the designs inside the `/Designs` folder
 - Connect your application to the **SpaceX-API** (
   Docs: `https://github.com/r-spacex/SpaceX-API/#readme`)
@@ -36,8 +66,7 @@ Everyone is counting on you!
 ### API Endpoints
 
 - Next Launch Counter: 'https://github.com/r-spacex/SpaceX-API/blob/master/docs/launches/v4/next.md'
-- Upcoming
-  Launches: 'https://github.com/r-spacex/SpaceX-API/blob/master/docs/launches/v4/upcoming.md'
+- Upcoming Launches: 'https://github.com/r-spacex/SpaceX-API/blob/master/docs/launches/v4/upcoming.md'
 
 A simple GET request will provide you all the data needed for the tasks without requiring any
 authentication.
