@@ -11,7 +11,7 @@ FetchNotifier getFetchNotifier(BuildContext context, {required bool listen}) =>
 
 /// Fetches everything that's used from the api (with http)
 /// The [HttpClient] is closed when everything has been fetched.
-/// First 'flight' (the next available launch),
+/// First 'flight' (the next available launch),  (renamed because 'nextLaunch' is a confusing name)
 /// then 'flights' (the upcoming launches).
 /// This is all done in the [fetchAll]() function.
 class FetchNotifier extends ChangeNotifier {
@@ -184,6 +184,7 @@ dynamic _getFieldOrNull(String key, Map<String, dynamic> json) =>
 class Flight {
   Flight.fromJson(Map<String, dynamic> json)
       : details = _getFieldOrNull('details', json),
+        dateUnix = _getFieldOrNull('date_unix', json),
         crew = _getFieldOrNull('crew', json)
             .map<String>((member) => member.toString())
             .toList(),
@@ -191,9 +192,14 @@ class Flight {
 
   // final _Links _links;
   final String? details;
+  final int? dateUnix;
 
   final List<String>? crew;
   final String? launchLibraryId;
+
+  String get time => dateUnix == null
+      ? "Unknown"
+      : DateTime.fromMicrosecondsSinceEpoch(dateUnix!).toString();
 // final _Reddit _reddit;
 }
 

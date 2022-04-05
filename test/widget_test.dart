@@ -47,6 +47,9 @@ void main() {
     await tester.pumpWidget(app);
 
     expect(find.byType(CountdownPage), findsOneWidget);
+    expect(find.textContaining('33'), findsNothing);
+
+    await tester.pump();
     expect(find.textContaining('33'), findsNWidgets(4));
   });
 
@@ -54,6 +57,6 @@ void main() {
     await tester.pumpWidget(emptyApp);
 
     expect(find.byType(CountdownPage), findsOneWidget);
-    expect(find.textContaining('33'), findsNWidgets(4));
+    expect(find.textContaining('33'), findsNothing);
   });
 }
