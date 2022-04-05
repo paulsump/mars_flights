@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 
-// for longer out put
+// for longer output e.g. long json strings
 // const _out = log;
 
 final _out = debugPrint; // for tests
