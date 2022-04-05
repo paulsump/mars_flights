@@ -1,3 +1,5 @@
+// © 2022, Paul Sumpner <sumpner@hotmail.com>
+
 import 'package:flutter/material.dart';
 import 'package:mars_flights/view/hue.dart';
 import 'package:mars_flights/view/screen_adjust.dart';

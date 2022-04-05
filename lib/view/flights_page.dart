@@ -1,3 +1,4 @@
+// © 2022, Paul Sumpner <sumpner@hotmail.com>
 import 'package:flutter/material.dart';
 
 class FlightsPage extends StatelessWidget {

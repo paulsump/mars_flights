@@ -1,30 +1,59 @@
-// This is a basic Flutter widget test.
-//
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility that Flutter provides. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
+// © 2022, Paul Sumpner <sumpner@hotmail.com>
 
-import 'package:flutter/material.dart';
+import 'dart:io';
+
 import 'package:flutter_test/flutter_test.dart';
-
+import 'package:http/http.dart' as http;
+import 'package:http/testing.dart';
 import 'package:mars_flights/main.dart';
+import 'package:mars_flights/view/countdown_page.dart';
+
+Future<http.Response> _getGoodResponse(http.Request url) async {
+  String fixture(String name) => File('test_data/$name').readAsStringSync();
+
+  const base = 'GET https://api.spacexdata.com/v4/launches/';
+
+  final headers = {
+    HttpHeaders.contentTypeHeader: 'application/json; charset=utf-8'
+  };
+
+  switch (url.toString()) {
+    case base + 'next':
+      return http.Response(fixture('flight.json'), 200, headers: headers);
+    case base + 'upcoming':
+      return http.Response(fixture('flights.json'), 200, headers: headers);
+  }
+  throw 'huh?';
+}
+
+Future<http.Response> _getEmptyResponse(http.Request url) async {
+  const base = 'GET https://api.spacexdata.com/v4/launches/';
+
+  switch (url.toString()) {
+    case base + 'next':
+      return http.Response('{}', 200);
+    case base + 'upcoming':
+      return http.Response('[]', 200);
+  }
+  throw 'huh?';
+}
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+  final app = createApp(client: MockClient(_getGoodResponse));
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+  final emptyApp = createApp(client: MockClient(_getEmptyResponse));
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
+  testWidgets('Countdown page', (WidgetTester tester) async {
+    await tester.pumpWidget(app);
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    expect(find.byType(CountdownPage), findsOneWidget);
+    expect(find.textContaining('33'), findsNWidgets(4));
+  });
+
+  testWidgets('Countdown page - Empty map', (WidgetTester tester) async {
+    await tester.pumpWidget(emptyApp);
+
+    expect(find.byType(CountdownPage), findsOneWidget);
+    expect(find.textContaining('33'), findsNWidgets(4));
   });
 }

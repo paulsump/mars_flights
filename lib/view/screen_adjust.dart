@@ -1,7 +1,5 @@
 // Copyright (c) 2022, Paul Sumpner.  All rights reserved.
 
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 
 /// Convenient access to screen dimensions.
@@ -10,12 +8,10 @@ Size getScreenSize(BuildContext context) => MediaQuery.of(context).size;
 /// Device orientation access.
 bool isPortrait(BuildContext context) {
   final screen = getScreenSize(context);
+
+  // TODO try using MediaQuery.of(context).orientation instead
   return screen.width < screen.height;
 }
-
-/// Widget dimensions calculated using the shortestEdge of the screen.
-double screenAdjust(double length, BuildContext context) =>
-    length * _getScreenShortestEdge(context);
 
 /// Widget dimensions calculated using the width of the screen.
 double screenAdjustX(double length, BuildContext context) =>
@@ -25,11 +21,6 @@ double screenAdjustX(double length, BuildContext context) =>
 double screenAdjustY(double length, BuildContext context) =>
     length * _getScreenHeight(context);
 
-double _getScreenShortestEdge(BuildContext context) {
-  final screen = getScreenSize(context);
-
-  return min(screen.width, screen.height);
-}
 
 /// Device dimensions
 double _getScreenWidth(BuildContext context) => getScreenSize(context).width;
