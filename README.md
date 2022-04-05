@@ -17,9 +17,8 @@ Showcase and notify the next rocket launch. Show details about upcoming rocket l
 - The 'Upcoming Launches' screen/section should display the mission name, date, and launchpad like
   in the design.
 - The countdown and upcoming launches table can be implemented either in separate screens (implement
-  navigation)
-  or simply with different sections in the page, try to make them intuitive and fluid.
-
+  navigation).
+  
 ### TODO - UI Later
 
 - Add a share button for social media platforms to share the next launch with friends
