@@ -46,16 +46,16 @@ void main() {
     await tester.pumpWidget(goodApp);
 
     expect(find.byType(CountdownPage), findsOneWidget);
-    expect(find.textContaining('33'), findsNothing);
+    expect(find.textContaining('SECONDS'), findsNothing);
 
     await tester.pump();
-    expect(find.textContaining('33'), findsNWidgets(4));
+    expect(find.textContaining('SECONDS'), findsOneWidget);
   });
 
   testWidgets('Countdown page - Empty map', (WidgetTester tester) async {
     await tester.pumpWidget(emptyApp);
 
     expect(find.byType(CountdownPage), findsOneWidget);
-    expect(find.textContaining('33'), findsNothing);
+    expect(find.textContaining('SECONDS'), findsNothing);
   });
 }

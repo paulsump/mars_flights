@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:mars_flights/fetch_notifier.dart';
+import 'package:mars_flights/out.dart';
 import 'package:mars_flights/view/screen_adjusted_text.dart';
 
 class CountdownPage extends StatelessWidget {
@@ -14,10 +15,14 @@ class CountdownPage extends StatelessWidget {
     final DateTime? time =
         fetchNotifier.hasFlight ? fetchNotifier.flight.time : null;
 
+    if (time != null) {
+      out(time);
+    }
+
     return Scaffold(
       body: Center(
         child:
-            time != null ? _Time(DateTime.now().difference(time)) : Container(),
+            time != null ? _Time(time.difference(DateTime.now())) : Container(),
       ),
     );
   }
@@ -31,13 +36,19 @@ class _Time extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final days = duration.inDays;
+    final hours = duration.inHours - duration.inDays * 24;
+
+    final minutes = duration.inMinutes.remainder(60);
+    final seconds = duration.inSeconds.remainder(60);
+
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        ..._buildNumber(33, 'DAYS', context),
-        ..._buildNumber(33, 'DAYS', context),
-        ..._buildNumber(33, 'DAYS', context),
-        ..._buildNumber(33, 'DAYS', context),
+        ..._buildNumber(days, 'DAYS', context),
+        ..._buildNumber(hours, 'HOURS', context),
+        ..._buildNumber(minutes, 'MINUTES', context),
+        ..._buildNumber(seconds, 'SECONDS', context),
       ],
     );
   }
