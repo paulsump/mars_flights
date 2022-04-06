@@ -94,7 +94,14 @@ class FetchNotifier extends ChangeNotifier {
 
     notifyListeners();
 
-    // TODO FILL OUT PrettyFlightS
+    if (hasFlights) {
+      for (final flight in flights) {
+        prettyFlights.add(PrettyFlight(
+            mission: flight.name!,
+            date: flight.time.toString(),
+            pad: flight.launchPad!));
+      }
+    }
 
     client.close();
   }
@@ -234,12 +241,16 @@ class Flight {
             .toList(),
         launchLibraryId = _getFieldOrNull('launch_library_id', json).toString(),
         launchPad = _getFieldOrNull('launchpad', json),
+        name = _getFieldOrNull('name', json),
         id = _getFieldOrNull('id', json);
 
   final String? id;
   final String? launchPad;
 
+  final String? name;
+
   // final _Links _links;
+
   final String? details;
   final int? dateUnix;
 

@@ -29,12 +29,11 @@ class _Table extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //TODO SCREEN Size adjust
-    const size = 0.025;
+    final size = isPortrait(context) ? 0.01 : 0.025;
 
     return SingleChildScrollView(
       child: DataTable(
-        columns: const <DataColumn>[
+        columns: <DataColumn>[
           DataColumn(label: ScreenAdjustedText('Mission', size: size)),
           DataColumn(label: ScreenAdjustedText('Date (UTC)', size: size)),
           DataColumn(label: ScreenAdjustedText('Launch Pad', size: size)),
@@ -44,11 +43,11 @@ class _Table extends StatelessWidget {
           for (final flight in flights)
             DataRow(
               cells: <DataCell>[
-                DataCell(ScreenAdjustedText(flight.id!, size: size)),
+                DataCell(ScreenAdjustedText(flight.name!, size: size)),
                 DataCell(
                     ScreenAdjustedText(flight.time.toString(), size: size)),
                 DataCell(ScreenAdjustedText(flight.launchPad!, size: size)),
-                DataCell(_HeartButton(flightId: flight.id!)),
+                DataCell(_HeartButton(name: flight.name!)),
               ],
             ),
         ],
@@ -60,9 +59,9 @@ class _Table extends StatelessWidget {
 /// A button with an icon on it, that, when pressed
 /// toggles this flight as a favorite or not.
 class _HeartButton extends StatelessWidget {
-  const _HeartButton({required this.flightId, Key? key}) : super(key: key);
+  const _HeartButton({required this.name, Key? key}) : super(key: key);
 
-  final String flightId;
+  final String name;
 
   @override
   Widget build(BuildContext context) {
@@ -70,7 +69,7 @@ class _HeartButton extends StatelessWidget {
     return Align(
       heightFactor: 0.774,
       child: IconFlatHexagonButton(
-        onPressed: () => bookmarksNotifier.add(flightId),
+        onPressed: () => bookmarksNotifier.add(name),
         tip: 'Bookmark this flight as a favorite',
         icon: Icons.favorite,
         iconSize: screenAdjustSmallIconSize(context),
