@@ -16,7 +16,7 @@ class CountdownPage extends StatelessWidget {
     final Flight? flight =
         fetchNotifier.hasFlight ? fetchNotifier.flight : null;
 
-    final DateTime? time = flight?.time;
+    final DateTime? date = flight?.date;
 
     if (flight != null) {
       // out(flight.id!);
@@ -25,7 +25,7 @@ class CountdownPage extends StatelessWidget {
 
     return Background(
       child:
-          time != null ? _Time(time.difference(DateTime.now())) : Container(),
+          date != null ? _Time(date.difference(DateTime.now())) : Container(),
     );
   }
 }

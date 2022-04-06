@@ -17,7 +17,7 @@ class FlightsPage extends StatelessWidget {
 
     return Background(
         child: fetchNotifier.hasFlights
-            ? _Table(fetchNotifier.flights)
+            ? _Table(fetchNotifier.prettyFlights)
             : Container());
   }
 }
@@ -25,7 +25,7 @@ class FlightsPage extends StatelessWidget {
 class _Table extends StatelessWidget {
   const _Table(this.flights, {Key? key}) : super(key: key);
 
-  final List<Flight> flights;
+  final List<PrettyFlight> flights;
 
   @override
   Widget build(BuildContext context) {
@@ -43,11 +43,10 @@ class _Table extends StatelessWidget {
           for (final flight in flights)
             DataRow(
               cells: <DataCell>[
-                DataCell(ScreenAdjustedText(flight.name!, size: size)),
-                DataCell(
-                    ScreenAdjustedText(flight.time.toString(), size: size)),
-                DataCell(ScreenAdjustedText(flight.launchPad!, size: size)),
-                DataCell(_HeartButton(name: flight.name!)),
+                DataCell(ScreenAdjustedText(flight.mission, size: size)),
+                DataCell(ScreenAdjustedText(flight.date, size: size)),
+                DataCell(ScreenAdjustedText(flight.pad, size: size)),
+                DataCell(_HeartButton(name: flight.mission)),
               ],
             ),
         ],

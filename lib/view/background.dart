@@ -3,6 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:mars_flights/buttons/page_buttons.dart';
 import 'package:mars_flights/hue.dart';
+import 'package:mars_flights/screen_adjust.dart';
+import 'package:mars_flights/view/pulsate.dart';
 import 'package:mars_flights/view/star.dart';
 
 /// A container frame / scaffold for all pages.
@@ -16,15 +18,13 @@ class Background extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        decoration: const BoxDecoration(
-          color: Hue.background,
-          image: DecorationImage(
-            image: AssetImage('images/background.jpg'),
-            fit: BoxFit.cover,
-          ),
-        ),
+        color: Hue.background,
         child: Stack(
           children: [
+            const Center(
+                child: Pulsate(
+                    scale: 2.0,
+                    child: Image(image: AssetImage('images/background.jpg')))),
             const Star(),
             SafeArea(
                 left: false,

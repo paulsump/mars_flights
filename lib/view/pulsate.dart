@@ -3,6 +3,7 @@ import 'dart:math';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:mars_flights/out.dart';
 import 'package:mars_flights/screen_adjust.dart';
 
 /// Calculate a value between 0 and 1 but goes up and down like a sine wave.
@@ -11,9 +12,14 @@ double calcUnitPingPong(double unitValue) => (1 + sin(2 * pi * unitValue)) / 2;
 /// Animates a child (e.g. an image) to throb / scale in and out
 /// with a sinusoidal ping pong / resonant oscillation.
 class Pulsate extends StatefulWidget {
-  const Pulsate({Key? key, required this.child}) : super(key: key);
+  const Pulsate({
+    Key? key,
+    required this.child,
+    required this.scale,
+  }) : super(key: key);
 
   final Widget child;
+  final double scale;
 
   @override
   _PulsateState createState() => _PulsateState();
@@ -25,7 +31,7 @@ class _PulsateState extends State<Pulsate> with SingleTickerProviderStateMixin {
   @override
   void initState() {
     _controller = AnimationController(
-        duration: const Duration(milliseconds: 3000), vsync: this)
+        duration: const Duration(milliseconds: 30000), vsync: this)
       ..addListener(() {
         setState(() {});
       });
@@ -43,8 +49,8 @@ class _PulsateState extends State<Pulsate> with SingleTickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Transform.scale(
-      origin: Offset(0, screenAdjustY(0.1, context)),
-      scale: lerpDouble(0.9, 1.0, calcUnitPingPong(_controller.value))!,
+      scale: lerpDouble(widget.scale * 1.15, widget.scale * 2.4,
+          calcUnitPingPong(_controller.value))!,
       child: widget.child,
     );
   }

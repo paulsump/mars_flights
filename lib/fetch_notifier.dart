@@ -94,12 +94,23 @@ class FetchNotifier extends ChangeNotifier {
 
     notifyListeners();
 
+    getPadName(id) {
+      for (final f in launchPads) {
+        //TODO debug
+        if (f.id == flight.launchPad) {
+          return f.name;
+        }
+      }
+      //TODO ASSERT?
+      return '';
+    }
+
     if (hasFlights) {
       for (final flight in flights) {
         prettyFlights.add(PrettyFlight(
             mission: flight.name!,
-            date: flight.time.toString(),
-            pad: flight.launchPad!));
+            date: flight.date.toString(),
+            pad: getPadName(flight.launchPad)));
       }
     }
 
@@ -259,7 +270,7 @@ class Flight {
 
   /// launch time
   /// TODO convert toLocal.  Maybe use utc to find original zone? (Probably California).
-  DateTime? get time => dateUnix == null
+  DateTime? get date => dateUnix == null
       ? null
       : DateTime.fromMillisecondsSinceEpoch(dateUnix! * 1000);
 
