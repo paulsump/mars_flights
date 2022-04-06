@@ -18,12 +18,16 @@ Showcase and notify the next rocket launch. Show details about upcoming rocket l
   in the design.
 - The countdown and upcoming launches table can be implemented either in separate screens (implement
   navigation).
-  
+
+### TODO - Tests
+
+DateTime tests - check count down maths.
+
 ### TODO - UI Later
 
 - Add a share button for social media platforms to share the next launch with friends
 - Each launch should have a 'Bookmark' or 'Favorite' button that adds it to a separate 'Favorites'
-  section. Use of the localStorage API here (either save the launches data or its id)
+  section [FavoritesPage]. Use the localStorage API here (either save the launches data or its id)
 
 ## Original...
 

@@ -198,7 +198,7 @@ class Flight {
   final String? launchLibraryId;
 
   /// launch time
-  /// TODO convert toLocal.  Maybe use utc to find original zone?
+  /// TODO convert toLocal.  Maybe use utc to find original zone? (Probably California).
   DateTime? get time => dateUnix == null
       ? null
       : DateTime.fromMillisecondsSinceEpoch(dateUnix! * 1000);

@@ -20,9 +20,12 @@ class CountdownPage extends StatelessWidget {
     }
 
     return Scaffold(
-      body: Center(
-        child:
-            time != null ? _Time(time.difference(DateTime.now())) : Container(),
+      body: SafeArea(
+        child: Center(
+          child: time != null
+              ? _Time(time.difference(DateTime.now()))
+              : Container(),
+        ),
       ),
     );
   }
@@ -55,8 +58,8 @@ class _Time extends StatelessWidget {
 
   List<Widget> _buildNumber(int n, String label, BuildContext context) {
     return <Widget>[
-      Expanded(flex: 4, child: ScreenAdjustedText(n.toString(), size: 0.1)),
-      Expanded(flex: 1, child: ScreenAdjustedText(label, size: 0.03)),
+      Expanded(flex: 15, child: ScreenAdjustedText(n.toString(), size: 0.1)),
+      Expanded(flex: 10, child: ScreenAdjustedText(label, size: 0.03)),
     ];
   }
 }

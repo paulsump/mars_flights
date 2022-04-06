@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:mars_flights/fetch_notifier.dart';
 import 'package:mars_flights/view/countdown_page.dart';
+import 'package:mars_flights/view/favorites_page.dart';
 import 'package:mars_flights/view/flights_page.dart';
 import 'package:provider/provider.dart';
 
@@ -52,6 +53,7 @@ class _App extends StatelessWidget {
         ),
         routes: {
           'Flights': (context) => const FlightsPage(),
+          'Favorites': (context) => const FavoritesPage(),
         },
       ),
     );
