@@ -47,6 +47,9 @@ Size screenAdjustButtonSize(BuildContext context) {
   return Size(buttonHeight, buttonHeight);
 }
 
+double screenAdjustNormalIconSize(BuildContext context) =>
+    0.4 * _screenAdjustButtonHeight(context);
+
 /// Device dimensions
 double _getScreenWidth(BuildContext context) => getScreenSize(context).width;
 

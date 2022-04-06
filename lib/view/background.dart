@@ -1,6 +1,7 @@
 // © 2022, Paul Sumpner <sumpner@hotmail.com>
 
 import 'package:flutter/material.dart';
+import 'package:mars_flights/buttons/page_buttons.dart';
 import 'package:mars_flights/hue.dart';
 import 'package:mars_flights/view/star.dart';
 
@@ -25,7 +26,14 @@ class Background extends StatelessWidget {
         child: Stack(
           children: [
             const Star(),
-            SafeArea(left: false, child: Center(child: child)),
+            SafeArea(
+                left: false,
+                child: Column(
+                  children: [
+                    const PageButtons(),
+                    Expanded(child: Center(child: child)),
+                  ],
+                )),
           ],
         ),
       ),
