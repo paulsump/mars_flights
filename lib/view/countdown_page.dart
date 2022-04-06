@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:mars_flights/fetch_notifier.dart';
 import 'package:mars_flights/out.dart';
+import 'package:mars_flights/view/background.dart';
 import 'package:mars_flights/view/screen_adjusted_text.dart';
 
 class CountdownPage extends StatelessWidget {
@@ -15,18 +16,13 @@ class CountdownPage extends StatelessWidget {
     final DateTime? time =
         fetchNotifier.hasFlight ? fetchNotifier.flight.time : null;
 
-    if (time != null) {
-      out(time);
-    }
+    // if (time != null) {
+    //   out(time);
+    // }
 
-    return Scaffold(
-      body: SafeArea(
-        child: Center(
-          child: time != null
-              ? _Time(time.difference(DateTime.now()))
-              : Container(),
-        ),
-      ),
+    return Background(
+      child:
+          time != null ? _Time(time.difference(DateTime.now())) : Container(),
     );
   }
 }
