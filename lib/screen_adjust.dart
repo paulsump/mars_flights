@@ -1,6 +1,9 @@
 // Copyright (c) 2022, Paul Sumpner.  All rights reserved.
 
+import 'dart:math';
+
 import 'package:flutter/material.dart';
+import 'package:mars_flights/buttons/position_to_unit.dart';
 
 /// Convenient access to screen dimensions.
 Size getScreenSize(BuildContext context) => MediaQuery.of(context).size;
@@ -21,6 +24,28 @@ double screenAdjustX(double length, BuildContext context) =>
 double screenAdjustY(double length, BuildContext context) =>
     length * _getScreenHeight(context);
 
+/// object dimensions calculated using the shortestEdge of the screen...
+
+double screenAdjust(double length, BuildContext context) =>
+    length * _getScreenShortestEdge(context);
+
+double _getScreenShortestEdge(BuildContext context) {
+  final screen = getScreenSize(context);
+
+  return min(screen.width, screen.height);
+}
+
+double _screenAdjustButtonHeight(BuildContext context) =>
+    screenAdjust(0.1921, context);
+
+double screenAdjustButtonWidth(BuildContext context) =>
+    root3over2 * _screenAdjustButtonHeight(context);
+
+Size screenAdjustButtonSize(BuildContext context) {
+  final double buttonHeight = _screenAdjustButtonHeight(context);
+
+  return Size(buttonHeight, buttonHeight);
+}
 
 /// Device dimensions
 double _getScreenWidth(BuildContext context) => getScreenSize(context).width;

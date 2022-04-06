@@ -1,8 +1,8 @@
 // © 2022, Paul Sumpner <sumpner@hotmail.com>
 
 import 'package:flutter/material.dart';
-import 'package:mars_flights/view/hue.dart';
-import 'package:mars_flights/view/screen_adjust.dart';
+import 'package:mars_flights/hue.dart';
+import 'package:mars_flights/screen_adjust.dart';
 
 /// Simple [Text] with screen adjusted font size.
 class ScreenAdjustedText extends StatelessWidget {

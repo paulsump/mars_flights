@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:mars_flights/view/pulsate.dart';
-import 'package:mars_flights/view/screen_adjust.dart';
+import 'package:mars_flights/screen_adjust.dart';
 
 /// Little animated stars on the [Background]
 class Star extends StatefulWidget {
