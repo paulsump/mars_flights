@@ -19,12 +19,19 @@ class FetchNotifier extends ChangeNotifier {
 
   late Flight flight;
   bool hasFlight = false;
+  String flightErrorMessage = 'Fetching flight info...';
+
+  // Dry / Extract this repeated pattern...
 
   final flights = <Flight>[];
   bool hasFlights = false;
+  String flightsErrorMessage = '';
 
-  String flightErrorMessage = 'Fetching flight info...';
-  String allFlightsErrorMessage = '';
+  final launchPads = <LaunchPad>[];
+  bool hasLaunchPads = false;
+  String launchPadsErrorMessage = '';
+
+  final prettyFlights = <PrettyFlight>[];
 
   /// The main starting point for the app data.
   /// Called only once.
@@ -48,9 +55,9 @@ class FetchNotifier extends ChangeNotifier {
     notifyListeners();
 
     try {
-      final allFlights_ = await fetcher.getFlights();
+      final flights_ = await fetcher.getFlights();
 
-      for (final flight in allFlights_) {
+      for (final flight in flights_) {
         try {
           flights.add(Flight.fromJson(flight));
         } catch (error) {
@@ -59,13 +66,36 @@ class FetchNotifier extends ChangeNotifier {
       }
       hasFlights = true;
     } catch (error) {
-      allFlightsErrorMessage = _formatError(error);
+      flightsErrorMessage = _formatError(error);
 
       // Allow app to try again later.
       fetchAllHasBeenCalled = false;
     }
 
     notifyListeners();
+
+    try {
+      final launchPads_ = await fetcher.getLaunchPads();
+
+      for (final launchPad in launchPads_) {
+        try {
+          launchPads.add(LaunchPad.fromJson(launchPad));
+        } catch (error) {
+          logError('Ignoring bad launchPad');
+        }
+      }
+      hasLaunchPads = true;
+    } catch (error) {
+      launchPadsErrorMessage = _formatError(error);
+
+      // Allow app to try again later.
+      fetchAllHasBeenCalled = false;
+    }
+
+    notifyListeners();
+
+    // TODO FILL OUT PrettyFlightS
+
     client.close();
   }
 
@@ -79,6 +109,17 @@ class FetchNotifier extends ChangeNotifier {
     out(message);
     return message;
   }
+}
+
+class PrettyFlight {
+  const PrettyFlight({
+    required this.mission,
+    required this.date,
+    required this.pad,
+  });
+
+  final String mission, date, pad;
+//bool favorite?
 }
 
 /// Helper class to fetch and convert json
@@ -95,6 +136,9 @@ class Fetcher {
   Future<Map<String, dynamic>> getFlight() async => _getMap('next');
 
   Future<List<dynamic>> getFlights() async => _getList('upcoming');
+
+  //TODO add test for this using test_data/launch_pads.json
+  Future<List<dynamic>> getLaunchPads() async => _getList('launchpads');
 
   Future<Map<String, dynamic>> _getMap(String url) async {
     final json = await _getJson(url);
@@ -115,17 +159,17 @@ class Fetcher {
       Uri.parse('https://api.spacexdata.com/v4/launches/$url'),
     );
 
-    if (response.statusCode == 200) {
+    final code = response.statusCode;
+    if (code == 200) {
       return response.body;
     } else {
-      final n = response.statusCode;
-      var message = 'Failed to fetch $url from the API.\n($n';
+      var message = 'Failed to fetch $url from the API.\n($code';
 
-      if (_friendlyHttpStatus.containsKey(n)) {
-        message += ' -  ${_friendlyHttpStatus[n]!}.)';
+      if (_friendlyHttpStatus.containsKey(code)) {
+        message += ' -  ${_friendlyHttpStatus[code]!}.)';
       } else {
         message += ')';
-        logError('Unknown http status code $n');
+        logError('Unknown http status code $code');
       }
       throw Exception(message);
     }
@@ -218,3 +262,12 @@ class Flight {
 //   final String launch;
 // TODO media, recovery
 // }
+
+class LaunchPad {
+  LaunchPad.fromJson(Map<String, dynamic> json)
+      : name = json['name'],
+        id = json['id'];
+
+  final String name;
+  final String id;
+}

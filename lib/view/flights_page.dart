@@ -29,6 +29,7 @@ class _Table extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //TODO SCREEN Size adjust
     const size = 0.025;
 
     return SingleChildScrollView(
