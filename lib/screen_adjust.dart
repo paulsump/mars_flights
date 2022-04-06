@@ -36,7 +36,7 @@ double _getScreenShortestEdge(BuildContext context) {
 }
 
 double _screenAdjustButtonHeight(BuildContext context) =>
-    screenAdjust(0.1921, context);
+    screenAdjust(0.16, context);
 
 double screenAdjustButtonWidth(BuildContext context) =>
     root3over2 * _screenAdjustButtonHeight(context);

@@ -188,7 +188,12 @@ class Flight {
         crew = _getFieldOrNull('crew', json)
             .map<String>((member) => member.toString())
             .toList(),
-        launchLibraryId = _getFieldOrNull('launch_library_id', json).toString();
+        launchLibraryId = _getFieldOrNull('launch_library_id', json).toString(),
+        launchPad = _getFieldOrNull('launchpad', json),
+        id = _getFieldOrNull('id', json);
+
+  final String? id;
+  final String? launchPad;
 
   // final _Links _links;
   final String? details;

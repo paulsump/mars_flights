@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:mars_flights/fetch_notifier.dart';
 import 'package:mars_flights/view/background.dart';
+import 'package:mars_flights/view/screen_adjusted_text.dart';
 
 class FlightsPage extends StatelessWidget {
   const FlightsPage({Key? key}) : super(key: key);
@@ -25,50 +26,27 @@ class _Table extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return DataTable(
-      columns: const <DataColumn>[
-        DataColumn(
-          label: Text(
-            'Name',
-            style: TextStyle(fontStyle: FontStyle.italic),
-          ),
-        ),
-        DataColumn(
-          label: Text(
-            'Age',
-            style: TextStyle(fontStyle: FontStyle.italic),
-          ),
-        ),
-        DataColumn(
-          label: Text(
-            'Role',
-            style: TextStyle(fontStyle: FontStyle.italic),
-          ),
-        ),
-      ],
-      rows: const <DataRow>[
-        DataRow(
-          cells: <DataCell>[
-            DataCell(Text('Sarah')),
-            DataCell(Text('19')),
-            DataCell(Text('Student')),
-          ],
-        ),
-        DataRow(
-          cells: <DataCell>[
-            DataCell(Text('Janine')),
-            DataCell(Text('43')),
-            DataCell(Text('Professor')),
-          ],
-        ),
-        DataRow(
-          cells: <DataCell>[
-            DataCell(Text('William')),
-            DataCell(Text('27')),
-            DataCell(Text('Associate Professor')),
-          ],
-        ),
-      ],
+    const size = 0.025;
+
+    return SingleChildScrollView(
+      child: DataTable(
+        columns: const <DataColumn>[
+          DataColumn(label: ScreenAdjustedText('Mission', size: size)),
+          DataColumn(label: ScreenAdjustedText('Date (UTC)', size: size)),
+          DataColumn(label: ScreenAdjustedText('Launch Pad', size: size)),
+        ],
+        rows: <DataRow>[
+          for (final flight in flights)
+            DataRow(
+              cells: <DataCell>[
+                DataCell(ScreenAdjustedText(flight.id!, size: size)),
+                DataCell(
+                    ScreenAdjustedText(flight.time.toString(), size: size)),
+                DataCell(ScreenAdjustedText(flight.launchPad!, size: size)),
+              ],
+            ),
+        ],
+      ),
     );
   }
 }
