@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:mars_flights/fetch_notifier.dart';
+import 'package:mars_flights/out.dart';
 import 'package:mars_flights/view/background.dart';
 import 'package:mars_flights/view/screen_adjusted_text.dart';
 
@@ -12,12 +13,15 @@ class CountdownPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final fetchNotifier = getFetchNotifier(context, listen: true);
 
-    final DateTime? time =
-        fetchNotifier.hasFlight ? fetchNotifier.flight.time : null;
+    final Flight? flight =
+        fetchNotifier.hasFlight ? fetchNotifier.flight : null;
 
-    // if (time != null) {
-    //   out(time);
-    // }
+    final DateTime? time = flight?.time;
+
+    if (flight != null) {
+      // out(flight.id!);
+      out(flight.launchPad!);
+    }
 
     return Background(
       child:

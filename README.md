@@ -10,6 +10,11 @@ Showcase and notify the next rocket launch. Show details about upcoming rocket l
 - a fallback when an error occurs
 - Docs: 'https://github.com/r-spacex/SpaceX-API/#readme'
 
+### Fix
+
+- Get 'Mission' and 'Launch Pad' from ids or something.
+- Can't see inkwell when press buttons.
+
 ### TODO - UI
 
 - The countdown is live and specify days, hours, minutes, and seconds.
@@ -27,6 +32,7 @@ DateTime tests - check count down maths.
 - Add a share button for social media platforms to share the next launch with friends
 - Each launch should have a 'Bookmark' or 'Favorite' button that adds it to a separate 'Favorites'
   section [FavoritesPage]. Use the localStorage API here (either save the launches data or its id)
+- Transform background image position and scale.
 
 ## Original...
 
