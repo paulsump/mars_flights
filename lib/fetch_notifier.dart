@@ -198,9 +198,9 @@ class Flight {
   final String? launchLibraryId;
 
   /// launch time
-  String get time => dateUnix == null
-      ? "Unknown"
-      : DateTime.fromMillisecondsSinceEpoch(dateUnix! * 1000).toString();
+  DateTime? get time => dateUnix == null
+      ? null
+      : DateTime.fromMillisecondsSinceEpoch(dateUnix! * 1000);
 
 // final _Reddit _reddit;
 }

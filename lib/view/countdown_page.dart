@@ -11,36 +11,41 @@ class CountdownPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final fetchNotifier = getFetchNotifier(context, listen: true);
 
+    final DateTime? time =
+        fetchNotifier.hasFlight ? fetchNotifier.flight.time : null;
+
     return Scaffold(
       body: Center(
-        child: !fetchNotifier.hasFlight
-            ? Container()
-            : Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  _buildNumber(33, context),
-                  _buildText(fetchNotifier.flight.time, context),
-                  _buildNumber(33, context),
-                  _buildText('DAYS', context),
-                  _buildNumber(33, context),
-                  _buildText('DAYS', context),
-                  _buildNumber(33, context),
-                  _buildText('DAYS', context),
-                ],
-              ),
+        child:
+            time != null ? _Time(DateTime.now().difference(time)) : Container(),
       ),
     );
   }
+}
 
-  Widget _buildNumber(int n, BuildContext context) {
-    return Expanded(
-        flex: 4, child: ScreenAdjustedText(n.toString(), size: 0.1));
+/// Ui to display time / days left until launch
+class _Time extends StatelessWidget {
+  const _Time(this.duration, {Key? key}) : super(key: key);
+
+  final Duration duration;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        ..._buildNumber(33, 'DAYS', context),
+        ..._buildNumber(33, 'DAYS', context),
+        ..._buildNumber(33, 'DAYS', context),
+        ..._buildNumber(33, 'DAYS', context),
+      ],
+    );
   }
 
-  Widget _buildText(String text, BuildContext context) {
-    return Expanded(
-      flex: 1,
-      child: ScreenAdjustedText(text, size: 0.03),
-    );
+  List<Widget> _buildNumber(int n, String label, BuildContext context) {
+    return <Widget>[
+      Expanded(flex: 4, child: ScreenAdjustedText(n.toString(), size: 0.1)),
+      Expanded(flex: 1, child: ScreenAdjustedText(label, size: 0.03)),
+    ];
   }
 }
