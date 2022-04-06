@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mars_flights/view/background.dart';
 
 /// Display and manage bookmarked favourite flights.
 class FavoritesPage extends StatelessWidget {
@@ -6,6 +7,6 @@ class FavoritesPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Background(child: Container());
   }
 }

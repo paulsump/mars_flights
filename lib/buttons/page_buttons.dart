@@ -16,9 +16,9 @@ class PageButtons extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.end,
       children: const [
-        _IconButton(icon: Icons.timer_rounded),
-        _IconButton(icon: Icons.view_list_rounded),
-        _IconButton(icon: Icons.favorite),
+        _IconButton(pageName: 'Countdown', icon: Icons.timer_rounded),
+        _IconButton(pageName: 'Flights', icon: Icons.view_list_rounded),
+        _IconButton(pageName: 'Favorites', icon: Icons.favorite),
       ],
     );
   }
@@ -27,17 +27,21 @@ class PageButtons extends StatelessWidget {
 /// A button with an icon on it.
 /// For [PageButtons].
 class _IconButton extends StatelessWidget {
-  const _IconButton({Key? key, required this.icon}) : super(key: key);
+  const _IconButton({
+    Key? key,
+    required this.pageName,
+    required this.icon,
+  }) : super(key: key);
 
   final IconData icon;
+  final String pageName;
 
   @override
   Widget build(BuildContext context) {
     return Align(
       heightFactor: 0.774,
       child: IconFlatHexagonButton(
-        //TODO NAV
-        onPressed: () => {},
+        onPressed: () => Navigator.of(context).pushReplacementNamed(pageName),
         //TODO tip
         tip: 'TODO',
         icon: icon,

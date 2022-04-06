@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:mars_flights/fetch_notifier.dart';
+import 'package:mars_flights/view/background.dart';
 
 class FlightsPage extends StatelessWidget {
   const FlightsPage({Key? key}) : super(key: key);
@@ -10,9 +11,10 @@ class FlightsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final fetchNotifier = getFetchNotifier(context, listen: true);
 
-    return fetchNotifier.hasFlights
-        ? _Table(fetchNotifier.flights)
-        : Container();
+    return Background(
+        child: fetchNotifier.hasFlights
+            ? _Table(fetchNotifier.flights)
+            : Container());
   }
 }
 
