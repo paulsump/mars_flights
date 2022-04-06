@@ -197,9 +197,11 @@ class Flight {
   final List<String>? crew;
   final String? launchLibraryId;
 
+  /// launch time
   String get time => dateUnix == null
       ? "Unknown"
-      : DateTime.fromMicrosecondsSinceEpoch(dateUnix!).toString();
+      : DateTime.fromMillisecondsSinceEpoch(dateUnix! * 1000).toString();
+
 // final _Reddit _reddit;
 }
 

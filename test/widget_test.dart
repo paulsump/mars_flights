@@ -39,12 +39,11 @@ Future<http.Response> _getEmptyResponse(http.Request url) async {
 }
 
 void main() {
-  final app = createApp(client: MockClient(_getGoodResponse));
-
+  final goodApp = createApp(client: MockClient(_getGoodResponse));
   final emptyApp = createApp(client: MockClient(_getEmptyResponse));
 
   testWidgets('Countdown page', (WidgetTester tester) async {
-    await tester.pumpWidget(app);
+    await tester.pumpWidget(goodApp);
 
     expect(find.byType(CountdownPage), findsOneWidget);
     expect(find.textContaining('33'), findsNothing);
