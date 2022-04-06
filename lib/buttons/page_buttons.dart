@@ -16,25 +16,36 @@ class PageButtons extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.end,
       children: const [
-        _IconButton(pageName: 'Countdown', icon: Icons.timer_rounded),
-        _IconButton(pageName: 'Flights', icon: Icons.view_list_rounded),
-        _IconButton(pageName: 'Favorites', icon: Icons.favorite),
+        _NavigatorButton(
+            pageName: 'Countdown',
+            icon: Icons.timer_rounded,
+            tip: 'Show the time left until the next launch.'),
+        _NavigatorButton(
+            pageName: 'Flights',
+            icon: Icons.view_list_rounded,
+            tip: 'Show all the upcoming launches.'),
+        _NavigatorButton(
+            pageName: 'Favorites',
+            icon: Icons.favorite,
+            tip: 'Show your bookmarked launches.'),
       ],
     );
   }
 }
 
-/// A button with an icon on it.
+/// A button with an icon on it, that, when pressed
+/// uses [Navigator] to replace the current page with the chosen one.
 /// For [PageButtons].
-class _IconButton extends StatelessWidget {
-  const _IconButton({
+class _NavigatorButton extends StatelessWidget {
+  const _NavigatorButton({
     Key? key,
     required this.pageName,
     required this.icon,
+    required this.tip,
   }) : super(key: key);
 
   final IconData icon;
-  final String pageName;
+  final String pageName, tip;
 
   @override
   Widget build(BuildContext context) {
@@ -42,8 +53,7 @@ class _IconButton extends StatelessWidget {
       heightFactor: 0.774,
       child: IconFlatHexagonButton(
         onPressed: () => Navigator.of(context).pushReplacementNamed(pageName),
-        //TODO tip
-        tip: 'TODO',
+        tip: tip,
         icon: icon,
         iconSize: screenAdjustNormalIconSize(context),
       ),
