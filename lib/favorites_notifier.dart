@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mars_flights/fetch_notifier.dart';
 import 'package:provider/provider.dart';
 
 /// Convenience function to get the [FavoritesNotifier] '[Provider]'.
@@ -22,4 +23,16 @@ class FavoritesNotifier extends ChangeNotifier {
   }
 
   bool contains(String flightName) => _flightNames.contains(flightName);
+
+  List<PrettyFlight> filter(List<PrettyFlight> prettyFlights) {
+    final flights = <PrettyFlight>[];
+
+    for (final flight in prettyFlights) {
+      if (_flightNames.contains(flight.name)) {
+        flights.add(flight);
+      }
+    }
+
+    return flights;
+  }
 }

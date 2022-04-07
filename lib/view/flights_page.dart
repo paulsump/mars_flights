@@ -17,13 +17,45 @@ class FlightsPage extends StatelessWidget {
 
     return Background(
         child: fetchNotifier.hasFlights
-            ? isPortrait(context)
-                ? SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: _Table(fetchNotifier.prettyFlights),
-                  )
-                : _Table(fetchNotifier.prettyFlights)
+            ? _ScrollTable(fetchNotifier.prettyFlights)
+            // TODO DISplay flightsErrorMessage
             : Container());
+  }
+}
+
+/// Display and manage favorite flights.
+class FavoritesPage extends StatelessWidget {
+  const FavoritesPage({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final fetchNotifier = getFetchNotifier(context, listen: true);
+
+    final favoritesNotifier = getFavoritesNotifier(context, listen: true);
+
+    return Background(
+        child: fetchNotifier.hasFlights
+            ? _ScrollTable(
+                favoritesNotifier.filter(fetchNotifier.prettyFlights))
+            // TODO DISplay flightsErrorMessage
+            : Container());
+  }
+}
+
+/// Allows horizontal scroll of table in portrait only.
+class _ScrollTable extends StatelessWidget {
+  const _ScrollTable(this.flights, {Key? key}) : super(key: key);
+
+  final List<PrettyFlight> flights;
+
+  @override
+  Widget build(BuildContext context) {
+    return isPortrait(context)
+        ? SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: _Table(flights),
+          )
+        : _Table(flights);
   }
 }
 
@@ -52,10 +84,10 @@ class _Table extends StatelessWidget {
           for (final flight in flights)
             DataRow(
               cells: <DataCell>[
-                cellText(flight.mission),
+                cellText(flight.name),
                 cellText(flight.date),
                 cellText(flight.pad),
-                DataCell(_FavoritesToggleButton(name: flight.mission)),
+                DataCell(_FavoritesToggleButton(name: flight.name)),
               ],
             ),
         ],

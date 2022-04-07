@@ -108,7 +108,7 @@ class FetchNotifier extends ChangeNotifier {
     if (hasFlights) {
       for (final flight in flights) {
         prettyFlights.add(PrettyFlight(
-            mission: flight.name!,
+            name: flight.name!,
             date: flight.date.toString(),
             pad: getPadName(flight.launchPad)));
       }
@@ -131,12 +131,12 @@ class FetchNotifier extends ChangeNotifier {
 
 class PrettyFlight {
   const PrettyFlight({
-    required this.mission,
+    required this.name,
     required this.date,
     required this.pad,
   });
 
-  final String mission, date, pad;
+  final String name, date, pad;
 //bool favorite?
 }
 
