@@ -2,20 +2,13 @@
 
 Showcase and notify the next rocket launch. Show details about upcoming rocket launches.
 
-### TODO - Fetch
-
-- Next Launch Counter: 'https://github.com/r-spacex/SpaceX-API/blob/master/docs/launches/v4/next.md'
-- Upcoming
-  Launches: 'https://github.com/r-spacex/SpaceX-API/blob/master/docs/launches/v4/upcoming.md'
-- a fallback when an error occurs
-- Docs: 'https://github.com/r-spacex/SpaceX-API/#readme'
-
 ### Fix
 
 - Navigation (e.g. buttons redraw)
 
 ### TODO - UI
 
+- Check flightErrorMessage when bad internet.
 - Implement favorites (rename bookmark).  
   Toggle button on [FlightsPage].
 - Shorter date format on [FlightsPage].
@@ -27,7 +20,8 @@ Showcase and notify the next rocket launch. Show details about upcoming rocket l
 
 ### TODO - Tests
 
-DateTime tests - check count down maths. DataTable Column titles scroll off when scroll.
+DateTime tests - check count down maths. DataTable Column titles scroll off when scroll. widget_test
+flightErrorMessage
 
 ### TODO - UI Later
 

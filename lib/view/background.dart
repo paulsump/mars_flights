@@ -3,7 +3,6 @@
 import 'package:flutter/material.dart';
 import 'package:mars_flights/buttons/page_buttons.dart';
 import 'package:mars_flights/hue.dart';
-import 'package:mars_flights/screen_adjust.dart';
 import 'package:mars_flights/view/pulsate.dart';
 import 'package:mars_flights/view/star.dart';
 
@@ -22,18 +21,21 @@ class Background extends StatelessWidget {
         child: Stack(
           children: [
             const Center(
-                child: Pulsate(
-                    scale: 2.0,
-                    child: Image(image: AssetImage('images/background.jpg')))),
+              child: Pulsate(
+                scale: 2.0,
+                child: Image(image: AssetImage('images/background.jpg')),
+              ),
+            ),
             const Star(),
             SafeArea(
-                left: false,
-                child: Column(
-                  children: [
-                    const PageButtons(),
-                    Expanded(child: Center(child: child)),
-                  ],
-                )),
+              left: false,
+              child: Column(
+                children: [
+                  const PageButtons(),
+                  Expanded(child: Center(child: child)),
+                ],
+              ),
+            ),
           ],
         ),
       ),
