@@ -18,11 +18,11 @@ bool isPortrait(BuildContext context) {
 
 /// Widget dimensions calculated using the width of the screen.
 double screenAdjustX(double length, BuildContext context) =>
-    length * _getScreenWidth(context);
+    length * screenWidth(context);
 
 /// Widget dimensions calculated using the height of the screen.
 double screenAdjustY(double length, BuildContext context) =>
-    length * _getScreenHeight(context);
+    length * screenHeight(context);
 
 /// object dimensions calculated using the shortestEdge of the screen...
 
@@ -54,10 +54,10 @@ double screenAdjustSmallIconSize(BuildContext context) =>
     0.34 * _screenAdjustButtonHeight(context);
 
 /// Device dimensions
-double _getScreenWidth(BuildContext context) => getScreenSize(context).width;
+double screenWidth(BuildContext context) => getScreenSize(context).width;
 
 /// Device dimensions
-double _getScreenHeight(BuildContext context) => getScreenSize(context).height;
+double screenHeight(BuildContext context) => getScreenSize(context).height;
 
 /// Translate a child widget by an amount relative to
 /// the dimensions of the device.
@@ -89,8 +89,8 @@ class ScreenAdjust extends StatelessWidget {
     final offset_ = Offset(offset1.dx * screenAdjustX(0.13, context),
         offset1.dy * screenAdjustY(0.06, context));
 
-    final w = _getScreenWidth(context);
-    final h = _getScreenHeight(context);
+    final w = screenWidth(context);
+    final h = screenHeight(context);
 
     final offset = Offset(anchorRight ? w - offset_.dx : offset_.dx,
         anchorBottom ? h - offset_.dy : offset_.dy);

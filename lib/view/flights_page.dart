@@ -2,8 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:mars_flights/bookmarks_notifier.dart';
-import 'package:mars_flights/buttons/flat_hexagon_button.dart';
 import 'package:mars_flights/fetch_notifier.dart';
+import 'package:mars_flights/hue.dart';
 import 'package:mars_flights/screen_adjust.dart';
 import 'package:mars_flights/view/background.dart';
 import 'package:mars_flights/view/screen_adjusted_text.dart';
@@ -17,7 +17,12 @@ class FlightsPage extends StatelessWidget {
 
     return Background(
         child: fetchNotifier.hasFlights
-            ? _Table(fetchNotifier.prettyFlights)
+            ? isPortrait(context)
+                ? SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: _Table(fetchNotifier.prettyFlights),
+                  )
+                : _Table(fetchNotifier.prettyFlights)
             : Container());
   }
 }
@@ -29,7 +34,7 @@ class _Table extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = isPortrait(context) ? 0.01 : 0.025;
+    final size = isPortrait(context) ? 0.013 : 0.04;
 
     return SingleChildScrollView(
       child: DataTable(
@@ -67,10 +72,13 @@ class _HeartButton extends StatelessWidget {
     final bookmarksNotifier = getBookmarksNotifier(context, listen: false);
     return Align(
       heightFactor: 0.774,
-      child: IconFlatHexagonButton(
+      child: IconButton(
         onPressed: () => bookmarksNotifier.add(name),
-        tip: 'Bookmark this flight as a favorite',
-        icon: Icons.favorite,
+        // tip: 'Bookmark this flight as a favorite',
+        icon: const Icon(
+          Icons.favorite,
+          color: Hue.enabledIcon,
+        ),
         iconSize: screenAdjustSmallIconSize(context),
       ),
     );

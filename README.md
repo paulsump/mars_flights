@@ -12,11 +12,13 @@ Showcase and notify the next rocket launch. Show details about upcoming rocket l
 
 ### Fix
 
-- Get 'Mission' and 'Launch Pad' from ids or something.
-- Can't see inkwell when press buttons.
+- Navigation (e.g. buttons redraw)
 
 ### TODO - UI
 
+- Implement favorites (rename bookmark).  
+  Toggle button on [FlightsPage].
+- Shorter date format on [FlightsPage].
 - The countdown is live and specify days, hours, minutes, and seconds.
 - The 'Upcoming Launches' screen/section should display the mission name, date, and launchpad like
   in the design.
@@ -25,7 +27,7 @@ Showcase and notify the next rocket launch. Show details about upcoming rocket l
 
 ### TODO - Tests
 
-DateTime tests - check count down maths.
+DateTime tests - check count down maths. DataTable Column titles scroll off when scroll.
 
 ### TODO - UI Later
 
