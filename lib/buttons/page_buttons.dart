@@ -27,7 +27,7 @@ class PageButtons extends StatelessWidget {
         _NavigatorButton(
             pageName: 'Favorites',
             icon: Icons.favorite,
-            tip: 'Show your bookmarked launches.'),
+            tip: 'Show your favorite launches.'),
       ],
     );
   }

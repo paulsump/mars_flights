@@ -1,7 +1,7 @@
 // © 2022, Paul Sumpner <sumpner@hotmail.com>
 
 import 'package:flutter/material.dart';
-import 'package:mars_flights/bookmarks_notifier.dart';
+import 'package:mars_flights/favorites_notifier.dart';
 import 'package:mars_flights/fetch_notifier.dart';
 import 'package:mars_flights/hue.dart';
 import 'package:mars_flights/screen_adjust.dart';
@@ -72,17 +72,17 @@ class _HeartButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bookmarksNotifier = getBookmarksNotifier(context, listen: true);
+    final favoritesNotifier = getFavoritesNotifier(context, listen: true);
 
     return Align(
       heightFactor: 0.774,
       child: Tooltip(
-        message: 'Bookmark this flight as a favorite',
+        message: 'Add this flight to favorites.',
         child: IconButton(
-          onPressed: () => bookmarksNotifier.add(name),
+          onPressed: () => favoritesNotifier.add(name),
           icon: Icon(
             Icons.favorite,
-            color: bookmarksNotifier.isBookmarked(name)
+            color: favoritesNotifier.contains(name)
                 ? Hue.favorite
                 : Hue.notFavorite,
           ),
