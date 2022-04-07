@@ -1,4 +1,7 @@
-## My Short Version...
+## Flights to Mars
+<img src="https://github.com/paulsump/mars_flights/blob/813c01c1b2326f937fc1e4d08a8c52add9d284f9/images/background.jpg" width="1248">
+
+## Plan...
 
 Showcase and notify the next rocket launch. Show details about upcoming rocket launches.
 
@@ -24,7 +27,7 @@ flightErrorMessage
 - [FavoritesNotifier]. Use the localStorage API here (save the launches id)
 - Animate Transform background image position.
 
-## Original...
+## Original Specification...
 
 ### Objective
 
