@@ -48,9 +48,13 @@ class _PulsateState extends State<Pulsate> with SingleTickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    final from = isPortrait(context) ? 1.15 : 1.0;
+
+    final s = widget.scale;
+
     return Transform.scale(
-      scale: lerpDouble(widget.scale * 1.15, widget.scale * 2.4,
-          calcUnitPingPong(_controller.value))!,
+      scale:
+          lerpDouble(from * s, 2.4 * s, calcUnitPingPong(_controller.value))!,
       child: widget.child,
     );
   }

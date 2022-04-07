@@ -18,10 +18,10 @@ class CountdownPage extends StatelessWidget {
 
     final DateTime? date = flight?.date;
 
-    if (flight != null) {
-      // out(flight.id!);
-      out(flight.launchPad!);
-    }
+    // if (flight != null) {
+    // out(flight.id!);
+    // out(flight.launchPad!);
+    // }
 
     return Background(
       child:

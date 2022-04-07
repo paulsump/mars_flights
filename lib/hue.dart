@@ -13,9 +13,7 @@ class Hue {
   static const Color text = Color(0xffFFE99D);
   static const Color background = Color(0xff281721);
 
-  //TODO SET
-
-  static const Color buttonOverlay = Colors.transparent;
+  static const Color buttonOverlay = background;
 
   //TODO SET
   static const Color buttonBorder = Color(0xffFFE99D);
