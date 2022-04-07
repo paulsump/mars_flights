@@ -22,8 +22,9 @@ class CountdownPage extends StatelessWidget {
     final String? name = flight?.name;
 
     return Background(
-      title: name == null ? 'Next Launch' : 'Upcoming: ${name!}',
+      title: name == null ? 'Next Launch' : 'Upcoming: $name',
       child: date != null
+          //TODO Add a share button for social media platforms to share the next launch with friends
           ? _Updater(date)
           : Center(child: ScreenAdjustedText(fetchNotifier.flightErrorMessage)),
     );

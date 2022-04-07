@@ -36,7 +36,7 @@ class FavoritesPage extends StatelessWidget {
     final favoritesNotifier = getFavoritesNotifier(context, listen: true);
 
     return Background(
-      title: 'Favourites - Bookmarke Launches',
+      title: 'Favorites',
       child: fetchNotifier.hasFlights
           ? _ScrollTable(favoritesNotifier.filter(fetchNotifier.prettyFlights))
           // TODO DISplay flightsErrorMessage
@@ -90,7 +90,7 @@ class _Table extends StatelessWidget {
                 cellText(flight.name),
                 cellText(flight.date),
                 cellText(flight.pad),
-                DataCell(_FavoritesToggleButton(name: flight.name)),
+                DataCell(_FavoritesToggleButton(id: flight.id)),
               ],
             ),
         ],
@@ -102,10 +102,9 @@ class _Table extends StatelessWidget {
 /// A button with an icon on it, that, when pressed
 /// toggles this flight as a favorite or not.
 class _FavoritesToggleButton extends StatelessWidget {
-  const _FavoritesToggleButton({required this.name, Key? key})
-      : super(key: key);
+  const _FavoritesToggleButton({required this.id, Key? key}) : super(key: key);
 
-  final String name;
+  final String id;
 
   @override
   Widget build(BuildContext context) {
@@ -116,12 +115,11 @@ class _FavoritesToggleButton extends StatelessWidget {
       child: Tooltip(
         message: 'Add this flight to favorites.',
         child: IconButton(
-          onPressed: () => favoritesNotifier.toggle(name),
+          onPressed: () => favoritesNotifier.toggle(id),
           icon: Icon(
             Icons.favorite,
-            color: favoritesNotifier.contains(name)
-                ? Hue.favorite
-                : Hue.notFavorite,
+            color:
+                favoritesNotifier.contains(id) ? Hue.favorite : Hue.notFavorite,
           ),
           iconSize: screenAdjustSmallIconSize(context),
         ),

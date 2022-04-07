@@ -9,26 +9,26 @@ FavoritesNotifier getFavoritesNotifier(BuildContext context,
 
 /// Access to the list of favorite flights.
 class FavoritesNotifier extends ChangeNotifier {
-  final _flightNames = <String>[];
+  final _flightIds = <String>[];
 
-  void toggle(String flightName) {
-    if (_flightNames.contains(flightName)) {
-      _flightNames.remove(flightName);
+  void toggle(String flightId) {
+    if (_flightIds.contains(flightId)) {
+      _flightIds.remove(flightId);
     } else {
-      _flightNames.add(flightName);
+      _flightIds.add(flightId);
     }
 
     notifyListeners();
     //TODO LOCAL STORAGE FOR NEXT RUN
   }
 
-  bool contains(String flightName) => _flightNames.contains(flightName);
+  bool contains(String flightId) => _flightIds.contains(flightId);
 
   List<PrettyFlight> filter(List<PrettyFlight> prettyFlights) {
     final flights = <PrettyFlight>[];
 
     for (final flight in prettyFlights) {
-      if (_flightNames.contains(flight.name)) {
+      if (_flightIds.contains(flight.id)) {
         flights.add(flight);
       }
     }

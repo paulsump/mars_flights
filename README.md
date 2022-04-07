@@ -12,9 +12,6 @@ Showcase and notify the next rocket launch. Show details about upcoming rocket l
 - Check flightErrorMessage when bad internet.
 - Store favorites.
 - Shorter date format on [FlightsPage].
-- The 'Upcoming Launches' screen/section should display the mission name, date, and launchpad like
-  in the design.
-- Titles on pages.
 
 ### TODO - Tests
 
@@ -24,9 +21,8 @@ flightErrorMessage
 ### TODO - UI Later
 
 - Add a share button for social media platforms to share the next launch with friends
-- Each launch should have a 'Bookmark' or 'Favorite' button that adds it to a separate 'Favorites'
-  section [FavoritesPage]. Use the localStorage API here (either save the launches data or its id)
-- Transform background image position and scale.
+- [FavoritesNotifier]. Use the localStorage API here (save the launches id)
+- Animate Transform background image position.
 
 ## Original...
 

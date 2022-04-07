@@ -96,7 +96,6 @@ class FetchNotifier extends ChangeNotifier {
 
     getPadName(id) {
       for (final launchPad in launchPads) {
-        //TODO debug
         if (launchPad.id == flight.launchPad) {
           return launchPad.name;
         }
@@ -108,6 +107,7 @@ class FetchNotifier extends ChangeNotifier {
     if (hasFlights) {
       for (final flight in flights) {
         prettyFlights.add(PrettyFlight(
+            id: flight.id!,
             name: flight.name!,
             date: flight.date.toString(),
             pad: getPadName(flight.launchPad)));
@@ -131,12 +131,13 @@ class FetchNotifier extends ChangeNotifier {
 
 class PrettyFlight {
   const PrettyFlight({
+    required this.id,
     required this.name,
     required this.date,
     required this.pad,
   });
 
-  final String name, date, pad;
+  final String id, name, date, pad;
 //bool favorite?
 }
 
