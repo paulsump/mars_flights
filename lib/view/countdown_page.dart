@@ -19,13 +19,10 @@ class CountdownPage extends StatelessWidget {
         fetchNotifier.hasFlight ? fetchNotifier.flight : null;
 
     final DateTime? date = flight?.date;
-
-    // if (flight != null) {
-    // out(flight.id!);
-    // out(flight.launchPad!);
-    // }
+    final String? name = flight?.name;
 
     return Background(
+      title: name == null ? 'Next Launch' : 'Upcoming: ${name!}',
       child: date != null
           ? _Updater(date)
           : Center(child: ScreenAdjustedText(fetchNotifier.flightErrorMessage)),
@@ -45,14 +42,18 @@ class _Updater extends StatefulWidget {
 
 class _UpdaterState extends State<_Updater> {
   late Timer timer;
-  late DateTime nowUtc;
+
+  late DateTime _nowUtc;
 
   @override
   void initState() {
+    _nowUtc = DateTime.now().toUtc();
+
     timer = Timer.periodic(const Duration(seconds: 1), (timer) {
-      nowUtc = DateTime.now().toUtc();
+      _nowUtc = DateTime.now().toUtc();
       setState(() {});
     });
+
     super.initState();
   }
 
@@ -64,7 +65,7 @@ class _UpdaterState extends State<_Updater> {
 
   @override
   Widget build(BuildContext context) {
-    return _Time(widget.date.difference(nowUtc));
+    return _Time(widget.date.difference(_nowUtc));
   }
 }
 

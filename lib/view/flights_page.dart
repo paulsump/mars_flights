@@ -16,10 +16,12 @@ class FlightsPage extends StatelessWidget {
     final fetchNotifier = getFetchNotifier(context, listen: true);
 
     return Background(
-        child: fetchNotifier.hasFlights
-            ? _ScrollTable(fetchNotifier.prettyFlights)
-            // TODO DISplay flightsErrorMessage
-            : Container());
+      title: 'Upcoming - Next Launches',
+      child: fetchNotifier.hasFlights
+          ? _ScrollTable(fetchNotifier.prettyFlights)
+          // TODO DISplay flightsErrorMessage
+          : Container(),
+    );
   }
 }
 
@@ -34,11 +36,12 @@ class FavoritesPage extends StatelessWidget {
     final favoritesNotifier = getFavoritesNotifier(context, listen: true);
 
     return Background(
-        child: fetchNotifier.hasFlights
-            ? _ScrollTable(
-                favoritesNotifier.filter(fetchNotifier.prettyFlights))
-            // TODO DISplay flightsErrorMessage
-            : Container());
+      title: 'Favourites - Bookmarke Launches',
+      child: fetchNotifier.hasFlights
+          ? _ScrollTable(favoritesNotifier.filter(fetchNotifier.prettyFlights))
+          // TODO DISplay flightsErrorMessage
+          : Container(),
+    );
   }
 }
 
