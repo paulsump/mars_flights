@@ -9,12 +9,8 @@ import 'package:mars_flights/buttons/position_to_unit.dart';
 Size getScreenSize(BuildContext context) => MediaQuery.of(context).size;
 
 /// Device orientation access.
-bool isPortrait(BuildContext context) {
-  final screen = getScreenSize(context);
-
-  // TODO try using MediaQuery.of(context).orientation instead
-  return screen.width < screen.height;
-}
+bool isPortrait(BuildContext context) =>
+    MediaQuery.of(context).orientation == Orientation.portrait;
 
 /// Widget dimensions calculated using the width of the screen.
 double screenAdjustX(double length, BuildContext context) =>

@@ -36,21 +36,24 @@ class _Table extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = isPortrait(context) ? 0.013 : 0.04;
 
+    column(label) => DataColumn(label: ScreenAdjustedText(label, size: size));
+    cell(value) => DataCell(ScreenAdjustedText(value, size: size));
+
     return SingleChildScrollView(
       child: DataTable(
         columns: <DataColumn>[
-          DataColumn(label: ScreenAdjustedText('Mission', size: size)),
-          DataColumn(label: ScreenAdjustedText('Date (UTC)', size: size)),
-          DataColumn(label: ScreenAdjustedText('Launch Pad', size: size)),
-          DataColumn(label: ScreenAdjustedText('Favorite', size: size)),
+          column('Mission'),
+          column('Date (UTC)'),
+          column('Launch Pad'),
+          column('Favorite'),
         ],
         rows: <DataRow>[
           for (final flight in flights)
             DataRow(
               cells: <DataCell>[
-                DataCell(ScreenAdjustedText(flight.mission, size: size)),
-                DataCell(ScreenAdjustedText(flight.date, size: size)),
-                DataCell(ScreenAdjustedText(flight.pad, size: size)),
+                cell(flight.mission),
+                cell(flight.date),
+                cell(flight.pad),
                 DataCell(_HeartButton(name: flight.mission)),
               ],
             ),
@@ -69,17 +72,22 @@ class _HeartButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bookmarksNotifier = getBookmarksNotifier(context, listen: false);
+    final bookmarksNotifier = getBookmarksNotifier(context, listen: true);
+
     return Align(
       heightFactor: 0.774,
-      child: IconButton(
-        onPressed: () => bookmarksNotifier.add(name),
-        // tip: 'Bookmark this flight as a favorite',
-        icon: const Icon(
-          Icons.favorite,
-          color: Hue.enabledIcon,
+      child: Tooltip(
+        message: 'Bookmark this flight as a favorite',
+        child: IconButton(
+          onPressed: () => bookmarksNotifier.add(name),
+          icon: Icon(
+            Icons.favorite,
+            color: bookmarksNotifier.isBookmarked(name)
+                ? Hue.favorite
+                : Hue.notFavorite,
+          ),
+          iconSize: screenAdjustSmallIconSize(context),
         ),
-        iconSize: screenAdjustSmallIconSize(context),
       ),
     );
   }

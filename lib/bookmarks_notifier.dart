@@ -8,9 +8,14 @@ BookmarksNotifier getBookmarksNotifier(BuildContext context,
 
 /// Access to the list of bookmarked ('favorite') flights.
 class BookmarksNotifier extends ChangeNotifier {
-  final flightIds = <String>[];
+  final _flightNames = <String>[];
 
-  void add(String flightId) {
-    flightIds.add(flightId);
+  void add(String flightName) {
+    _flightNames.add(flightName);
+
+    notifyListeners();
+    //TODO LOCAL STORAGE FOR NEXT RUN
   }
+
+  bool isBookmarked(String flightName) => _flightNames.contains(flightName);
 }
