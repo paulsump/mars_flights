@@ -15,8 +15,7 @@ Showcase and notify the next rocket launch. Show details about upcoming rocket l
 - The countdown is live and specify days, hours, minutes, and seconds.
 - The 'Upcoming Launches' screen/section should display the mission name, date, and launchpad like
   in the design.
-- The countdown and upcoming launches table can be implemented either in separate screens (implement
-  navigation).
+- Titles on pages.
 
 ### TODO - Tests
 

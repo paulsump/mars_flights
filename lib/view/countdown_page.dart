@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:mars_flights/fetch_notifier.dart';
+import 'package:mars_flights/screen_adjust.dart';
 import 'package:mars_flights/view/background.dart';
 import 'package:mars_flights/view/screen_adjusted_text.dart';
 
@@ -40,27 +41,33 @@ class _Time extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final days = duration.inDays;
-    final hours = duration.inHours - duration.inDays * 24;
+    final children = <Widget>[
+      _buildNumber('DAYS', duration.inDays, context),
+      _buildNumber('HOURS', duration.inHours - duration.inDays * 24, context),
+      _buildNumber('MINUTES', duration.inMinutes.remainder(60), context),
+      _buildNumber('SECONDS', duration.inSeconds.remainder(60), context),
+    ];
 
-    final minutes = duration.inMinutes.remainder(60);
-    final seconds = duration.inSeconds.remainder(60);
-
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[
-        ..._buildNumber(days, 'DAYS', context),
-        ..._buildNumber(hours, 'HOURS', context),
-        ..._buildNumber(minutes, 'MINUTES', context),
-        ..._buildNumber(seconds, 'SECONDS', context),
-      ],
+    return SizedBox(
+      height: screenHeight(context) * (isPortrait(context) ? 0.68 : 0.35),
+      child: isPortrait(context)
+          ? Column(children: children)
+          : Row(children: children),
     );
   }
 
-  List<Widget> _buildNumber(int n, String label, BuildContext context) {
-    return <Widget>[
-      Expanded(flex: 15, child: ScreenAdjustedText(n.toString(), size: 0.1)),
-      Expanded(flex: 10, child: ScreenAdjustedText(label, size: 0.03)),
-    ];
+  Widget _buildNumber(String label, int n, BuildContext context) {
+    return Expanded(
+      child: Column(children: [
+        Expanded(
+            flex: 15,
+            child: ScreenAdjustedText(n.toString(),
+                size: isPortrait(context) ? 0.07 : 0.12)),
+        Expanded(
+            flex: 10,
+            child: ScreenAdjustedText(label,
+                size: isPortrait(context) ? 0.02 : 0.04)),
+      ]),
+    );
   }
 }
