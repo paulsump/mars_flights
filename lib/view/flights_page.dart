@@ -36,25 +36,26 @@ class _Table extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = isPortrait(context) ? 0.013 : 0.04;
 
-    column(label) => DataColumn(label: ScreenAdjustedText(label, size: size));
-    cell(value) => DataCell(ScreenAdjustedText(value, size: size));
+    columnHeader(label) =>
+        DataColumn(label: ScreenAdjustedText(label, size: size));
+    cellText(value) => DataCell(ScreenAdjustedText(value, size: size));
 
     return SingleChildScrollView(
       child: DataTable(
         columns: <DataColumn>[
-          column('Mission'),
-          column('Date (UTC)'),
-          column('Launch Pad'),
-          column('Favorite'),
+          columnHeader('Mission'),
+          columnHeader('Date (UTC)'),
+          columnHeader('Launch Pad'),
+          columnHeader('Favorite'),
         ],
         rows: <DataRow>[
           for (final flight in flights)
             DataRow(
               cells: <DataCell>[
-                cell(flight.mission),
-                cell(flight.date),
-                cell(flight.pad),
-                DataCell(_HeartButton(name: flight.mission)),
+                cellText(flight.mission),
+                cellText(flight.date),
+                cellText(flight.pad),
+                DataCell(_FavoritesToggleButton(name: flight.mission)),
               ],
             ),
         ],
@@ -65,8 +66,9 @@ class _Table extends StatelessWidget {
 
 /// A button with an icon on it, that, when pressed
 /// toggles this flight as a favorite or not.
-class _HeartButton extends StatelessWidget {
-  const _HeartButton({required this.name, Key? key}) : super(key: key);
+class _FavoritesToggleButton extends StatelessWidget {
+  const _FavoritesToggleButton({required this.name, Key? key})
+      : super(key: key);
 
   final String name;
 
@@ -79,7 +81,7 @@ class _HeartButton extends StatelessWidget {
       child: Tooltip(
         message: 'Add this flight to favorites.',
         child: IconButton(
-          onPressed: () => favoritesNotifier.add(name),
+          onPressed: () => favoritesNotifier.toggle(name),
           icon: Icon(
             Icons.favorite,
             color: favoritesNotifier.contains(name)

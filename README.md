@@ -10,7 +10,6 @@ Showcase and notify the next rocket launch. Show details about upcoming rocket l
 
 - Check flightErrorMessage when bad internet.
 - Implement favorites (rename bookmark).  
-  Toggle button on [FlightsPage].
 - Shorter date format on [FlightsPage].
 - The countdown is live and specify days, hours, minutes, and seconds.
 - The 'Upcoming Launches' screen/section should display the mission name, date, and launchpad like

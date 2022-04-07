@@ -10,8 +10,12 @@ FavoritesNotifier getFavoritesNotifier(BuildContext context,
 class FavoritesNotifier extends ChangeNotifier {
   final _flightNames = <String>[];
 
-  void add(String flightName) {
-    _flightNames.add(flightName);
+  void toggle(String flightName) {
+    if (_flightNames.contains(flightName)) {
+      _flightNames.remove(flightName);
+    } else {
+      _flightNames.add(flightName);
+    }
 
     notifyListeners();
     //TODO LOCAL STORAGE FOR NEXT RUN
