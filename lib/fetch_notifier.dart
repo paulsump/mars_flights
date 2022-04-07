@@ -158,17 +158,11 @@ class Fetcher {
   //TODO add test for this using test_data/launch_pads.json
   Future<List<dynamic>> getLaunchPads() async => _getList('launchpads');
 
-  Future<Map<String, dynamic>> _getMap(String url) async {
-    final json = await _getJson(url);
+  Future<Map<String, dynamic>> _getMap(String url) async =>
+      jsonDecode(await _getJson(url));
 
-    return jsonDecode(json);
-  }
-
-  Future<List<dynamic>> _getList(String url) async {
-    final json = await _getJson(url);
-
-    return jsonDecode(json);
-  }
+  Future<List<dynamic>> _getList(String url) async =>
+      jsonDecode(await _getJson(url));
 
   /// url = the last bit of the endpoint
   /// i.e. 'upcoming' or 'next'

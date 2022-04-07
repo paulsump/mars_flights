@@ -36,7 +36,7 @@ double _getScreenShortestEdge(BuildContext context) {
 }
 
 double _screenAdjustButtonHeight(BuildContext context) =>
-    screenAdjust(0.16, context);
+    33 + screenAdjustY(0.06, context);
 
 double screenAdjustButtonWidth(BuildContext context) =>
     root3over2 * _screenAdjustButtonHeight(context);
@@ -48,7 +48,7 @@ Size screenAdjustButtonSize(BuildContext context) {
 }
 
 double screenAdjustNormalIconSize(BuildContext context) =>
-    0.4 * _screenAdjustButtonHeight(context);
+    0.5 * _screenAdjustButtonHeight(context);
 
 double screenAdjustSmallIconSize(BuildContext context) =>
     0.34 * _screenAdjustButtonHeight(context);

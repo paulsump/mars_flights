@@ -50,7 +50,7 @@ class _NavigatorButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Align(
-      heightFactor: 0.774,
+      heightFactor: 1 + screenAdjustY(0.0003, context),
       child: IconFlatHexagonButton(
         onPressed: () => Navigator.of(context).pushReplacementNamed(pageName),
         tip: tip,
