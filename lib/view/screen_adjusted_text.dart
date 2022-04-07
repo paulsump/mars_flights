@@ -11,7 +11,7 @@ class ScreenAdjustedText extends StatelessWidget {
     Key? key,
     this.bold = false,
     this.italic = false,
-    this.size = 0.04,
+    this.size = 0.03,
   }) : super(key: key);
 
   final String text;

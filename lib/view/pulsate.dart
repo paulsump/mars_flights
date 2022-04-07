@@ -3,7 +3,6 @@ import 'dart:math';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:mars_flights/out.dart';
 import 'package:mars_flights/screen_adjust.dart';
 
 /// Calculate a value between 0 and 1 but goes up and down like a sine wave.
@@ -31,7 +30,7 @@ class _PulsateState extends State<Pulsate> with SingleTickerProviderStateMixin {
   @override
   void initState() {
     _controller = AnimationController(
-        duration: const Duration(milliseconds: 30000), vsync: this)
+        duration: const Duration(milliseconds: 90000), vsync: this)
       ..addListener(() {
         setState(() {});
       });
@@ -50,11 +49,14 @@ class _PulsateState extends State<Pulsate> with SingleTickerProviderStateMixin {
   Widget build(BuildContext context) {
     final from = isPortrait(context) ? 1.15 : 1.0;
 
-    final s = widget.scale;
+    final scale = widget.scale;
 
     return Transform.scale(
-      scale:
-          lerpDouble(from * s, 2.4 * s, calcUnitPingPong(_controller.value))!,
+      scale: lerpDouble(
+        from * scale,
+        2.4 * scale,
+        calcUnitPingPong(_controller.value),
+      )!,
       child: widget.child,
     );
   }
