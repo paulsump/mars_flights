@@ -95,10 +95,10 @@ class FetchNotifier extends ChangeNotifier {
     notifyListeners();
 
     getPadName(id) {
-      for (final f in launchPads) {
+      for (final launchPad in launchPads) {
         //TODO debug
-        if (f.id == flight.launchPad) {
-          return f.name;
+        if (launchPad.id == flight.launchPad) {
+          return launchPad.name;
         }
       }
       //TODO ASSERT?
@@ -151,9 +151,9 @@ class Fetcher {
 
   Fetcher(this.client);
 
-  Future<Map<String, dynamic>> getFlight() async => _getMap('next');
+  Future<Map<String, dynamic>> getFlight() async => _getMap('launches/next');
 
-  Future<List<dynamic>> getFlights() async => _getList('upcoming');
+  Future<List<dynamic>> getFlights() async => _getList('launches/upcoming');
 
   //TODO add test for this using test_data/launch_pads.json
   Future<List<dynamic>> getLaunchPads() async => _getList('launchpads');
@@ -174,7 +174,7 @@ class Fetcher {
   /// i.e. 'upcoming' or 'next'
   Future<String> _getJson(String url) async {
     final response = await client.get(
-      Uri.parse('https://api.spacexdata.com/v4/launches/$url'),
+      Uri.parse('https://api.spacexdata.com/v4/$url'),
     );
 
     final code = response.statusCode;
