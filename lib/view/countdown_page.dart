@@ -1,5 +1,7 @@
 // © 2022, Paul Sumpner <sumpner@hotmail.com>
 
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:mars_flights/fetch_notifier.dart';
 import 'package:mars_flights/screen_adjust.dart';
@@ -25,11 +27,44 @@ class CountdownPage extends StatelessWidget {
 
     return Background(
       child: date != null
-          ? _Time(
-              date.difference(DateTime.now()),
-            )
+          ? _Updater(date)
           : Center(child: ScreenAdjustedText(fetchNotifier.flightErrorMessage)),
     );
+  }
+}
+
+/// update the countdown every second.
+class _Updater extends StatefulWidget {
+  const _Updater(this.date, {Key? key}) : super(key: key);
+
+  final DateTime date;
+
+  @override
+  State<_Updater> createState() => _UpdaterState();
+}
+
+class _UpdaterState extends State<_Updater> {
+  late Timer timer;
+  late DateTime nowUtc;
+
+  @override
+  void initState() {
+    timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      nowUtc = DateTime.now().toUtc();
+      setState(() {});
+    });
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    timer.cancel();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return _Time(widget.date.difference(nowUtc));
   }
 }
 
