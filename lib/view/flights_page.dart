@@ -22,11 +22,19 @@ class FlightsPage extends StatelessWidget {
           ? Column(
               children: [
                 Expanded(
-                    flex: 1,
-                    child: _ScrollTable(
-                        favoritesNotifier.filter(fetchNotifier.prettyFlights))),
+                  flex: 1,
+                  child: _ScrollTable(
+                      title: 'Favorites',
+                      flights: favoritesNotifier
+                          .filter(fetchNotifier.prettyFlights)),
+                ),
+                SizedBox(height: screenAdjustY(0.02, context)),
                 Expanded(
-                    flex: 2, child: _ScrollTable(fetchNotifier.prettyFlights)),
+                  flex: 2,
+                  child: _ScrollTable(
+                      title: 'All Launches',
+                      flights: fetchNotifier.prettyFlights),
+                ),
               ],
             )
           // TODO DISplay flightsErrorMessage
@@ -37,8 +45,13 @@ class FlightsPage extends StatelessWidget {
 
 /// Allows horizontal scroll of table in portrait only.
 class _ScrollTable extends StatelessWidget {
-  const _ScrollTable(this.flights, {Key? key}) : super(key: key);
+  const _ScrollTable({
+    Key? key,
+    required this.title,
+    required this.flights,
+  }) : super(key: key);
 
+  final String title;
   final List<PrettyFlight> flights;
 
   @override
@@ -46,9 +59,11 @@ class _ScrollTable extends StatelessWidget {
     return Column(
       children: [
         Expanded(
-            flex: 1,
-            child: ScreenAdjustedText('Favorites',
-                size: isPortrait(context) ? 0.02 : 0.06)),
+          flex: isPortrait(context) ? 1 : 2,
+          child: ScreenAdjustedText(title,
+              size: isPortrait(context) ? 0.02 : 0.06),
+        ),
+        SizedBox(height: screenAdjustY(0.02, context)),
         Expanded(
           flex: isPortrait(context) ? 8 : 3,
           child: isPortrait(context)
