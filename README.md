@@ -28,6 +28,8 @@ flightErrorMessage
 - Animate Transform background image position.
 - Image.network
 - Video
+- Remove hexagon buttons. They detract from it.
+- Remove linkedIn (no one would do this).
 
 ### Submit
 
