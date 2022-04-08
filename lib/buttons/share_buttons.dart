@@ -17,14 +17,6 @@ class ShareButtons extends StatelessWidget {
         children: [
           HexagonButton(
             onPressed: () => unawaited(launch(
-              'TODO facebook URL + flight text',
-            )),
-            icon: FontAwesomeIcons.facebookSquare,
-            color: const Color(0xFF0075FC),
-            tip: 'Share this flight on Facebook',
-          ),
-          HexagonButton(
-            onPressed: () => unawaited(launch(
               'TODO twitter URL + flight text',
             )),
             icon: FontAwesomeIcons.twitter,
@@ -33,12 +25,12 @@ class ShareButtons extends StatelessWidget {
           ),
           HexagonButton(
             onPressed: () => unawaited(launch(
-              'TODO linkedIn URL + flight text',
+              'TODO facebook URL + flight text',
             )),
-            icon: FontAwesomeIcons.linkedin,
-            color: const Color(0xFF0072b1),
-            tip: 'Share this flight on LinkedIn',
-          )
+            icon: FontAwesomeIcons.facebookSquare,
+            color: const Color(0xFF0075FC),
+            tip: 'Share this flight on Facebook',
+          ),
         ],
       ),
     );

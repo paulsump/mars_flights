@@ -12,14 +12,12 @@ Showcase and notify the next rocket launch. Show details about upcoming rocket l
 
 ### TODO - UI
 
+- Test mirror twice on my git
+- Remove FavoritesPage & button, make it a section of the FlightsPage.
+
 - Check flightErrorMessage when bad internet.
 - Store favorites.
 - Shorter date format on [FlightsPage].
-
-### TODO - Tests
-
-DateTime tests - check count down maths. DataTable Column titles scroll off when scroll. widget_test
-flightErrorMessage
 
 ### TODO - UI Later
 
@@ -29,11 +27,14 @@ flightErrorMessage
 - Image.network
 - Video
 - Remove hexagon buttons. They detract from it.
-- Remove linkedIn (no one would do this).
+
+### TODO - Tests
+
+DateTime tests - check count down maths. DataTable Column titles scroll off when scroll. widget_test
+flightErrorMessage
 
 ### Submit
 
-- test mirror on my git
 - mirror to their master
 
 ## Original Specification...
