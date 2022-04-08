@@ -8,20 +8,18 @@ Details about upcoming rocket launches.
 
 #### Fix
 
-- Position table better on [FavoritesPage]. Looks silly in the middle especially when empty.
+- Position tables better on [FlightsPage] in landscape.
 - Navigation (e.g. buttons redraw)
 
 #### UI
 
-- Implement share buttons for social media platforms to share the next launch with friends.
-- Add WhatsApp share button. But is this really social media? They mention 'friends', so I guess
-  that means text and email too.
-
 - Check flightErrorMessage when bad internet.
-- Store favorites.
 - Shorter date format on [FlightsPage].
 
 #### UI Later
+
+- Implement share buttons for iOS?
+- Add WhatsApp and Twitter share buttons?
 
 - Animate Transform background image position.
 - Image.network()

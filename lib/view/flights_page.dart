@@ -14,6 +14,7 @@ class FlightsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final fetchNotifier = getFetchNotifier(context, listen: true);
+
     final favoritesNotifier = getFavoritesNotifier(context, listen: true);
 
     return Background(
@@ -61,7 +62,7 @@ class _ScrollTable extends StatelessWidget {
         Expanded(
           flex: isPortrait(context) ? 1 : 2,
           child: ScreenAdjustedText(title,
-              size: isPortrait(context) ? 0.02 : 0.06),
+              size: isPortrait(context) ? 0.02 : 0.04),
         ),
         SizedBox(height: screenAdjustY(0.02, context)),
         Expanded(
@@ -85,7 +86,7 @@ class _Table extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = isPortrait(context) ? 0.013 : 0.04;
+    final size = isPortrait(context) ? 0.013 : 0.03;
 
     columnHeader(label) =>
         DataColumn(label: ScreenAdjustedText(label, size: size));

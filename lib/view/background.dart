@@ -39,7 +39,7 @@ class Background extends StatelessWidget {
               landscape: const Offset(0.3, 1.6),
               child: ScreenAdjustedText(
                 title,
-                size: isPortrait(context) ? 0.022 : 0.07,
+                size: isPortrait(context) ? 0.022 : 0.06,
               ),
             ),
             SafeArea(

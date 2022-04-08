@@ -24,7 +24,6 @@ class HexagonButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Align(
-      //TODO FIx in landscape too small
       heightFactor: 1 + screenAdjustY(0.0003, context),
       child: _IconFlatHexagonButton(
         onPressed: onPressed,
