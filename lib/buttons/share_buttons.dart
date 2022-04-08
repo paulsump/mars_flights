@@ -44,7 +44,7 @@ class ShareButtons extends StatelessWidget {
 Future<void> _shareOnFacebook(String message) async {
   String? result = await FlutterSocialContentShare.share(
       type: ShareType.facebookWithoutImage,
-      url: 'https://www.apple.com',
+      url: 'https://www.spacex.com/',
       quote: message);
 
   out("Facebook: ${result ?? ' Post failed.'}");
@@ -55,10 +55,9 @@ Future<void> _shareEmail(String message) async {
 
   String? result = await FlutterSocialContentShare.shareOnEmail(
       // The recipient is ignored, but that is good because you want to choose who to send it to.
-      recipients: ['sumpner@hotmail.com'],
+      // recipients: ['sumpner@hotmail.com'],
       subject: 'Mars Departure Date.',
-      body: message,
-      isHTML: false); //default isHTML: False
+      body: message);
 
   out("Email: ${result ?? ' Post failed.'}");
 }

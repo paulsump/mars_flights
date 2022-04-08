@@ -27,11 +27,12 @@ class CountdownPage extends StatelessWidget {
       child: date != null
           ? Column(
               children: [
-                SizedBox(
-                  height: isPortrait(context) ? 0 : screenAdjustY(0.1, context),
-                ),
-                _Updater(date),
-                const ShareButtons(),
+                if (!isPortrait(context)) Expanded(flex: 2, child: Container()),
+                Expanded(
+                    flex: isPortrait(context) ? 4 : 8, child: _Updater(date)),
+                Expanded(
+                    flex: isPortrait(context) ? 1 : 8,
+                    child: const ShareButtons()),
               ],
             )
           : Center(child: ScreenAdjustedText(fetchNotifier.flightErrorMessage)),
@@ -73,9 +74,7 @@ class _UpdaterState extends State<_Updater> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return _Time(widget.date.difference(_nowUtc));
-  }
+  Widget build(BuildContext context) => _Time(widget.date.difference(_nowUtc));
 }
 
 /// Ui to display time / days left until launch
