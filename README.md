@@ -14,7 +14,6 @@ Details about upcoming rocket launches.
 #### UI
 
 - Check flightErrorMessage when bad internet.
-- Shorter date format on [FlightsPage].
 
 #### UI Later
 
