@@ -33,6 +33,10 @@ class FetchNotifier extends ChangeNotifier {
 
   final prettyFlights = <PrettyFlight>[];
 
+  String socialMessage = '';
+
+  bool get hasSocialMessage => hasFlight && hasLaunchPads;
+
   /// The main starting point for the app data.
   /// Called only once.
   Future<void> fetchAll(BuildContext context, http.Client client) async {
@@ -94,25 +98,15 @@ class FetchNotifier extends ChangeNotifier {
 
     notifyListeners();
 
-    getPadName(id) {
-      for (final launchPad in launchPads) {
-        if (launchPad.id == flight.launchPad) {
-          return launchPad.name;
-        }
+    if (hasFlights) {
+      for (final flight_ in flights) {
+        prettyFlights.add(PrettyFlight.fromFlight(flight_, launchPads));
       }
-      //TODO ASSERT?
-      return '';
     }
 
-    if (hasFlights) {
-      for (final flight in flights) {
-        prettyFlights.add(PrettyFlight(
-            id: flight.id!,
-            name: flight.name!,
-            date: flight.date.toString(),
-            pad: getPadName(flight.launchPad)));
-      }
-    }
+    final prettyFlight = PrettyFlight.fromFlight(flight, launchPads);
+    socialMessage =
+        'Flying to Mars on ${prettyFlight.date}.  Flight: ${prettyFlight.name}.  Launch Pad: ${prettyFlight.pad}.';
 
     client.close();
   }
@@ -129,16 +123,24 @@ class FetchNotifier extends ChangeNotifier {
   }
 }
 
+String _getPadName(String id, List<LaunchPad> launchPads) {
+  for (final launchPad in launchPads) {
+    if (launchPad.id == id) {
+      return launchPad.name;
+    }
+  }
+  //TODO ASSERT?
+  return '';
+}
+
 class PrettyFlight {
-  const PrettyFlight({
-    required this.id,
-    required this.name,
-    required this.date,
-    required this.pad,
-  });
+  PrettyFlight.fromFlight(Flight flight, List<LaunchPad> launchPads)
+      : id = flight.id!,
+        name = flight.name!,
+        date = flight.date.toString(),
+        pad = _getPadName(flight.launchPad!, launchPads);
 
   final String id, name, date, pad;
-//bool favorite?
 }
 
 /// Helper class to fetch and convert json

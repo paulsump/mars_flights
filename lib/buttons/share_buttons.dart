@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_social_content_share/flutter_social_content_share.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:mars_flights/buttons/hexagon_button.dart';
+import 'package:mars_flights/fetch_notifier.dart';
 import 'package:mars_flights/out.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -13,38 +14,43 @@ class ShareButtons extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          HexagonButton(
-            onPressed: () => unawaited(launch(
-              // 'TODO twitter URL + flight text',
-              // THIS works from a browser, but not from an app...
-              'http://twitter.com/home?status=This%20is%20an%20example',
-            )),
-            icon: FontAwesomeIcons.twitter,
-            color: const Color(0xFF1da1f2),
-            tip: 'Share this flight on Twitter',
-          ),
-          HexagonButton(
-            //TODO add flight info
-            onPressed: () => shareOnFacebook(),
-            icon: FontAwesomeIcons.facebookSquare,
-            color: const Color(0xFF0075FC),
-            tip: 'Share this flight on Facebook',
-          ),
-        ],
-      ),
-    );
+    final fetchNotifier = getFetchNotifier(context, listen: true);
+
+    return !fetchNotifier.hasSocialMessage
+        ? Container()
+        : Center(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                HexagonButton(
+                  onPressed: () => unawaited(launch(
+                    // 'TODO twitter URL + flight text',
+                    // THIS works from a browser, but not from an app...
+                    'http://twitter.com/home?status=This%20is%20an%20example',
+                  )),
+                  icon: FontAwesomeIcons.twitter,
+                  color: const Color(0xFF1da1f2),
+                  tip: 'Share this flight on Twitter',
+                ),
+                HexagonButton(
+                  //TODO add flight info
+                  onPressed: () =>
+                      unawaited(_shareOnFacebook(fetchNotifier.socialMessage)),
+                  icon: FontAwesomeIcons.facebookSquare,
+                  color: const Color(0xFF0075FC),
+                  tip: 'Share this flight on Facebook',
+                ),
+              ],
+            ),
+          );
   }
 }
 
-shareOnFacebook() async {
+Future<void> _shareOnFacebook(String message) async {
   String? result = await FlutterSocialContentShare.share(
       type: ShareType.facebookWithoutImage,
       url: "https://www.apple.com",
-      quote: "captions");
+      quote: message);
 
   out(result ?? 'facebook post failed');
 }
