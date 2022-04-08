@@ -22,14 +22,16 @@ class FlightsPage extends StatelessWidget {
       child: fetchNotifier.hasFlights
           ? Column(
               children: [
-                Expanded(
-                  flex: 1,
-                  child: _ScrollTable(
-                      title: 'Favorites',
-                      flights: favoritesNotifier
-                          .filter(fetchNotifier.prettyFlights)),
-                ),
-                SizedBox(height: screenAdjustY(0.02, context)),
+                if (isPortrait(context))
+                  Expanded(
+                    flex: 1,
+                    child: _ScrollTable(
+                        title: 'Favorites',
+                        flights: favoritesNotifier
+                            .filter(fetchNotifier.prettyFlights)),
+                  ),
+                if (isPortrait(context))
+                  SizedBox(height: screenAdjustY(0.02, context)),
                 Expanded(
                   flex: 2,
                   child: _ScrollTable(
@@ -59,12 +61,13 @@ class _ScrollTable extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Expanded(
-          flex: isPortrait(context) ? 1 : 2,
-          child: ScreenAdjustedText(title,
-              size: isPortrait(context) ? 0.02 : 0.04),
-        ),
-        SizedBox(height: screenAdjustY(0.02, context)),
+        if (isPortrait(context))
+          Expanded(
+            flex: isPortrait(context) ? 1 : 2,
+            child: ScreenAdjustedText(title,
+                size: isPortrait(context) ? 0.02 : 0.04),
+          ),
+        if (isPortrait(context)) SizedBox(height: screenAdjustY(0.02, context)),
         Expanded(
           flex: isPortrait(context) ? 8 : 3,
           child: isPortrait(context)
