@@ -26,7 +26,7 @@ class HexagonButton extends StatelessWidget {
     return Align(
       //TODO FIx in landscape too small
       heightFactor: 1 + screenAdjustY(0.0003, context),
-      child: IconFlatHexagonButton(
+      child: _IconFlatHexagonButton(
         onPressed: onPressed,
         tip: tip,
         icon: icon,
@@ -38,8 +38,8 @@ class HexagonButton extends StatelessWidget {
 }
 
 /// Transparent flat hexagon shaped [TextButton] (without text).
-class FlatHexagonButton extends StatelessWidget {
-  const FlatHexagonButton({
+class _FlatHexagonButton extends StatelessWidget {
+  const _FlatHexagonButton({
     Key? key,
     this.onPressed,
     required this.tip,
@@ -73,9 +73,9 @@ class FlatHexagonButton extends StatelessWidget {
   }
 }
 
-/// A [FlatHexagonButton] with an icon.
-class IconFlatHexagonButton extends StatelessWidget {
-  const IconFlatHexagonButton({
+/// A [_FlatHexagonButton] with an icon.
+class _IconFlatHexagonButton extends StatelessWidget {
+  const _IconFlatHexagonButton({
     Key? key,
     this.onPressed,
     required this.tip,
@@ -94,7 +94,7 @@ class IconFlatHexagonButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FlatHexagonButton(
+    return _FlatHexagonButton(
       onPressed: onPressed,
       tip: tip,
       child: Icon(

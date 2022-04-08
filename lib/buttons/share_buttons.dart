@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:mars_flights/buttons/flat_hexagon_button.dart';
+import 'package:mars_flights/buttons/hexagon_button.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 /// Add a share button for social media platforms to share the next launch with friends
