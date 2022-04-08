@@ -27,6 +27,9 @@ class CountdownPage extends StatelessWidget {
       child: date != null
           ? Column(
               children: [
+                SizedBox(
+                  height: isPortrait(context) ? 0 : screenAdjustY(0.1, context),
+                ),
                 _Updater(date),
                 const ShareButtons(),
               ],
