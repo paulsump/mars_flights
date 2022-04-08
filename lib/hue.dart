@@ -20,7 +20,7 @@ class Hue {
   static const Color buttonOverlay = background;
 
   //TODO SET
-  static const Color buttonBorder = Color(0xffFFE99D);
+  static const Color buttonBorder = Color(0xffFFC260);
 
   //TODO SET
   static const Color buttonBackground = Colors.transparent;
