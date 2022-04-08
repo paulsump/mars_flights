@@ -17,7 +17,9 @@ class ShareButtons extends StatelessWidget {
         children: [
           HexagonButton(
             onPressed: () => unawaited(launch(
-              'TODO twitter URL + flight text',
+              // 'TODO twitter URL + flight text',
+              // THIS works from a browser, but not from an app...
+              'http://twitter.com/home?status=This%20is%20an%20example',
             )),
             icon: FontAwesomeIcons.twitter,
             color: const Color(0xFF1da1f2),

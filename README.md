@@ -1,6 +1,6 @@
 ## Flights to Mars
 
-Showcase and notify the next rocket launch. Show details about upcoming rocket launches.
+Details about upcoming rocket launches.
 
 <img src="https://github.com/paulsump/mars_flights/blob/813c01c1b2326f937fc1e4d08a8c52add9d284f9/images/background.jpg" width="1248">
 
@@ -8,13 +8,14 @@ Showcase and notify the next rocket launch. Show details about upcoming rocket l
 
 #### Fix
 
-- Navigation (e.g. buttons redraw)
 - Position table better on [FavoritesPage]. Looks silly in the middle especially when empty.
+- Navigation (e.g. buttons redraw)
 
 #### UI
 
-- Test mirror twice on my git.
-- Add WhatsApp share button. But is this really social media? No, but more likely to be used.
+- Implement share buttons for social media platforms to share the next launch with friends.
+- Add WhatsApp share button. But is this really social media? They mention 'friends', so I guess
+  that means text and email too.
 
 - Check flightErrorMessage when bad internet.
 - Store favorites.
@@ -22,12 +23,10 @@ Showcase and notify the next rocket launch. Show details about upcoming rocket l
 
 #### UI Later
 
-- Add a share button for social media platforms to share the next launch with friends
-- [FavoritesNotifier]. Use the localStorage API here (save the launches id)
 - Animate Transform background image position.
-- Image.network
-- Video
-- Remove hexagon buttons. They detract from it.
+- Image.network()
+- Videos from api
+- Remove hexagon buttons? They detract from it.
 
 #### Tests
 
