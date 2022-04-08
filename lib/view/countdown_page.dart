@@ -31,8 +31,9 @@ class CountdownPage extends StatelessWidget {
                 Expanded(
                     flex: isPortrait(context) ? 4 : 8, child: _Updater(date)),
                 Expanded(
-                    flex: isPortrait(context) ? 1 : 8,
-                    child: const ShareButtons()),
+                  flex: isPortrait(context) ? 1 : 8,
+                  child: const ShareButtons(),
+                ),
               ],
             )
           : Center(child: ScreenAdjustedText(fetchNotifier.flightErrorMessage)),

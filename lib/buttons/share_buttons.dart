@@ -6,6 +6,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:mars_flights/buttons/hexagon_button.dart';
 import 'package:mars_flights/fetch_notifier.dart';
 import 'package:mars_flights/out.dart';
+import 'package:mars_flights/screen_adjust.dart';
 
 /// Add a share button for social media platforms to share the next launch with friends
 class ShareButtons extends StatelessWidget {
@@ -19,8 +20,10 @@ class ShareButtons extends StatelessWidget {
         ? Container()
         : Center(
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
+                SizedBox(width: screenAdjustX(0.01, context)),
                 HexagonButton(
                   onPressed: () =>
                       unawaited(_shareEmail(fetchNotifier.flightMessage)),
