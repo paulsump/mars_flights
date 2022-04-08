@@ -26,6 +26,13 @@ flightErrorMessage
 - Add a share button for social media platforms to share the next launch with friends
 - [FavoritesNotifier]. Use the localStorage API here (save the launches id)
 - Animate Transform background image position.
+- Image.network
+- Video
+
+### Submit
+
+- test mirror on my git
+- mirror to their master
 
 ## Original Specification...
 
