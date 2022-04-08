@@ -3,6 +3,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:mars_flights/buttons/share_buttons.dart';
 import 'package:mars_flights/fetch_notifier.dart';
 import 'package:mars_flights/screen_adjust.dart';
 import 'package:mars_flights/view/background.dart';
@@ -24,8 +25,12 @@ class CountdownPage extends StatelessWidget {
     return Background(
       title: name == null ? 'Next Launch' : 'Upcoming: $name',
       child: date != null
-          //TODO Add a share button for social media platforms to share the next launch with friends
-          ? _Updater(date)
+          ? Column(
+              children: [
+                _Updater(date),
+                const ShareButtons(),
+              ],
+            )
           : Center(child: ScreenAdjustedText(fetchNotifier.flightErrorMessage)),
     );
   }
