@@ -12,8 +12,8 @@ Showcase and notify the next rocket launch. Show details about upcoming rocket l
 
 ### TODO - UI
 
-- Test mirror twice on my git
-- Remove FavoritesPage & button, make it a section of the FlightsPage.
+- Test mirror twice on my git.
+- Add WhatsApp share button. But is this really social media? No, but more likely to be used.
 
 - Check flightErrorMessage when bad internet.
 - Store favorites.

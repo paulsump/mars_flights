@@ -55,7 +55,6 @@ class _App extends StatelessWidget {
         routes: {
           'Countdown': (context) => const CountdownPage(),
           'Flights': (context) => const FlightsPage(),
-          'Favorites': (context) => const FavoritesPage(),
         },
       ),
     );

@@ -25,11 +25,6 @@ class PageButtons extends StatelessWidget {
                 Navigator.of(context).pushReplacementNamed('Flights'),
             icon: Icons.view_list_rounded,
             tip: 'Show all the upcoming launches.'),
-        HexagonButton(
-            onPressed: () =>
-                Navigator.of(context).pushReplacementNamed('Favorites'),
-            icon: Icons.favorite,
-            tip: 'Show your favorite launches.'),
       ],
     );
   }

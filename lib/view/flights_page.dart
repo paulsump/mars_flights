@@ -14,31 +14,21 @@ class FlightsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final fetchNotifier = getFetchNotifier(context, listen: true);
-
-    return Background(
-      title: 'Upcoming - Next Launches',
-      child: fetchNotifier.hasFlights
-          ? _ScrollTable(fetchNotifier.prettyFlights)
-          // TODO DISplay flightsErrorMessage
-          : Container(),
-    );
-  }
-}
-
-/// Display and manage favorite flights.
-class FavoritesPage extends StatelessWidget {
-  const FavoritesPage({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    final fetchNotifier = getFetchNotifier(context, listen: true);
-
     final favoritesNotifier = getFavoritesNotifier(context, listen: true);
 
     return Background(
-      title: 'Favorites',
+      title: 'Upcoming Launches',
       child: fetchNotifier.hasFlights
-          ? _ScrollTable(favoritesNotifier.filter(fetchNotifier.prettyFlights))
+          ? Column(
+              children: [
+                Expanded(
+                    flex: 1,
+                    child: _ScrollTable(
+                        favoritesNotifier.filter(fetchNotifier.prettyFlights))),
+                Expanded(
+                    flex: 2, child: _ScrollTable(fetchNotifier.prettyFlights)),
+              ],
+            )
           // TODO DISplay flightsErrorMessage
           : Container(),
     );
@@ -53,12 +43,23 @@ class _ScrollTable extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return isPortrait(context)
-        ? SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: _Table(flights),
-          )
-        : _Table(flights);
+    return Column(
+      children: [
+        Expanded(
+            flex: 1,
+            child: ScreenAdjustedText('Favorites',
+                size: isPortrait(context) ? 0.02 : 0.06)),
+        Expanded(
+          flex: isPortrait(context) ? 8 : 3,
+          child: isPortrait(context)
+              ? SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: _Table(flights),
+                )
+              : _Table(flights),
+        ),
+      ],
+    );
   }
 }
 

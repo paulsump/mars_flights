@@ -35,11 +35,11 @@ class Background extends StatelessWidget {
             ),
             const Star(),
             ScreenAdjust(
-              portrait: const Offset(0.5, 3),
-              landscape: const Offset(1.2, 2.1),
+              portrait: const Offset(0.25, 1.5),
+              landscape: const Offset(0.3, 1.6),
               child: ScreenAdjustedText(
                 title,
-                size: isPortrait(context) ? 0.03 : 0.09,
+                size: isPortrait(context) ? 0.022 : 0.07,
               ),
             ),
             SafeArea(
