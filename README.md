@@ -1,16 +1,17 @@
 ## Flights to Mars
-<img src="https://github.com/paulsump/mars_flights/blob/813c01c1b2326f937fc1e4d08a8c52add9d284f9/images/background.jpg" width="1248">
-
-## Plan...
 
 Showcase and notify the next rocket launch. Show details about upcoming rocket launches.
 
-### Fix
+<img src="https://github.com/paulsump/mars_flights/blob/813c01c1b2326f937fc1e4d08a8c52add9d284f9/images/background.jpg" width="1248">
+
+### To Do
+
+#### Fix
 
 - Navigation (e.g. buttons redraw)
 - Position table better on [FavoritesPage]. Looks silly in the middle especially when empty.
 
-### TODO - UI
+#### UI
 
 - Test mirror twice on my git.
 - Add WhatsApp share button. But is this really social media? No, but more likely to be used.
@@ -19,7 +20,7 @@ Showcase and notify the next rocket launch. Show details about upcoming rocket l
 - Store favorites.
 - Shorter date format on [FlightsPage].
 
-### TODO - UI Later
+#### UI Later
 
 - Add a share button for social media platforms to share the next launch with friends
 - [FavoritesNotifier]. Use the localStorage API here (save the launches id)
@@ -28,14 +29,11 @@ Showcase and notify the next rocket launch. Show details about upcoming rocket l
 - Video
 - Remove hexagon buttons. They detract from it.
 
-### TODO - Tests
+#### Tests
 
-DateTime tests - check count down maths. DataTable Column titles scroll off when scroll. widget_test
-flightErrorMessage
-
-### Submit
-
-- mirror to their master
+- DateTime tests - check count down maths. DataTable Column titles scroll off when scroll.
+  widget_test
+- flightErrorMessage
 
 ## Original Specification...
 

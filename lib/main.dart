@@ -48,6 +48,13 @@ class _App extends StatelessWidget {
                 unawaited(fetchNotifier.fetchAll(context, _client));
               }
 
+              final favoritesNotifier =
+                  getFavoritesNotifier(context, listen: false);
+
+              if (!favoritesNotifier.loadHasBeenCalled) {
+                unawaited(favoritesNotifier.loadInitialValues());
+              }
+
               return const CountdownPage();
             }
           },

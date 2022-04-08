@@ -1,6 +1,9 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:mars_flights/fetch_notifier.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 /// Convenience function to get the [FavoritesNotifier] '[Provider]'.
 FavoritesNotifier getFavoritesNotifier(BuildContext context,
@@ -11,6 +14,8 @@ FavoritesNotifier getFavoritesNotifier(BuildContext context,
 class FavoritesNotifier extends ChangeNotifier {
   final _flightIds = <String>[];
 
+  bool loadHasBeenCalled = false;
+
   void toggle(String flightId) {
     if (_flightIds.contains(flightId)) {
       _flightIds.remove(flightId);
@@ -19,7 +24,7 @@ class FavoritesNotifier extends ChangeNotifier {
     }
 
     notifyListeners();
-    //TODO LOCAL STORAGE FOR NEXT RUN
+    unawaited(_save());
   }
 
   bool contains(String flightId) => _flightIds.contains(flightId);
@@ -34,5 +39,23 @@ class FavoritesNotifier extends ChangeNotifier {
     }
 
     return flights;
+  }
+
+  Future<void>? loadInitialValues() async {
+    final preferences = await SharedPreferences.getInstance();
+
+    final List<String>? favorites = preferences.getStringList('favorites');
+
+    if (favorites != null) {
+      _flightIds.addAll(favorites);
+    }
+
+    loadHasBeenCalled = true;
+  }
+
+  Future<void> _save() async {
+    final preferences = await SharedPreferences.getInstance();
+
+    unawaited(preferences.setStringList('favorites', _flightIds));
   }
 }
