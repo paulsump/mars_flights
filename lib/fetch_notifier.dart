@@ -33,9 +33,9 @@ class FetchNotifier extends ChangeNotifier {
 
   final prettyFlights = <PrettyFlight>[];
 
-  String socialMessage = '';
+  String flightMessage = '';
 
-  bool get hasSocialMessage => hasFlight && hasLaunchPads;
+  bool get hasFlightMessage => hasFlight && hasLaunchPads;
 
   /// The main starting point for the app data.
   /// Called only once.
@@ -105,7 +105,7 @@ class FetchNotifier extends ChangeNotifier {
     }
 
     final prettyFlight = PrettyFlight.fromFlight(flight, launchPads);
-    socialMessage =
+    flightMessage =
         'Flying to Mars on ${prettyFlight.date}.  Flight: ${prettyFlight.name}.  Launch Pad: ${prettyFlight.pad}.';
 
     client.close();

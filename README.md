@@ -34,6 +34,13 @@ Details about upcoming rocket launches.
   widget_test
 - flightErrorMessage
 
+#### Finally
+
+- Check all TODOs
+- To fit in with spec and API...
+- Rename Flight to NextLaunch
+- Rename Flights to UpcomingLaunches
+
 ## Original Specification...
 
 ### Objective

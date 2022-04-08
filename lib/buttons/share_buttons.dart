@@ -16,7 +16,7 @@ class ShareButtons extends StatelessWidget {
   Widget build(BuildContext context) {
     final fetchNotifier = getFetchNotifier(context, listen: true);
 
-    return !fetchNotifier.hasSocialMessage
+    return !fetchNotifier.hasFlightMessage
         ? Container()
         : Center(
             child: Row(
@@ -35,7 +35,7 @@ class ShareButtons extends StatelessWidget {
                 HexagonButton(
                   //TODO add flight info
                   onPressed: () =>
-                      unawaited(_shareOnFacebook(fetchNotifier.socialMessage)),
+                      unawaited(_shareOnFacebook(fetchNotifier.flightMessage)),
                   icon: FontAwesomeIcons.facebookSquare,
                   color: const Color(0xFF0075FC),
                   tip: 'Share this flight on Facebook',
