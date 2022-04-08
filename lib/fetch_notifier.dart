@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:intl/intl.dart';
 import 'package:mars_flights/out.dart';
 import 'package:provider/provider.dart';
 
@@ -137,11 +138,13 @@ class PrettyFlight {
   PrettyFlight.fromFlight(Flight flight, List<LaunchPad> launchPads)
       : id = flight.id!,
         name = flight.name!,
-        date = flight.date.toString(),
+        date = _formatDate(flight.date!),
         pad = _getPadName(flight.launchPad!, launchPads);
 
   final String id, name, date, pad;
 }
+
+String _formatDate(DateTime date) => DateFormat('dd MMMM hh:mm').format(date);
 
 /// Helper class to fetch and convert json
 /// In this API, both JSON lists and JSON objects (maps) are returned, so
