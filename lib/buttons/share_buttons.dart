@@ -6,7 +6,6 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:mars_flights/buttons/hexagon_button.dart';
 import 'package:mars_flights/fetch_notifier.dart';
 import 'package:mars_flights/out.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 /// Add a share button for social media platforms to share the next launch with friends
 class ShareButtons extends StatelessWidget {
@@ -23,21 +22,17 @@ class ShareButtons extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 HexagonButton(
-                  onPressed: () => unawaited(launch(
-                    // 'TODO twitter URL + flight text',
-                    // THIS works from a browser, but not from an app...
-                    'http://twitter.com/home?status=This%20is%20an%20example',
-                  )),
-                  icon: FontAwesomeIcons.twitter,
-                  color: const Color(0xFF1da1f2),
-                  tip: 'Share this flight on Twitter',
+                  onPressed: () =>
+                      unawaited(_shareEmail(fetchNotifier.flightMessage)),
+                  icon: Icons.email_rounded,
+                  // color: const Color(0xFF1da1f2),
+                  tip: 'Share this flight on email',
                 ),
                 HexagonButton(
-                  //TODO add flight info
                   onPressed: () =>
                       unawaited(_shareOnFacebook(fetchNotifier.flightMessage)),
                   icon: FontAwesomeIcons.facebookSquare,
-                  color: const Color(0xFF0075FC),
+                  // color: const Color(0xFF0075FC),
                   tip: 'Share this flight on Facebook',
                 ),
               ],
@@ -49,8 +44,21 @@ class ShareButtons extends StatelessWidget {
 Future<void> _shareOnFacebook(String message) async {
   String? result = await FlutterSocialContentShare.share(
       type: ShareType.facebookWithoutImage,
-      url: "https://www.apple.com",
+      url: 'https://www.apple.com',
       quote: message);
 
-  out(result ?? 'facebook post failed');
+  out("Facebook: ${result ?? ' Post failed.'}");
+}
+
+Future<void> _shareEmail(String message) async {
+  out('Email Message: $message');
+
+  String? result = await FlutterSocialContentShare.shareOnEmail(
+      // The recipient is ignored, but that is good because you want to choose who to send it to.
+      recipients: ['sumpner@hotmail.com'],
+      subject: 'Mars Departure Date.',
+      body: message,
+      isHTML: false); //default isHTML: False
+
+  out("Email: ${result ?? ' Post failed.'}");
 }
