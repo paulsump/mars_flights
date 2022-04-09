@@ -84,7 +84,7 @@ class _PageButtons extends StatelessWidget {
         FlatHexagonButton(
           onPressed: gotoPage('Favorites'),
           tip: 'Show your favorite upcoming launches',
-          child: const _IconPair(),
+          child: const IconPair(),
         ),
       ],
     );
@@ -93,8 +93,8 @@ class _PageButtons extends StatelessWidget {
 
 /// Nice favorites button using pair of icons.
 /// (A list icon with a heart in bottom right corner).
-class _IconPair extends StatelessWidget {
-  const _IconPair({Key? key}) : super(key: key);
+class IconPair extends StatelessWidget {
+  const IconPair({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

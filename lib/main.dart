@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:mars_flights/favorites_notifier.dart';
 import 'package:mars_flights/fetch_notifier.dart';
+import 'package:mars_flights/hue.dart';
+import 'package:mars_flights/view/background.dart';
 import 'package:mars_flights/view/countdown_page.dart';
 import 'package:mars_flights/view/flights_page.dart';
 import 'package:provider/provider.dart';
@@ -94,35 +96,27 @@ class NavigationBarState extends State<_NavigationBar> {
         elevation: 0,
         // to get rid of the shadow
         currentIndex: _NavigationBar._selectedIndex,
-        selectedItemColor: Colors.amber[800],
         onTap: _onItemTapped,
         backgroundColor: Colors.transparent,
         type: BottomNavigationBarType.fixed,
-        unselectedItemColor: Colors.blue,
+        selectedItemColor: Hue.navBarPageSelected,
+        unselectedItemColor: Hue.navBarPageNotSelected,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
+            icon: Icon(Icons.timer_rounded),
+            label: '',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.grade),
-            label: 'Level',
+            icon: Icon(Icons.view_list_rounded),
+            label: '',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.notifications),
-            label: 'Notification',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.school),
-            label: 'Achievements',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            label: 'Settings',
+            icon: IconPair(),
+            label: '',
           ),
         ]);
   }
 
-  @override
-  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
+// @override
+// Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 }

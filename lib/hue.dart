@@ -22,4 +22,7 @@ class Hue {
 
   //TODO SET
   static const Color buttonBackground = Colors.transparent;
+
+  static const Color navBarPageNotSelected = Color(0xffA57C3E);
+  static const Color navBarPageSelected = Color(0xffFFCA99);
 }
