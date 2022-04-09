@@ -5,37 +5,6 @@ import 'package:mars_flights/buttons/hexagon_border.dart';
 import 'package:mars_flights/hue.dart';
 import 'package:mars_flights/screen_adjust.dart';
 
-/// A button with an icon and a hexagon border.
-class HexagonButton extends StatelessWidget {
-  const HexagonButton({
-    Key? key,
-    required this.onPressed,
-    required this.icon,
-    required this.tip,
-    this.color,
-  }) : super(key: key);
-
-  final IconData icon;
-  final VoidCallback onPressed;
-
-  final String tip;
-  final Color? color;
-
-  @override
-  Widget build(BuildContext context) {
-    return Align(
-      heightFactor: 1 + screenAdjustY(0.0003, context),
-      child: _IconFlatHexagonButton(
-        onPressed: onPressed,
-        tip: tip,
-        icon: icon,
-        iconSize: screenAdjustNormalIconSize(context),
-        color: color,
-      ),
-    );
-  }
-}
-
 /// Transparent flat hexagon shaped [TextButton] (without text).
 class FlatHexagonButton extends StatelessWidget {
   const FlatHexagonButton({
@@ -73,13 +42,13 @@ class FlatHexagonButton extends StatelessWidget {
 }
 
 /// A [FlatHexagonButton] with an icon.
-class _IconFlatHexagonButton extends StatelessWidget {
-  const _IconFlatHexagonButton({
+/// (A button with an icon and a hexagon border).
+class IconFlatHexagonButton extends StatelessWidget {
+  const IconFlatHexagonButton({
     Key? key,
     this.onPressed,
     required this.tip,
     required this.icon,
-    required this.iconSize,
     this.color,
   }) : super(key: key);
 
@@ -87,8 +56,6 @@ class _IconFlatHexagonButton extends StatelessWidget {
   final String tip;
 
   final IconData icon;
-  final double iconSize;
-
   final Color? color;
 
   @override
@@ -100,7 +67,7 @@ class _IconFlatHexagonButton extends StatelessWidget {
         icon,
         color:
             color ?? (onPressed != null ? Hue.enabledIcon : Hue.disabledIcon),
-        size: iconSize,
+        size: screenAdjustNormalIconSize(context),
       ),
     );
   }

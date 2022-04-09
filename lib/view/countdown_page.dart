@@ -136,21 +136,21 @@ class _ShareButtons extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 SizedBox(width: screenAdjustX(0.01, context)),
-                HexagonButton(
+                IconFlatHexagonButton(
                   onPressed: () =>
                       unawaited(_shareEmail(fetchNotifier.flightMessage)),
                   icon: Icons.email_rounded,
                   // color: const Color(0xFF1da1f2),
                   tip: 'Share this flight on email',
                 ),
-                HexagonButton(
+                IconFlatHexagonButton(
                   onPressed: () =>
                       unawaited(_shareOnFacebook(fetchNotifier.flightMessage)),
                   icon: FontAwesomeIcons.facebook,
                   // color: const Color(0xFF0075FC),
                   tip: 'Share this flight on Facebook',
                 ),
-                HexagonButton(
+                IconFlatHexagonButton(
                   onPressed: () => unawaited(launch(
                       "https://wa.me/${447448188507}?text=${fetchNotifier.flightMessage}")),
                   icon: FontAwesomeIcons.whatsapp,

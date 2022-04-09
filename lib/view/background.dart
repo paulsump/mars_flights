@@ -69,12 +69,12 @@ class _PageButtons extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
-        HexagonButton(
+        IconFlatHexagonButton(
             onPressed: () =>
                 Navigator.of(context).pushReplacementNamed('Countdown'),
             icon: Icons.timer_rounded,
             tip: 'Show the time left until the next launch.'),
-        HexagonButton(
+        IconFlatHexagonButton(
             onPressed: () =>
                 Navigator.of(context).pushReplacementNamed('Flights'),
             icon: Icons.view_list_rounded,
