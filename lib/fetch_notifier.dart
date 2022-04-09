@@ -107,7 +107,7 @@ class FetchNotifier extends ChangeNotifier {
 
     final prettyFlight = PrettyFlight.fromFlight(flight, launchPads);
     flightMessage =
-        "Mission: ${prettyFlight.name}.  Launch Pad: ${prettyFlight.pad}.  Date: ${prettyFlight.date}.";
+        "Hi!\n\nHere's the details of the next SpaceX launch...\n\nMission: ${prettyFlight.name}.\nLaunch Pad: ${prettyFlight.pad}.\nDate: ${prettyFlight.date}.\n\nShall I book it?!";
 
     client.close();
   }

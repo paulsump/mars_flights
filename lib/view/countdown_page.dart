@@ -141,7 +141,8 @@ class _ShareButtons extends StatelessWidget {
                       subject: 'Launch Details',
                       message: fetchNotifier.flightMessage),
                   icon: FontAwesomeIcons.share,
-                  tip: 'Share this flight on Facebook',
+                  tip:
+                      "Open the device's share dialog to share details of this launch.",
                 ),
               ],
             ),
