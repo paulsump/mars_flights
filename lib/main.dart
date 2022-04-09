@@ -32,7 +32,7 @@ class _App extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => FavoritesNotifier()),
       ],
       child: MaterialApp(
-        title: 'Mars Flights',
+        title: 'SpaceX Launches',
         theme: ThemeData(primarySwatch: Colors.blue),
         home: LayoutBuilder(
           builder: (
