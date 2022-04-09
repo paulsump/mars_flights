@@ -12,8 +12,6 @@ class Hue {
   static const Color favorite = Color(0xffFE0000);
   static const Color notFavorite = Color(0xff29758E);
 
-  // static const Color radio = enabledIcon;
-
   static const Color text = Color(0xffFFE99D);
   static const Color background = Color(0xff281721);
 

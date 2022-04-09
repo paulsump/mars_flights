@@ -37,8 +37,8 @@ class HexagonButton extends StatelessWidget {
 }
 
 /// Transparent flat hexagon shaped [TextButton] (without text).
-class _FlatHexagonButton extends StatelessWidget {
-  const _FlatHexagonButton({
+class FlatHexagonButton extends StatelessWidget {
+  const FlatHexagonButton({
     Key? key,
     this.onPressed,
     required this.tip,
@@ -72,7 +72,7 @@ class _FlatHexagonButton extends StatelessWidget {
   }
 }
 
-/// A [_FlatHexagonButton] with an icon.
+/// A [FlatHexagonButton] with an icon.
 class _IconFlatHexagonButton extends StatelessWidget {
   const _IconFlatHexagonButton({
     Key? key,
@@ -93,7 +93,7 @@ class _IconFlatHexagonButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return _FlatHexagonButton(
+    return FlatHexagonButton(
       onPressed: onPressed,
       tip: tip,
       child: Icon(

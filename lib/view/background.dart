@@ -79,6 +79,16 @@ class _PageButtons extends StatelessWidget {
                 Navigator.of(context).pushReplacementNamed('Flights'),
             icon: Icons.view_list_rounded,
             tip: 'Show all the upcoming launches.'),
+        FlatHexagonButton(
+          onPressed: () =>
+              Navigator.of(context).pushReplacementNamed('Favorites'),
+          tip: 'Show your favorite upcoming launches',
+          child: Icon(
+            Icons.favorite,
+            color: Hue.favorite,
+            size: screenAdjustNormalIconSize(context),
+          ),
+        ),
       ],
     );
   }
