@@ -9,6 +9,7 @@ import 'package:mars_flights/fetch_notifier.dart';
 import 'package:mars_flights/screen_adjust.dart';
 import 'package:mars_flights/view/background.dart';
 import 'package:mars_flights/view/screen_adjusted_text.dart';
+import 'package:share_plus/share_plus.dart';
 
 class CountdownPage extends StatelessWidget {
   const CountdownPage({Key? key}) : super(key: key);
@@ -136,7 +137,9 @@ class _ShareButtons extends StatelessWidget {
                 SizedBox(width: screenAdjustX(0.01, context)),
                 // TODO MOVE this lonely button somewhere
                 IconFlatHexagonButton(
-                  onPressed: () => _share(fetchNotifier.flightMessage),
+                  onPressed: () => _share(context,
+                      subject: 'Launch Details',
+                      message: fetchNotifier.flightMessage),
                   icon: FontAwesomeIcons.share,
                   tip: 'Share this flight on Facebook',
                 ),
@@ -146,6 +149,35 @@ class _ShareButtons extends StatelessWidget {
   }
 }
 
-_share(String flightMessage) {
-  /// TODO Share button->platform's share dialog
+/// Open the platform's share dialog with the provided subject and text.
+void _share(BuildContext context,
+    {required String subject, required String message}) async {
+  // In the share_plus example (https://pub.dev/packages/share_plus/example),
+  // a builder is used to retrieve the context immediately
+  // surrounding the ElevatedButton.
+  //
+  // The context's `findRenderObject` returns the first
+  // RenderObject in its descendant tree when it's not
+  // a RenderObjectWidget. The ElevatedButton's RenderObject
+  // has its position and size after it's built.
+  final box = context.findRenderObject() as RenderBox?;
+
+  await Share.share(message,
+      subject: subject,
+      sharePositionOrigin: box!.localToGlobal(Offset.zero) & box.size);
+}
+
+void _shareWithResult(BuildContext context,
+    {required String subject, required String message}) async {
+  final box = context.findRenderObject() as RenderBox?;
+
+  ShareResult result;
+
+  result = await Share.shareWithResult(message,
+      subject: subject,
+      sharePositionOrigin: box!.localToGlobal(Offset.zero) & box.size);
+
+  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+    content: Text("Share result: ${result.status}"),
+  ));
 }
