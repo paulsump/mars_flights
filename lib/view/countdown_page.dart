@@ -6,11 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:mars_flights/buttons/flat_hexagon_button.dart';
 import 'package:mars_flights/fetch_notifier.dart';
-import 'package:mars_flights/out.dart';
 import 'package:mars_flights/screen_adjust.dart';
 import 'package:mars_flights/view/background.dart';
 import 'package:mars_flights/view/screen_adjusted_text.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class CountdownPage extends StatelessWidget {
   const CountdownPage({Key? key}) : super(key: key);
@@ -136,18 +134,10 @@ class _ShareButtons extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 SizedBox(width: screenAdjustX(0.01, context)),
+                // TODO MOVE this lonely button somewhere
                 IconFlatHexagonButton(
-                  onPressed: () =>
-                      unawaited(_shareEmail(fetchNotifier.flightMessage)),
-                  icon: Icons.email_rounded,
-                  // color: const Color(0xFF1da1f2),
-                  tip: 'Share this flight on email',
-                ),
-                IconFlatHexagonButton(
-                  onPressed: () => unawaited(launch(
-                      "https://wa.me/${447448188507}?text=${fetchNotifier.flightMessage}")),
-                  icon: FontAwesomeIcons.whatsapp,
-                  // color: const Color(0xFF0075FC),
+                  onPressed: () => _share(fetchNotifier.flightMessage),
+                  icon: FontAwesomeIcons.share,
                   tip: 'Share this flight on Facebook',
                 ),
               ],
@@ -156,9 +146,6 @@ class _ShareButtons extends StatelessWidget {
   }
 }
 
-
-Future<void> _shareEmail(String message) async {
-  out('Email Message: $message');
-
-  // TODO Email
+_share(String flightMessage) {
+  /// TODO Share button->platform's share dialog
 }

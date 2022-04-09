@@ -19,7 +19,9 @@ Details about upcoming rocket launches.
 - Remove Favorites from FlightsPage.
 - Bigger text on countdown landscape and closer together
 - Anchor share buttons to bottom of screen
-  
+
+- Replace flat page buttons with elevated radio buttons.
+
 - Check flightErrorMessage when bad internet.
 
 #### UI Later
@@ -40,6 +42,7 @@ Details about upcoming rocket launches.
 
 #### Finally
 
+- remove url_launcher if not using.
 - Check all TODOs
 - To fit in with spec and API...
 - Rename Flight to NextLaunch
