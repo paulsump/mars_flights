@@ -82,18 +82,18 @@ class _Table extends StatelessWidget {
       child: DataTable(
         columns: <DataColumn>[
           columnHeader('Mission'),
-          columnHeader('Favorite'),
           columnHeader('Date (UTC)'),
           columnHeader('Launch Pad'),
+          columnHeader('Favorite'),
         ],
         rows: <DataRow>[
           for (final flight in flights)
             DataRow(
               cells: <DataCell>[
                 cellText(flight.name),
-                DataCell(_FavoritesToggleButton(id: flight.id)),
                 cellText(flight.date),
                 cellText(flight.pad),
+                DataCell(_FavoritesToggleButton(id: flight.id)),
               ],
             ),
         ],
