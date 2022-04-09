@@ -15,31 +15,30 @@ class FlightsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final fetchNotifier = getFetchNotifier(context, listen: true);
 
-    final favoritesNotifier = getFavoritesNotifier(context, listen: true);
-
     return Background(
       title: 'Upcoming Launches',
       child: fetchNotifier.hasFlights
-          ? Column(
-              children: [
-                if (isPortrait(context))
-                  Expanded(
-                    flex: 1,
-                    child: _ScrollTable(
-                        title: 'Favorites',
-                        flights: favoritesNotifier
-                            .filter(fetchNotifier.prettyFlights)),
-                  ),
-                if (isPortrait(context))
-                  SizedBox(height: screenAdjustY(0.02, context)),
-                Expanded(
-                  flex: 2,
-                  child: _ScrollTable(
-                      title: 'All Launches',
-                      flights: fetchNotifier.prettyFlights),
-                ),
-              ],
-            )
+          ? _ScrollTable(flights: fetchNotifier.prettyFlights)
+          // TODO DISplay flightsErrorMessage
+          : Container(),
+    );
+  }
+}
+
+class FavoritesPage extends StatelessWidget {
+  const FavoritesPage({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final fetchNotifier = getFetchNotifier(context, listen: true);
+
+    final favoritesNotifier = getFavoritesNotifier(context, listen: true);
+
+    return Background(
+      title: 'Favorite Upcoming Launches',
+      child: fetchNotifier.hasFlights
+          ? _ScrollTable(
+              flights: favoritesNotifier.filter(fetchNotifier.prettyFlights))
           // TODO DISplay flightsErrorMessage
           : Container(),
     );
@@ -50,35 +49,19 @@ class FlightsPage extends StatelessWidget {
 class _ScrollTable extends StatelessWidget {
   const _ScrollTable({
     Key? key,
-    required this.title,
     required this.flights,
   }) : super(key: key);
 
-  final String title;
   final List<PrettyFlight> flights;
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        if (isPortrait(context))
-          Expanded(
-            flex: isPortrait(context) ? 1 : 2,
-            child: ScreenAdjustedText(title,
-                size: isPortrait(context) ? 0.02 : 0.04),
-          ),
-        if (isPortrait(context)) SizedBox(height: screenAdjustY(0.02, context)),
-        Expanded(
-          flex: isPortrait(context) ? 8 : 3,
-          child: isPortrait(context)
-              ? SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: _Table(flights),
-                )
-              : _Table(flights),
-        ),
-      ],
-    );
+    return isPortrait(context)
+        ? SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: _Table(flights),
+          )
+        : _Table(flights);
   }
 }
 
