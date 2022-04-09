@@ -1,7 +1,7 @@
 // © 2022, Paul Sumpner <sumpner@hotmail.com>
 
 import 'package:flutter/material.dart';
-import 'package:mars_flights/buttons/page_buttons.dart';
+import 'package:mars_flights/buttons/hexagon_button.dart';
 import 'package:mars_flights/hue.dart';
 import 'package:mars_flights/screen_adjust.dart';
 import 'package:mars_flights/view/pulsate.dart';
@@ -46,7 +46,7 @@ class Background extends StatelessWidget {
               left: false,
               child: Column(
                 children: [
-                  const PageButtons(),
+                  const _PageButtons(),
                   Expanded(child: Center(child: child)),
                 ],
               ),
@@ -54,6 +54,32 @@ class Background extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+}
+
+/// A container for all the buttons on all pages
+/// Organised using [Column]s and [Row]s
+class _PageButtons extends StatelessWidget {
+  const _PageButtons({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.end,
+      children: [
+        HexagonButton(
+            onPressed: () =>
+                Navigator.of(context).pushReplacementNamed('Countdown'),
+            icon: Icons.timer_rounded,
+            tip: 'Show the time left until the next launch.'),
+        HexagonButton(
+            onPressed: () =>
+                Navigator.of(context).pushReplacementNamed('Flights'),
+            icon: Icons.view_list_rounded,
+            tip: 'Show all the upcoming launches.'),
+      ],
     );
   }
 }
