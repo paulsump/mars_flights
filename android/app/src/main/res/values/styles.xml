@@ -16,6 +16,4 @@
         <item name="android:windowBackground">?android:colorBackground</item>
     </style>
 
-    <string name="facebook_app_id">1434134780376726</string>
-
 </resources>

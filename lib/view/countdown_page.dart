@@ -144,13 +144,6 @@ class _ShareButtons extends StatelessWidget {
                   tip: 'Share this flight on email',
                 ),
                 IconFlatHexagonButton(
-                  onPressed: () =>
-                      unawaited(_shareOnFacebook(fetchNotifier.flightMessage)),
-                  icon: FontAwesomeIcons.facebook,
-                  // color: const Color(0xFF0075FC),
-                  tip: 'Share this flight on Facebook',
-                ),
-                IconFlatHexagonButton(
                   onPressed: () => unawaited(launch(
                       "https://wa.me/${447448188507}?text=${fetchNotifier.flightMessage}")),
                   icon: FontAwesomeIcons.whatsapp,
@@ -163,23 +156,9 @@ class _ShareButtons extends StatelessWidget {
   }
 }
 
-Future<void> _shareOnFacebook(String message) async {
-  // String? result = await FlutterSocialContentShare.share(
-  //     type: ShareType.facebookWithoutImage,
-  //     url: 'https://www.spacex.com/',
-  //     quote: message);
-  //
-  // out("Facebook: ${result ?? ' Post failed.'}");
-}
 
 Future<void> _shareEmail(String message) async {
   out('Email Message: $message');
 
-  // String? result = await FlutterSocialContentShare.shareOnEmail(
-  //     The recipient is ignored, but that is good because you want to choose who to send it to.
-  //     recipients: ['sumpner@hotmail.com'],
-  // subject: 'Mars Departure Date.',
-  // body: message);
-  //
-  // out("Email: ${result ?? ' Post failed.'}");
+  // TODO Email
 }
