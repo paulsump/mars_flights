@@ -99,8 +99,8 @@ class NavigationBarState extends State<_NavigationBar> {
         onTap: _onItemTapped,
         backgroundColor: Colors.transparent,
         type: BottomNavigationBarType.fixed,
-        selectedItemColor: Hue.navBarPageSelected,
-        unselectedItemColor: Hue.navBarPageNotSelected,
+        selectedItemColor: Hue.iconSelected,
+        unselectedItemColor: Hue.iconDeselected,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.timer_rounded),
@@ -111,7 +111,8 @@ class NavigationBarState extends State<_NavigationBar> {
             label: '',
           ),
           BottomNavigationBarItem(
-            icon: IconPair(),
+            icon: IconPair(selected: false),
+            activeIcon: IconPair(selected: true),
             label: '',
           ),
         ]);
