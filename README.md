@@ -13,6 +13,9 @@ Details about upcoming rocket launches.
 
 #### UI
 
+Move title down in countdown portrait Countdown bits closer together on both portrait and landscape.
+Implement FavoritesPage again. Remove Favorites from FlightsPage. Bigger text on countdown landscape
+and closer together
 - Check flightErrorMessage when bad internet.
 
 #### UI Later
