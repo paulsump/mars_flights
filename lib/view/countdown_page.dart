@@ -11,6 +11,7 @@ import 'package:mars_flights/out.dart';
 import 'package:mars_flights/screen_adjust.dart';
 import 'package:mars_flights/view/background.dart';
 import 'package:mars_flights/view/screen_adjusted_text.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class CountdownPage extends StatelessWidget {
   const CountdownPage({Key? key}) : super(key: key);
@@ -146,7 +147,14 @@ class _ShareButtons extends StatelessWidget {
                 HexagonButton(
                   onPressed: () =>
                       unawaited(_shareOnFacebook(fetchNotifier.flightMessage)),
-                  icon: FontAwesomeIcons.facebookSquare,
+                  icon: FontAwesomeIcons.facebook,
+                  // color: const Color(0xFF0075FC),
+                  tip: 'Share this flight on Facebook',
+                ),
+                HexagonButton(
+                  onPressed: () => unawaited(launch(
+                      "https://wa.me/${447448188507}?text=${fetchNotifier.flightMessage}")),
+                  icon: FontAwesomeIcons.whatsapp,
                   // color: const Color(0xFF0075FC),
                   tip: 'Share this flight on Facebook',
                 ),
