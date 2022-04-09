@@ -7,6 +7,8 @@ import 'package:mars_flights/screen_adjust.dart';
 import 'package:mars_flights/view/pulsate.dart';
 import 'package:mars_flights/view/screen_adjusted_text.dart';
 
+const _unitOffset = Offset(1.0, 1.0);
+
 /// A container frame / scaffold for all pages.
 /// It has the background color and image and a silly little [_Star] animation.
 class Background extends StatelessWidget {
@@ -100,7 +102,7 @@ class _PageButtons extends StatelessWidget {
           size: n,
         ),
         Transform.translate(
-          offset: const Offset(1, 1) * 0.2 * n,
+          offset: _unitOffset * 0.2 * n,
           child: Transform.scale(
             scale: 0.7,
             child: Icon(
@@ -148,11 +150,10 @@ class _StarState extends State<_Star> with SingleTickerProviderStateMixin {
   Widget build(BuildContext context) {
     final size = getScreenSize(context);
 
-    const unit = Offset(1, 1);
-    final center = unit * calcUnitPingPong(_controller.value);
-
+    final center = _unitOffset * calcUnitPingPong(_controller.value);
     final offset = Offset(size.width * center.dx, size.height * center.dy);
-    final imageSize = unit * 128;
+
+    final imageSize = _unitOffset * 128;
 
     return Transform.translate(
       offset: offset - imageSize / 2,
