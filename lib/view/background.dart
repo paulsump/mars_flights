@@ -83,10 +83,32 @@ class _PageButtons extends StatelessWidget {
           onPressed: () =>
               Navigator.of(context).pushReplacementNamed('Favorites'),
           tip: 'Show your favorite upcoming launches',
-          child: Icon(
-            Icons.favorite,
-            color: Hue.favorite,
-            size: screenAdjustNormalIconSize(context),
+          child: _buildIconPair(context),
+        ),
+      ],
+    );
+  }
+
+  /// Nice favorites button using pair of icons
+  Widget _buildIconPair(BuildContext context) {
+    final n = screenAdjustNormalIconSize(context);
+
+    return Stack(
+      children: [
+        Icon(
+          Icons.view_list_rounded,
+          color: Hue.enabledIcon,
+          size: n,
+        ),
+        Transform.translate(
+          offset: const Offset(1, 1) * 0.2 * n,
+          child: Transform.scale(
+            scale: 0.7,
+            child: Icon(
+              Icons.favorite,
+              color: Hue.favorite,
+              size: n,
+            ),
           ),
         ),
       ],
