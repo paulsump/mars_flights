@@ -66,23 +66,23 @@ class _PageButtons extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    gotoPage(pageName) =>
+        () => Navigator.of(context).pushReplacementNamed(pageName);
+
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
         IconFlatHexagonButton(
-            onPressed: () =>
-                Navigator.of(context).pushReplacementNamed('Countdown'),
+            onPressed: gotoPage('Countdown'),
             icon: Icons.timer_rounded,
             tip: 'Show the time left until the next launch.'),
         IconFlatHexagonButton(
-            onPressed: () =>
-                Navigator.of(context).pushReplacementNamed('Flights'),
+            onPressed: gotoPage('Flights'),
             icon: Icons.view_list_rounded,
             tip: 'Show all the upcoming launches.'),
         FlatHexagonButton(
-          onPressed: () =>
-              Navigator.of(context).pushReplacementNamed('Favorites'),
+          onPressed: gotoPage('Favorites'),
           tip: 'Show your favorite upcoming launches',
           child: const _IconPair(),
         ),
@@ -91,29 +91,30 @@ class _PageButtons extends StatelessWidget {
   }
 }
 
-/// Nice favorites button using pair of icons
+/// Nice favorites button using pair of icons.
+/// (A list icon with a heart in bottom right corner).
 class _IconPair extends StatelessWidget {
   const _IconPair({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final n = screenAdjustNormalIconSize(context);
+    final size = screenAdjustNormalIconSize(context);
 
     return Stack(
       children: [
         Icon(
           Icons.view_list_rounded,
           color: Hue.enabledIcon,
-          size: n,
+          size: size,
         ),
         Transform.translate(
-          offset: _unitOffset * 0.2 * n,
+          offset: _unitOffset * 0.2 * size,
           child: Transform.scale(
             scale: 0.7,
             child: Icon(
               Icons.favorite,
               color: Hue.favorite,
-              size: n,
+              size: size,
             ),
           ),
         ),
