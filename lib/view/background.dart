@@ -1,7 +1,7 @@
 // © 2022, Paul Sumpner <sumpner@hotmail.com>
 
 import 'package:flutter/material.dart';
-import 'package:mars_flights/buttons/hexagon_button.dart';
+import 'package:mars_flights/buttons/flat_hexagon_button.dart';
 import 'package:mars_flights/hue.dart';
 import 'package:mars_flights/screen_adjust.dart';
 import 'package:mars_flights/view/pulsate.dart';

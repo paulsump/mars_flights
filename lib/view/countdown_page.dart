@@ -4,7 +4,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:mars_flights/buttons/hexagon_button.dart';
+import 'package:mars_flights/buttons/flat_hexagon_button.dart';
 import 'package:mars_flights/fetch_notifier.dart';
 import 'package:mars_flights/out.dart';
 import 'package:mars_flights/screen_adjust.dart';
