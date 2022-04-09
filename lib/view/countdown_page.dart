@@ -167,17 +167,3 @@ void _share(BuildContext context,
       sharePositionOrigin: box!.localToGlobal(Offset.zero) & box.size);
 }
 
-void _shareWithResult(BuildContext context,
-    {required String subject, required String message}) async {
-  final box = context.findRenderObject() as RenderBox?;
-
-  ShareResult result;
-
-  result = await Share.shareWithResult(message,
-      subject: subject,
-      sharePositionOrigin: box!.localToGlobal(Offset.zero) & box.size);
-
-  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-    content: Text("Share result: ${result.status}"),
-  ));
-}
