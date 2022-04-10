@@ -26,7 +26,7 @@ class Background extends StatelessWidget {
       onWillPop: () async => false,
       child: Scaffold(
         body: Container(
-          color: Hue.background,
+          color: Hue.lightBackground,
           child: Stack(
             children: [
               const Center(

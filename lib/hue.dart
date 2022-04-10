@@ -11,14 +11,12 @@ class Hue {
   static const Color notFavorite = iconSelected;
 
   static const Color text = Color(0xffFFE99D);
-  static const Color background = Color(0xff0987C5);
+  static const Color lightBackground = Color(0xff0987C5);
+  static const Color _darkBackground = Color(0xff015472);
 
-  static const Color buttonOverlay = background;
-  static const Color buttonBorder = background;
+  static const Color buttonBorder = lightBackground;
+  static const Color buttonOverlay = _darkBackground;
 
-  static Color get darkerBackground => const Color(0xff015472);
-
-  static Color get buttonBackground => darkerBackground.withOpacity(0.1);
-
-  static Color get toolTip => darkerBackground;
+  static final Color buttonBackground = _darkBackground.withOpacity(0.1);
+  static const Color toolTip = _darkBackground;
 }
