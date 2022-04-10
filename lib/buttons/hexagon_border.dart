@@ -5,9 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:mars_flights/buttons/hexagon_path.dart';
 import 'package:mars_flights/hue.dart';
 
-final _borderSide = BorderSide(width: 1.0, color: Hue.buttonBorder);
+const _borderSide = BorderSide(width: 1.0, color: Hue.buttonBorder);
 final hexagonBorderShape =
-    MaterialStateProperty.all(HexagonBorder(side: _borderSide));
+    MaterialStateProperty.all(const HexagonBorder(side: _borderSide));
 
 /// A border that fits a Hexagon within the available space.
 ///

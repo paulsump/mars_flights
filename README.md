@@ -6,7 +6,7 @@ Details about upcoming rocket launches.
 
 #### UI
 
-- use hexagon buttons on table too, now that they're more subtle.
+- Use hexagon buttons on table too? (now that they're more subtle).
 - Click on column header to sort
 
 #### Tests

@@ -14,8 +14,7 @@ class Hue {
   static const Color background = tableColor;
 
   static const Color buttonOverlay = background;
-
-  static Color get buttonBorder => tableColor;
+  static const Color buttonBorder = tableColor;
 
   static Color get buttonBackground => tableColor.withOpacity(0.1);
   static const Color tableColor = Color(0xff003446);
