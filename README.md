@@ -20,8 +20,6 @@ Details about upcoming rocket launches.
 
 #### Finally
 
-- Move page stuff out of background into page file?
-- Move Pulsate into background since i'm not using it elsewhere.
 - Check all TODOs
 - To fit in with spec and API...
 - Rename Flight to NextLaunch
