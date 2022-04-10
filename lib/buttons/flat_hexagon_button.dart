@@ -22,7 +22,7 @@ class FlatHexagonButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: screenAdjustButtonWidth(context),
-      child: Tooltip(
+      child: ScreenAdjustedToolTip(
         message: tip,
         child: TextButton(
           child: child,

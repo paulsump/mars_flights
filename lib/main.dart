@@ -33,7 +33,6 @@ class _App extends StatelessWidget {
       ],
       child: MaterialApp(
         title: 'SpaceX Launches',
-        theme: ThemeData(primarySwatch: Colors.blue),
         home: LayoutBuilder(
           builder: (
             BuildContext context,

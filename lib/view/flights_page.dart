@@ -103,7 +103,7 @@ class _FavoritesToggleButton extends StatelessWidget {
 
     return Align(
       heightFactor: 0.774,
-      child: Tooltip(
+      child: ScreenAdjustedToolTip(
         message: 'Add this flight to favorites.',
         child: IconButton(
           onPressed: () => favoritesNotifier.toggle(id),
