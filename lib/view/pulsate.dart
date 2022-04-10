@@ -29,10 +29,11 @@ class _PulsateState extends State<Pulsate> with SingleTickerProviderStateMixin {
 
   @override
   void initState() {
-    _controller = AnimationController(duration: const Duration(seconds: 100), vsync: this)
+    _controller =
+        AnimationController(duration: const Duration(seconds: 50), vsync: this)
           ..addListener(() {
-        setState(() {});
-      });
+            setState(() {});
+          });
     _controller.repeat();
 
     super.initState();

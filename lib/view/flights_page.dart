@@ -68,10 +68,10 @@ class _Table extends StatelessWidget {
 
     return SingleChildScrollView(
       child: DataTable(
-        headingRowColor: MaterialStateColor.resolveWith(
-            (states) => Hue.tableColor.withOpacity(0.25)),
-        dataRowColor: MaterialStateColor.resolveWith(
-            (states) => Hue.tableColor.withOpacity(0.4)),
+        // headingRowColor: MaterialStateColor.resolveWith(
+        //     (states) => Hue.tableColor.withOpacity(0.25)),
+        // dataRowColor: MaterialStateColor.resolveWith(
+        //     (states) => Hue.tableColor.withOpacity(0.4)),
         columns: <DataColumn>[
           columnHeader('Mission'),
           columnHeader('Date (UTC)'),
