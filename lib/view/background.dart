@@ -93,11 +93,11 @@ class _CurrentPageTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenAdjust(
-      portrait: const Offset(0.25, 1.8),
-      landscape: const Offset(0.2, 0.72),
+      portrait: const Offset(0.37, 1.9),
+      landscape: const Offset(0.3, 0.79),
       child: ScreenAdjustedText(
         _getTitle(context),
-        size: isPortrait(context) ? 0.022 : 0.07,
+        size: isPortrait(context) ? 0.025 : 0.07,
       ),
     );
   }

@@ -24,7 +24,7 @@ class CountdownPage extends StatelessWidget {
     return date != null
         ? Column(
             children: [
-              Expanded(flex: isPortrait(context) ? 1 : 5, child: Container()),
+              Expanded(flex: isPortrait(context) ? 2 : 5, child: Container()),
               Expanded(
                   flex: isPortrait(context) ? 8 : 8, child: _Updater(date)),
               Expanded(
@@ -122,7 +122,8 @@ class _Number extends StatelessWidget {
         Expanded(
             flex: 15,
             child: ScreenAdjustedText(n.toString(),
-                size: isPortrait(context) ? 0.07 : 0.12)),
+                size: isPortrait(context) ? 0.06 : 0.12)),
+        Expanded(flex: 1, child: Container()),
         Expanded(
             flex: 10,
             child: ScreenAdjustedText(label,
