@@ -42,7 +42,7 @@ class CountdownPage extends StatelessWidget {
                       flex: isPortrait(context) ? 4 : 8, child: _Updater(date)),
                   Expanded(
                     flex: isPortrait(context) ? 1 : 8,
-                    child: const _ShareButtons(),
+                    child: const _ShareButton(),
                   ),
                 ],
               )
@@ -130,9 +130,8 @@ class _Time extends StatelessWidget {
 }
 
 /// Buttons for social media platforms to share the next launch with friends.
-/// todo rename to _ShareButton
-class _ShareButtons extends StatelessWidget {
-  const _ShareButtons({Key? key}) : super(key: key);
+class _ShareButton extends StatelessWidget {
+  const _ShareButton({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
