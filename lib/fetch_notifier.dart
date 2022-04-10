@@ -27,7 +27,7 @@ class ErrorMessage extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: screenAdjustX(0.1, context)),
       child: Center(
         child: ScreenAdjustedText(message,
-            size: isPortrait(context) ? 0.02 : 0.06),
+            size: isPortrait(context) ? 0.02 : 0.05),
       ),
     );
   }
@@ -69,8 +69,9 @@ class FetchNotifier extends ChangeNotifier {
     final fetcher = Fetcher(client);
     try {
       final flight_ = await fetcher.getFlight();
-
+      out('p1');
       flight = Flight.fromJson(flight_);
+      out('p2: ${flight.toString()}');
 
       hasFlight = true;
     } catch (error) {
@@ -187,8 +188,11 @@ class Fetcher {
   //TODO add test for this using test_data/launch_pads.json
   Future<List<dynamic>> getLaunchPads() async => _getList('launchpads');
 
-  Future<Map<String, dynamic>> _getMap(String url) async =>
-      jsonDecode(await _getJson(url));
+  Future<Map<String, dynamic>> _getMap(String url) async {
+    final json = await _getJson(url);
+    out('p0: $json');
+    return jsonDecode(json);
+  }
 
   Future<List<dynamic>> _getList(String url) async =>
       jsonDecode(await _getJson(url));
@@ -284,10 +288,6 @@ class Flight {
   Flight.fromJson(Map<String, dynamic> json)
       : details = _getFieldOrNull('details', json),
         dateUnix = _getFieldOrNull('date_unix', json),
-        crew = _getFieldOrNull('crew', json)
-            .map<String>((member) => member.toString())
-            .toList(),
-        launchLibraryId = _getFieldOrNull('launch_library_id', json).toString(),
         launchPad = _getFieldOrNull('launchpad', json),
         name = _getFieldOrNull('name', json),
         id = _getFieldOrNull('id', json);
@@ -299,9 +299,6 @@ class Flight {
 
   final String? details;
   final int? dateUnix;
-
-  final List<String>? crew;
-  final String? launchLibraryId;
 
   /// launch time
   /// TODO convert toLocal.  Maybe use utc to find original zone? (Probably California).
