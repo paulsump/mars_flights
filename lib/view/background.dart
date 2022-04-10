@@ -7,7 +7,6 @@ import 'package:mars_flights/screen_adjust.dart';
 import 'package:mars_flights/view/countdown_page.dart';
 import 'package:mars_flights/view/flights_page.dart';
 import 'package:mars_flights/view/pulsate.dart';
-import 'package:mars_flights/view/screen_adjusted_text.dart';
 import 'package:provider/provider.dart';
 
 const _unitOffset = Offset(1.0, 1.0);
@@ -17,12 +16,8 @@ const _unitOffset = Offset(1.0, 1.0);
 class Background extends StatelessWidget {
   const Background({
     Key? key,
-    required this.child,
-    required this.title,
   }) : super(key: key);
 
-  final Widget child;
-  final String title;
 
   @override
   Widget build(BuildContext context) {
@@ -38,20 +33,16 @@ class Background extends StatelessWidget {
               ),
             ),
             const _Star(),
-            ScreenAdjust(
-              portrait: const Offset(0.25, 1.5),
-              landscape: const Offset(0.3, 1.6),
-              child: ScreenAdjustedText(
-                title,
-                size: isPortrait(context) ? 0.022 : 0.06,
-              ),
-            ),
             SafeArea(
               left: false,
-              child: Column(
+              child: Stack(
                 children: [
-                  const _PageButtons(),
-                  Expanded(child: Center(child: _Pages())),
+                  Column(
+                    children: [
+                      const _PageButtons(),
+                      Expanded(child: Center(child: _Pages())),
+                    ],
+                  ),
                 ],
               ),
             ),

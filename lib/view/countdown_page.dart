@@ -23,20 +23,33 @@ class CountdownPage extends StatelessWidget {
     final DateTime? date = flight?.date;
     final String? name = flight?.name;
 
-    //TODO title: name == null ? 'Next Launch' : 'Upcoming: $name',
-    return date != null
-        ? Column(
-            children: [
-              if (!isPortrait(context)) Expanded(flex: 2, child: Container()),
-              Expanded(
-                  flex: isPortrait(context) ? 4 : 8, child: _Updater(date)),
-              Expanded(
-                flex: isPortrait(context) ? 1 : 8,
-                child: const _ShareButtons(),
-              ),
-            ],
-          )
-        : Center(child: ScreenAdjustedText(fetchNotifier.flightErrorMessage));
+    return Stack(
+      children: [
+        ScreenAdjust(
+          portrait: const Offset(0.25, 0.5),
+          landscape: const Offset(0.19, -2.0),
+          child: ScreenAdjustedText(
+            name == null ? 'Next Launch' : 'Upcoming: $name',
+            size: isPortrait(context) ? 0.022 : 0.06,
+          ),
+        ),
+        date != null
+            ? Column(
+                children: [
+                  if (!isPortrait(context))
+                    Expanded(flex: 2, child: Container()),
+                  Expanded(
+                      flex: isPortrait(context) ? 4 : 8, child: _Updater(date)),
+                  Expanded(
+                    flex: isPortrait(context) ? 1 : 8,
+                    child: const _ShareButtons(),
+                  ),
+                ],
+              )
+            : Center(
+                child: ScreenAdjustedText(fetchNotifier.flightErrorMessage)),
+      ],
+    );
   }
 }
 

@@ -5,8 +5,6 @@ import 'package:http/http.dart' as http;
 import 'package:mars_flights/favorites_notifier.dart';
 import 'package:mars_flights/fetch_notifier.dart';
 import 'package:mars_flights/view/background.dart';
-import 'package:mars_flights/view/countdown_page.dart';
-import 'package:mars_flights/view/flights_page.dart';
 import 'package:provider/provider.dart';
 
 /// The main entry point for the flutter app
@@ -57,16 +55,10 @@ class _App extends StatelessWidget {
                 unawaited(favoritesNotifier.loadInitialValues());
               }
 
-              //TODO REMove params
-              return const Background(child: CountdownPage(), title: 'todo');
+              return const Background();
             }
           },
         ),
-        routes: {
-          'Countdown': (context) => const CountdownPage(),
-          'Flights': (context) => const FlightsPage(),
-          'Favorites': (context) => const FavoritesPage(),
-        },
       ),
     );
   }

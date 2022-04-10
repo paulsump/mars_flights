@@ -14,11 +14,23 @@ class FlightsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final fetchNotifier = getFetchNotifier(context, listen: true);
 
-    //TODO title: 'Upcoming Launches',
-    return fetchNotifier.hasFlights
-        ? _ScrollTable(flights: fetchNotifier.prettyFlights)
-        // TODO DISplay flightsErrorMessage
-        : Container();
+    return Stack(
+      children: [
+        ScreenAdjust(
+          portrait: const Offset(0.25, -1.5),
+          landscape: const Offset(-0.73, -2.26),
+          child: ScreenAdjustedText(
+            'Upcoming Launches',
+            // 'Favorite Upcoming Launches',
+            size: isPortrait(context) ? 0.022 : 0.06,
+          ),
+        ),
+        fetchNotifier.hasFlights
+            ? _ScrollTable(flights: fetchNotifier.prettyFlights)
+            // TODO DISplay flightsErrorMessage
+            : Container(),
+      ],
+    );
   }
 }
 
@@ -31,7 +43,6 @@ class FavoritesPage extends StatelessWidget {
 
     final favoritesNotifier = getFavoritesNotifier(context, listen: true);
 
-    //TODO title: 'Favorite Upcoming Launches',
     return fetchNotifier.hasFlights
         ? _ScrollTable(
             flights: favoritesNotifier.filter(fetchNotifier.prettyFlights))
@@ -42,10 +53,7 @@ class FavoritesPage extends StatelessWidget {
 
 /// Allows horizontal scroll of table in portrait only.
 class _ScrollTable extends StatelessWidget {
-  const _ScrollTable({
-    Key? key,
-    required this.flights,
-  }) : super(key: key);
+  const _ScrollTable({Key? key, required this.flights}) : super(key: key);
 
   final List<PrettyFlight> flights;
 
