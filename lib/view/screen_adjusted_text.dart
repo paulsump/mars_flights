@@ -25,7 +25,7 @@ class ScreenAdjustedText extends StatelessWidget {
       text,
       style: TextStyle(
         color: Hue.text,
-        // TODO isPortrait()
+        // TODO  size isPortrait()?:
         fontSize: screenAdjustY(size, context),
         fontWeight: bold ? FontWeight.bold : FontWeight.normal,
         fontStyle: italic ? FontStyle.italic : FontStyle.normal,

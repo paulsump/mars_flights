@@ -16,5 +16,9 @@ class Hue {
   static const Color buttonOverlay = background;
   static const Color buttonBorder = background;
 
-  static Color get buttonBackground => background.withOpacity(0.1);
+  static Color get darkerBackground => const Color(0xff015472);
+
+  static Color get buttonBackground => darkerBackground.withOpacity(0.1);
+
+  static Color get toolTip => darkerBackground;
 }

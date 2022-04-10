@@ -4,6 +4,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:mars_flights/buttons/position_to_unit.dart';
+import 'package:mars_flights/hue.dart';
 
 /// Convenient access to screen dimensions.
 Size getScreenSize(BuildContext context) => MediaQuery.of(context).size;
@@ -116,9 +117,20 @@ class ScreenAdjustedToolTip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final fontSize = screenAdjustY(isPortrait(context) ? 0.016 : 0.03, context);
+
     return Tooltip(
       message: message,
       child: child,
+      // TODO  size isPortrait()?:
+      // TODO  screenAdjustY
+      verticalOffset: 55,
+      padding: const EdgeInsets.all(16),
+      textStyle: TextStyle(
+        color: Hue.text,
+        fontSize: fontSize,
+      ),
+      decoration: BoxDecoration(color: Hue.toolTip),
     );
   }
 }
