@@ -30,15 +30,15 @@ class FavoritesNotifier extends ChangeNotifier {
   bool contains(String flightId) => _flightIds.contains(flightId);
 
   List<PrettyFlight> filter(List<PrettyFlight> prettyFlights) {
-    final flights = <PrettyFlight>[];
+    final prettyFlights = <PrettyFlight>[];
 
-    for (final flight in prettyFlights) {
-      if (_flightIds.contains(flight.id)) {
-        flights.add(flight);
+    for (final prettyFlight in prettyFlights) {
+      if (_flightIds.contains(prettyFlight.id)) {
+        prettyFlights.add(prettyFlight);
       }
     }
 
-    return flights;
+    return prettyFlights;
   }
 
   Future<void>? loadInitialValues() async {
