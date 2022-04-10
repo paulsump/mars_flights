@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 /// Access to all the colors in the app
 class Hue {
   static const Color iconDeselected = Color(0xffA57C3E);
-  static const Color iconSelected = Color(0xffFFCA99);
+  static const Color iconSelected = text; //Color(0xffFFCA99);
 
   static const Color favorite = Color(0xffFE0000);
   static const Color notFavorite = iconSelected;

@@ -173,13 +173,32 @@ class PrettyFlight {
   PrettyFlight.fromFlight(Flight flight, List<LaunchPad> launchPads)
       : id = flight.id!,
         name = flight.name!,
-        date = _formatDate(flight.date!),
+        date = _formatDate(flight.date!, flight.datePrecision!),
         pad = _getPadName(flight.launchPad!, launchPads);
 
   final String id, name, date, pad;
 }
 
-String _formatDate(DateTime date) => DateFormat('dd MMMM hh:mm').format(date);
+String _formatDate(DateTime date, String precision) {
+  switch (precision) {
+    case 'hour':
+      return DateFormat("h a MMM d")
+          .format(date)
+          .replaceFirst('AM', 'am')
+          .replaceFirst('PM', 'pm');
+    // return DateFormat('dd MMMM hh').format(date);
+    case 'day':
+      return DateFormat('MMMM d').format(date);
+    case 'month':
+      return DateFormat('MMMM').format(date);
+    case 'quarter':
+      out('q  ${DateFormat('QQQ').format(date)}');
+      return DateFormat('QQQ').format(date);
+  }
+
+  logError('Unhandled date precision: $precision');
+  return DateFormat('dd MMMM hh:mm').format(date);
+}
 
 /// Helper class to fetch and convert json
 /// In this API, both JSON lists and JSON objects (maps) are returned, so
@@ -298,6 +317,7 @@ class Flight {
   Flight.fromJson(Map<String, dynamic> json)
       : details = _getFieldOrNull('details', json),
         dateUnix = _getFieldOrNull('date_unix', json),
+        datePrecision = _getFieldOrNull('date_precision', json),
         launchPad = _getFieldOrNull('launchpad', json),
         name = _getFieldOrNull('name', json),
         id = _getFieldOrNull('id', json);
@@ -306,19 +326,25 @@ class Flight {
   final String? launchPad;
 
   final String? name;
-
   final String? details;
+
   final int? dateUnix;
+  final String? datePrecision;
 
   /// launch time
   /// TODO convert toLocal.  Maybe use utc to find original zone? (Probably California).
+  /// BST?
   DateTime? get date => dateUnix == null
       ? null
       : DateTime.fromMillisecondsSinceEpoch(dateUnix! * 1000);
 
   /// check if the fields are all valid (loaded correctly).
   bool get isValid =>
-      id != null && name != null && dateUnix != null && launchPad != null;
+      id != null &&
+      name != null &&
+      dateUnix != null &&
+      datePrecision != null &&
+      launchPad != null;
 }
 
 class LaunchPad {

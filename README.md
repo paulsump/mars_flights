@@ -6,14 +6,13 @@ Details about upcoming rocket launches.
 
 #### UI
 
-- Text too small on Nexus (and iPhone a bit).
-- Use date accuracy (e.g. quarterly)
 - Check flight dates against one on the net
-
+- BST?
 - Convert time to england /// TODO convert toLocal. Maybe use utc to find original zone? (Probably
   California).
 
-- Retry button (after failed fetch)              //TODO CALL all this in a retry button
+- Retry button (after failed fetch), otherwise there's no point in setting fetchAllHasBeenCalled =
+  false //TODO CALL all this in a retry button
 
 - Click on column header to sort by that field.
 
