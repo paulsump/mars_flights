@@ -11,11 +11,10 @@ class Hue {
   static const Color notFavorite = iconSelected;
 
   static const Color text = Color(0xffFFE99D);
-  static const Color background = tableColor;
+  static const Color background = Color(0xff0987C5);
 
   static const Color buttonOverlay = background;
-  static const Color buttonBorder = tableColor;
+  static const Color buttonBorder = background;
 
-  static Color get buttonBackground => tableColor.withOpacity(0.1);
-  static const Color tableColor = Color(0xff003446);
+  static Color get buttonBackground => background.withOpacity(0.1);
 }
