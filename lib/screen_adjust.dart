@@ -118,6 +118,7 @@ class ScreenAdjustedToolTip extends StatelessWidget {
   Widget build(BuildContext context) {
     return Tooltip(
       message: message,
+      child: child,
     );
   }
 }
