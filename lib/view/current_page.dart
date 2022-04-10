@@ -11,7 +11,7 @@ import 'package:provider/provider.dart';
 
 const unitOffset = Offset(1.0, 1.0);
 
-class PageNotifier extends ChangeNotifier {
+class CurrentPageNotifier extends ChangeNotifier {
   String pageName = 'Countdown';
 
   void setPage(String pageName_) {
@@ -31,8 +31,9 @@ class CurrentPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final pageNotifier = Provider.of<PageNotifier>(context, listen: true);
-    return _pages[pageNotifier.pageName]!;
+    final currentPageNotifier =
+        Provider.of<CurrentPageNotifier>(context, listen: true);
+    return _pages[currentPageNotifier.pageName]!;
   }
 }
 
@@ -57,9 +58,10 @@ class CurrentPageTitle extends StatelessWidget {
   }
 
   String _getTitle(BuildContext context) {
-    final pageNotifier = Provider.of<PageNotifier>(context, listen: true);
+    final currentPageNotifier =
+        Provider.of<CurrentPageNotifier>(context, listen: true);
 
-    if (pageNotifier.pageName == 'Countdown') {
+    if (currentPageNotifier.pageName == 'Countdown') {
       final fetchNotifier = getFetchNotifier(context, listen: true);
 
       final Flight? flight =
@@ -69,7 +71,7 @@ class CurrentPageTitle extends StatelessWidget {
       return name == null ? 'Next Launch' : 'Upcoming: $name';
     }
 
-    return _titles[pageNotifier.pageName]!;
+    return _titles[currentPageNotifier.pageName]!;
   }
 }
 
@@ -80,10 +82,12 @@ class CurrentPageButtons extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final pageNotifier = Provider.of<PageNotifier>(context, listen: true);
+    final currentPageNotifier =
+        Provider.of<CurrentPageNotifier>(context, listen: true);
 
-    VoidCallback _gotoPage(pageName) => () => pageNotifier.setPage(pageName);
-    bool _isCurrentPage(pageName) => pageNotifier.pageName == pageName;
+    VoidCallback _gotoPage(pageName) =>
+        () => currentPageNotifier.setPage(pageName);
+    bool _isCurrentPage(pageName) => currentPageNotifier.pageName == pageName;
 
     Color _getColor(pageName) =>
         _isCurrentPage(pageName) ? Hue.iconSelected : Hue.iconDeselected;

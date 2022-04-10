@@ -30,7 +30,7 @@ class _App extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (_) => FetchNotifier()),
         ChangeNotifierProvider(create: (_) => FavoritesNotifier()),
-        ChangeNotifierProvider(create: (_) => PageNotifier()),
+        ChangeNotifierProvider(create: (_) => CurrentPageNotifier()),
       ],
       child: MaterialApp(
         title: 'SpaceX Launches',

@@ -13,6 +13,7 @@ Details about upcoming rocket launches.
 
 #### Tests
 
+- Try out on various simulators.
 - DateTime tests - check count down maths. DataTable Column titles scroll off when scroll.
 - flightErrorMessage and flightErrorMessage - perhaps with widget tests
 - widget tests
