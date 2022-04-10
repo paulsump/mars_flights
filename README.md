@@ -84,8 +84,7 @@ Everyone is counting on you!
 - Each launch should have a 'Bookmark' or 'Favorite' button that adds it to a separate 'Favorites'
   section. We would like to see the use of the localStorage API here (either save the launches data
   or its id)
-- willPopScope to stop exiting when left scrolling table in portrait view.
-
+  
 ### API Endpoints
 
 - Next Launch Counter: 'https://github.com/r-spacex/SpaceX-API/blob/master/docs/launches/v4/next.md'

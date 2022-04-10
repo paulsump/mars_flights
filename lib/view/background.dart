@@ -22,33 +22,36 @@ class Background extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        color: Hue.background,
-        child: Stack(
-          children: [
-            const Center(
-              child: Pulsate(
-                scale: 2.0,
-                child: Image(image: AssetImage('images/background.jpg')),
+    return WillPopScope(
+      onWillPop: () async => false,
+      child: Scaffold(
+        body: Container(
+          color: Hue.background,
+          child: Stack(
+            children: [
+              const Center(
+                child: Pulsate(
+                  scale: 2.0,
+                  child: Image(image: AssetImage('images/background.jpg')),
+                ),
               ),
-            ),
-            const _Star(),
-            SafeArea(
-              left: false,
-              child: Stack(
-                children: [
-                  _CurrentPageTitle(),
-                  Column(
-                    children: [
-                      const _PageButtons(),
-                      Expanded(child: Center(child: _CurrentPage())),
-                    ],
-                  ),
-                ],
+              const _Star(),
+              SafeArea(
+                left: false,
+                child: Stack(
+                  children: [
+                    _CurrentPageTitle(),
+                    Column(
+                      children: [
+                        const _PageButtons(),
+                        Expanded(child: Center(child: _CurrentPage())),
+                      ],
+                    ),
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
