@@ -84,7 +84,7 @@ class _NavigationBar extends StatefulWidget {
 }
 
 class NavigationBarState extends State<_NavigationBar> {
-  void _onItemTapped(int index) {
+  void _onTap(int index) {
     setState(() {
       _NavigationBar._selectedIndex = index;
     });
@@ -93,10 +93,11 @@ class NavigationBarState extends State<_NavigationBar> {
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
+        showSelectedLabels: false,
+        showUnselectedLabels: false,
         elevation: 0,
-        // to get rid of the shadow
         currentIndex: _NavigationBar._selectedIndex,
-        onTap: _onItemTapped,
+        onTap: _onTap,
         backgroundColor: Colors.transparent,
         type: BottomNavigationBarType.fixed,
         selectedItemColor: Hue.iconSelected,
