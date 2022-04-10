@@ -1,13 +1,13 @@
 // © 2022, Paul Sumpner <sumpner@hotmail.com>
 
-import 'package:mars_flights/buttons/hexagon_path.dart';
-import 'package:mars_flights/hue.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:mars_flights/buttons/hexagon_path.dart';
+import 'package:mars_flights/hue.dart';
 
-const _borderSide = BorderSide(width: 1.0, color: Hue.buttonBorder);
+final _borderSide = BorderSide(width: 1.0, color: Hue.buttonBorder);
 final hexagonBorderShape =
-    MaterialStateProperty.all(const HexagonBorder(side: _borderSide));
+    MaterialStateProperty.all(HexagonBorder(side: _borderSide));
 
 /// A border that fits a Hexagon within the available space.
 ///
