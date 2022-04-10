@@ -7,8 +7,7 @@ Details about upcoming rocket launches.
 #### Tests
 
 - DateTime tests - check count down maths. DataTable Column titles scroll off when scroll.
-  widget_test
-- flightErrorMessage
+- flightErrorMessage and flightErrorMessage - perhaps with widget tests
 - widget tests
 
 #### Runtime error checks

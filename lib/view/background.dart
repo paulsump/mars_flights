@@ -127,27 +127,34 @@ class _PageButtons extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    gotoPage(pageName) => () =>
-        Provider.of<PageNotifier>(context, listen: false).setPage(pageName);
+    final pageNotifier = Provider.of<PageNotifier>(context, listen: true);
 
-    //todo radio select based on current page
+    VoidCallback _gotoPage(pageName) => () => pageNotifier.setPage(pageName);
+    bool _isCurrentPage(pageName) => pageNotifier.pageName == pageName;
+
+    Color _getColor(pageName) =>
+        _isCurrentPage(pageName) ? Hue.iconSelected : Hue.iconDeselected;
+
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
         IconFlatHexagonButton(
-            onPressed: gotoPage('Countdown'),
-            icon: Icons.timer_rounded,
-            tip: 'Show the time left until the next launch.'),
+          onPressed: _gotoPage('Countdown'),
+          icon: Icons.timer_rounded,
+          tip: 'Show the time left until the next launch.',
+          color: _getColor('Countdown'),
+        ),
         IconFlatHexagonButton(
-            onPressed: gotoPage('Flights'),
-            icon: Icons.view_list_rounded,
-            tip: 'Show all the upcoming launches.'),
+          onPressed: _gotoPage('Flights'),
+          icon: Icons.view_list_rounded,
+          tip: 'Show all the upcoming launches.',
+          color: _getColor('Flights'),
+        ),
         FlatHexagonButton(
-          onPressed: gotoPage('Favorites'),
+          onPressed: _gotoPage('Favorites'),
           tip: 'Show your favorite upcoming launches',
-          //TODO selected: true / false for the other buttons, if i keep them.
-          child: const IconPair(selected: true),
+          child: IconPair(selected: _isCurrentPage('Favorites')),
         ),
       ],
     );
