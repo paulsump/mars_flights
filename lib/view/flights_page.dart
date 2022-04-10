@@ -5,7 +5,6 @@ import 'package:mars_flights/favorites_notifier.dart';
 import 'package:mars_flights/fetch_notifier.dart';
 import 'package:mars_flights/hue.dart';
 import 'package:mars_flights/screen_adjust.dart';
-import 'package:mars_flights/view/screen_adjusted_text.dart';
 
 class FlightsPage extends StatelessWidget {
   const FlightsPage({Key? key}) : super(key: key);

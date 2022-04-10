@@ -6,9 +6,7 @@ Details about upcoming rocket launches.
 
 #### UI
 
-- Use hexagon buttons on table too? (now that they're more subtle).
 - Click on column header to sort by that field.
-- move screentext to screenadjut
 
 #### Tests
 

@@ -105,6 +105,36 @@ class ScreenAdjust extends StatelessWidget {
   }
 }
 
+/// Simple [Text] with screen adjusted font size.
+class ScreenAdjustedText extends StatelessWidget {
+  const ScreenAdjustedText(
+    this.text, {
+    Key? key,
+    this.bold = false,
+    this.italic = false,
+    this.size = 0.03,
+  }) : super(key: key);
+
+  final String text;
+
+  final bool bold, italic;
+  final double size;
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      text,
+      style: TextStyle(
+        color: Hue.text,
+        // TODO  size isPortrait()?:
+        fontSize: screenAdjustY(size, context),
+        fontWeight: bold ? FontWeight.bold : FontWeight.normal,
+        fontStyle: italic ? FontStyle.italic : FontStyle.normal,
+      ),
+    );
+  }
+}
+
 class ScreenAdjustedToolTip extends StatelessWidget {
   const ScreenAdjustedToolTip({
     Key? key,
@@ -130,7 +160,7 @@ class ScreenAdjustedToolTip extends StatelessWidget {
         color: Hue.text,
         fontSize: fontSize,
       ),
-      decoration: BoxDecoration(color: Hue.toolTip),
+      decoration: const BoxDecoration(color: Hue.toolTip),
     );
   }
 }

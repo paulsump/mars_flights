@@ -8,7 +8,6 @@ import 'package:mars_flights/screen_adjust.dart';
 import 'package:mars_flights/view/countdown_page.dart';
 import 'package:mars_flights/view/flights_page.dart';
 import 'package:mars_flights/view/pulsate.dart';
-import 'package:mars_flights/view/screen_adjusted_text.dart';
 import 'package:provider/provider.dart';
 
 const _unitOffset = Offset(1.0, 1.0);
