@@ -69,7 +69,6 @@ class FetchNotifier extends ChangeNotifier {
     final fetcher = Fetcher(client);
     try {
       final flight_ = await fetcher.getFlight();
-      out('p1');
       flight = Flight.fromJson(flight_);
       out('p2: ${flight.toString()}');
 
@@ -123,17 +122,26 @@ class FetchNotifier extends ChangeNotifier {
 
     notifyListeners();
 
+    if (hasFlight) {
+      final prettyFlight = PrettyFlight.fromFlight(flight, launchPads);
+
+      flightMessage =
+          "Hi!\n\nHere's the details of the next SpaceX launch...\n\nMission: ${prettyFlight.name}.\nLaunch Pad: ${prettyFlight.pad}.\nDate: ${prettyFlight.date}.\n\nShall I book it?!";
+
+      notifyListeners();
+    }
+
     if (hasFlights) {
       for (final flight_ in flights) {
         prettyFlights.add(PrettyFlight.fromFlight(flight_, launchPads));
       }
+
+      notifyListeners();
     }
 
-    final prettyFlight = PrettyFlight.fromFlight(flight, launchPads);
-    flightMessage =
-        "Hi!\n\nHere's the details of the next SpaceX launch...\n\nMission: ${prettyFlight.name}.\nLaunch Pad: ${prettyFlight.pad}.\nDate: ${prettyFlight.date}.\n\nShall I book it?!";
-
-    client.close();
+    if (fetchAllHasBeenCalled) {
+      client.close();
+    }
   }
 
   String _formatError(Object error) {
@@ -154,7 +162,8 @@ String _getPadName(String id, List<LaunchPad> launchPads) {
       return launchPad.name;
     }
   }
-  //TODO ASSERT?
+
+  logError("Failed to find launch pad '$id'");
   return '';
 }
 
@@ -190,7 +199,6 @@ class Fetcher {
 
   Future<Map<String, dynamic>> _getMap(String url) async {
     final json = await _getJson(url);
-    out('p0: $json');
     return jsonDecode(json);
   }
 
