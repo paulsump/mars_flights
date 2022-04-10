@@ -21,28 +21,20 @@ class CountdownPage extends StatelessWidget {
         fetchNotifier.hasFlight ? fetchNotifier.flight : null;
 
     final DateTime? date = flight?.date;
-    final String? name = flight?.name;
 
-    //TODO REMOVE STACK
-    return Stack(
-      children: [
-        date != null
-            ? Column(
-                children: [
-                  if (!isPortrait(context))
-                    Expanded(flex: 2, child: Container()),
-                  Expanded(
-                      flex: isPortrait(context) ? 4 : 8, child: _Updater(date)),
-                  Expanded(
-                    flex: isPortrait(context) ? 1 : 8,
-                    child: const _ShareButton(),
-                  ),
-                ],
-              )
-            : Center(
-                child: ScreenAdjustedText(fetchNotifier.flightErrorMessage)),
-      ],
-    );
+    return date != null
+        ? Column(
+            children: [
+              if (!isPortrait(context)) Expanded(flex: 2, child: Container()),
+              Expanded(
+                  flex: isPortrait(context) ? 4 : 8, child: _Updater(date)),
+              Expanded(
+                flex: isPortrait(context) ? 1 : 8,
+                child: const _ShareButton(),
+              ),
+            ],
+          )
+        : Center(child: ScreenAdjustedText(fetchNotifier.flightErrorMessage));
   }
 }
 

@@ -93,10 +93,10 @@ class _PageTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     return ScreenAdjust(
       portrait: const Offset(0.25, 1.8),
-      landscape: const Offset(0.2, 0.62),
+      landscape: const Offset(0.2, 0.72),
       child: ScreenAdjustedText(
         _getTitle(context),
-        size: isPortrait(context) ? 0.022 : 0.06,
+        size: isPortrait(context) ? 0.022 : 0.07,
       ),
     );
   }

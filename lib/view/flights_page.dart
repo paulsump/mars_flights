@@ -14,15 +14,10 @@ class FlightsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final fetchNotifier = getFetchNotifier(context, listen: true);
 
-    //TODO REMOVE stack
-    return Stack(
-      children: [
-        fetchNotifier.hasFlights
-            ? _ScrollTable(flights: fetchNotifier.prettyFlights)
-            // TODO DISplay flightsErrorMessage
-            : Container(),
-      ],
-    );
+    return fetchNotifier.hasFlights
+        ? _ScrollTable(flights: fetchNotifier.prettyFlights)
+        // TODO DISplay flightsErrorMessage
+        : Container();
   }
 }
 
@@ -35,16 +30,11 @@ class FavoritesPage extends StatelessWidget {
 
     final favoritesNotifier = getFavoritesNotifier(context, listen: true);
 
-    //TODO REMOVE stack
-    return Stack(
-      children: [
-        fetchNotifier.hasFlights
-            ? _ScrollTable(
-                flights: favoritesNotifier.filter(fetchNotifier.prettyFlights))
-            // TODO DISplay flightsErrorMessage
-            : Container(),
-      ],
-    );
+    return fetchNotifier.hasFlights
+        ? _ScrollTable(
+            flights: favoritesNotifier.filter(fetchNotifier.prettyFlights))
+        // TODO DISplay flightsErrorMessage
+        : Container();
   }
 }
 
