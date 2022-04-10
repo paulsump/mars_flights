@@ -69,8 +69,8 @@ class FetchNotifier extends ChangeNotifier {
     final fetcher = Fetcher(client);
     try {
       final flight_ = await fetcher.getFlight();
+
       flight = Flight.fromJson(flight_);
-      out('p2: ${flight.toString()}');
 
       hasFlight = true;
     } catch (error) {
@@ -122,7 +122,7 @@ class FetchNotifier extends ChangeNotifier {
 
     notifyListeners();
 
-    if (hasFlight) {
+    if (hasFlight && flight.isValid) {
       final prettyFlight = PrettyFlight.fromFlight(flight, launchPads);
 
       flightMessage =
@@ -133,7 +133,9 @@ class FetchNotifier extends ChangeNotifier {
 
     if (hasFlights) {
       for (final flight_ in flights) {
-        prettyFlights.add(PrettyFlight.fromFlight(flight_, launchPads));
+        if (flight_.isValid) {
+          prettyFlights.add(PrettyFlight.fromFlight(flight_, launchPads));
+        }
       }
 
       notifyListeners();
@@ -206,7 +208,7 @@ class Fetcher {
       jsonDecode(await _getJson(url));
 
   /// Check internet, return [Response]
-  Future<http.Response> _getReponse(String url) async {
+  Future<http.Response> _getResponse(String url) async {
     try {
       return await client.get(
         Uri.parse('https://api.spacexdata.com/v4/$url'),
@@ -222,7 +224,7 @@ class Fetcher {
   /// url = the last bit of the endpoint
   /// i.e. 'upcoming' or 'next'
   Future<String> _getJson(String url) async {
-    final http.Response response = await _getReponse(url);
+    final http.Response response = await _getResponse(url);
 
     final code = response.statusCode;
 
@@ -313,6 +315,10 @@ class Flight {
   DateTime? get date => dateUnix == null
       ? null
       : DateTime.fromMillisecondsSinceEpoch(dateUnix! * 1000);
+
+  /// check if the fields are all valid (loaded correctly).
+  bool get isValid =>
+      id != null && name != null && dateUnix != null && launchPad != null;
 }
 
 class LaunchPad {
