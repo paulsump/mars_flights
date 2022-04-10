@@ -49,7 +49,7 @@ class IconFlatHexagonButton extends StatelessWidget {
     this.onPressed,
     required this.tip,
     required this.icon,
-    this.color,
+    this.color = Hue.iconSelected,
   }) : super(key: key);
 
   final VoidCallback? onPressed;
@@ -65,8 +65,7 @@ class IconFlatHexagonButton extends StatelessWidget {
       tip: tip,
       child: Icon(
         icon,
-        color:
-            color ?? (onPressed != null ? Hue.enabledIcon : Hue.disabledIcon),
+        color: color,
         size: screenAdjustNormalIconSize(context),
       ),
     );

@@ -108,7 +108,9 @@ class _FavoritesToggleButton extends StatelessWidget {
         child: IconButton(
           onPressed: () => favoritesNotifier.toggle(id),
           icon: Icon(
-            Icons.favorite,
+            favoritesNotifier.contains(id)
+                ? Icons.favorite
+                : Icons.favorite_border,
             color:
                 favoritesNotifier.contains(id) ? Hue.favorite : Hue.notFavorite,
           ),
