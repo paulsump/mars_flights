@@ -44,6 +44,7 @@ class Background extends StatelessWidget {
                     Column(
                       children: [
                         const CurrentPageButtons(),
+                        SizedBox(height:screenAdjustY(0.02,context)),
                         Expanded(child: Center(child: CurrentPage())),
                       ],
                     ),
@@ -144,7 +145,7 @@ class _PulsateState extends State<Pulsate> with SingleTickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    final from = isPortrait(context) ? 1.15 : 1.0;
+    final from = isPortrait(context) ? 1.15 : 1.05;
 
     return Transform.scale(
       scale: lerpDouble(

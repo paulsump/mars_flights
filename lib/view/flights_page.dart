@@ -59,7 +59,7 @@ class _Table extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = isPortrait(context) ? 0.013 : 0.04;
+    final size = isPortrait(context) ? 0.02 : 0.04;
 
     columnHeader(label) =>
         DataColumn(label: ScreenAdjustedText(label, size: size));

@@ -24,7 +24,7 @@ class CountdownPage extends StatelessWidget {
     return date != null
         ? Column(
             children: [
-              Expanded(flex: isPortrait(context) ? 2 : 5, child: Container()),
+              Expanded(flex: isPortrait(context) ? 1 : 5, child: Container()),
               Expanded(
                   flex: isPortrait(context) ? 8 : 8, child: _Updater(date)),
               Expanded(
@@ -141,17 +141,20 @@ class _ShareButton extends StatelessWidget {
 
     return !fetchNotifier.hasFlightMessage
         ? Container()
-        : Align(
-            alignment: AlignmentDirectional.bottomEnd,
-            child: IconFlatHexagonButton(
-              onPressed: () => _share(context,
-                  subject: 'Launch Details',
-                  message: fetchNotifier.flightMessage),
-              icon: FontAwesomeIcons.share,
-              tip:
-                  "Open the device's share dialog to share details of this launch.",
+        : Padding(
+          padding: EdgeInsets.all(screenAdjust(0.045, context)),
+          child: Align(
+              alignment: AlignmentDirectional.bottomEnd,
+              child: IconFlatHexagonButton(
+                onPressed: () => _share(context,
+                    subject: 'Launch Details',
+                    message: fetchNotifier.flightMessage),
+                icon: FontAwesomeIcons.share,
+                tip:
+                    "Open the device's share dialog to share details of this launch.",
+              ),
             ),
-          );
+        );
   }
 }
 

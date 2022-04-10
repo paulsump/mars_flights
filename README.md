@@ -15,7 +15,6 @@ Details about upcoming rocket launches.
 
 - Retry button (after failed fetch)              //TODO CALL all this in a retry button
 
-- Move the share button in a bit (maybe with padding).
 - Click on column header to sort by that field.
 
 #### Tests
