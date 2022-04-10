@@ -17,7 +17,6 @@ Details about upcoming rocket launches.
 
 #### Finally
 
-- remove url_launcher if not using.
 - Check all TODOs
 - To fit in with spec and API...
 - Rename Flight to NextLaunch
