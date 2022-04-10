@@ -37,6 +37,7 @@ class Background extends StatelessWidget {
               left: false,
               child: Stack(
                 children: [
+                  //TODO Move PageTitle() here
                   Column(
                     children: [
                       const _PageButtons(),
@@ -62,6 +63,7 @@ class PageNotifier extends ChangeNotifier {
   }
 }
 
+//TODO RENAME TO _CurrentPage
 class _Pages extends StatelessWidget {
   _Pages({Key? key}) : super(key: key);
 

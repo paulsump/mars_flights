@@ -130,6 +130,7 @@ class _Time extends StatelessWidget {
 }
 
 /// Buttons for social media platforms to share the next launch with friends.
+/// todo rename to _ShareButton
 class _ShareButtons extends StatelessWidget {
   const _ShareButtons({Key? key}) : super(key: key);
 
@@ -139,22 +140,15 @@ class _ShareButtons extends StatelessWidget {
 
     return !fetchNotifier.hasFlightMessage
         ? Container()
-        : Center(
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                SizedBox(width: screenAdjustX(0.01, context)),
-                // TODO MOVE this lonely button somewhere
-                IconFlatHexagonButton(
-                  onPressed: () => _share(context,
-                      subject: 'Launch Details',
-                      message: fetchNotifier.flightMessage),
-                  icon: FontAwesomeIcons.share,
-                  tip:
-                      "Open the device's share dialog to share details of this launch.",
-                ),
-              ],
+        : Align(
+            alignment: AlignmentDirectional.bottomEnd,
+            child: IconFlatHexagonButton(
+              onPressed: () => _share(context,
+                  subject: 'Launch Details',
+                  message: fetchNotifier.flightMessage),
+              icon: FontAwesomeIcons.share,
+              tip:
+                  "Open the device's share dialog to share details of this launch.",
             ),
           );
   }
@@ -177,4 +171,3 @@ void _share(BuildContext context,
       subject: subject,
       sharePositionOrigin: box!.localToGlobal(Offset.zero) & box.size);
 }
-
