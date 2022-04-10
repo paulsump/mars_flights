@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:mars_flights/favorites_notifier.dart';
 import 'package:mars_flights/fetch_notifier.dart';
+import 'package:mars_flights/view/background.dart';
 import 'package:mars_flights/view/countdown_page.dart';
 import 'package:mars_flights/view/flights_page.dart';
 import 'package:provider/provider.dart';
@@ -30,7 +31,7 @@ class _App extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (_) => FetchNotifier()),
         ChangeNotifierProvider(create: (_) => FavoritesNotifier()),
-        ChangeNotifierProvider(create: (_) => _PageNotifier()),
+        ChangeNotifierProvider(create: (_) => PageNotifier()),
       ],
       child: MaterialApp(
         title: 'SpaceX Launches',
@@ -56,7 +57,8 @@ class _App extends StatelessWidget {
                 unawaited(favoritesNotifier.loadInitialValues());
               }
 
-              return const CountdownPage();
+              //TODO REMove params
+              return const Background(child: CountdownPage(), title: 'todo');
             }
           },
         ),
@@ -70,27 +72,3 @@ class _App extends StatelessWidget {
   }
 }
 
-class _PageNotifier extends ChangeNotifier {
-  int _pageIndex = 0;
-
-  void setPageIndex(int index) {
-    _pageIndex = index;
-    notifyListeners();
-  }
-}
-
-class _Pages extends StatelessWidget {
-  _Pages({Key? key}) : super(key: key);
-
-  final _pages = <Widget>[
-    const CountdownPage(),
-    const FlightsPage(),
-    const FavoritesPage(),
-  ];
-
-  @override
-  Widget build(BuildContext context) {
-    final pageNotifier = Provider.of<_PageNotifier>(context, listen: true);
-    return _pages[pageNotifier._pageIndex];
-  }
-}

@@ -8,6 +8,7 @@ class Hue {
   static const Color enabledIcon = text;
   static const Color disabledIcon = Color(0xff095A49);
 
+  // TODO use these for page radio effect
   static const Color iconDeselected = Color(0xffA57C3E);
   static const Color iconSelected = Color(0xffFFCA99);
 

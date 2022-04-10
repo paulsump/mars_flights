@@ -4,8 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:mars_flights/buttons/flat_hexagon_button.dart';
 import 'package:mars_flights/hue.dart';
 import 'package:mars_flights/screen_adjust.dart';
+import 'package:mars_flights/view/countdown_page.dart';
+import 'package:mars_flights/view/flights_page.dart';
 import 'package:mars_flights/view/pulsate.dart';
 import 'package:mars_flights/view/screen_adjusted_text.dart';
+import 'package:provider/provider.dart';
 
 const _unitOffset = Offset(1.0, 1.0);
 
@@ -48,7 +51,7 @@ class Background extends StatelessWidget {
               child: Column(
                 children: [
                   const _PageButtons(),
-                  Expanded(child: Center(child: child)),
+                  Expanded(child: Center(child: _Pages())),
                 ],
               ),
             ),
@@ -59,6 +62,31 @@ class Background extends StatelessWidget {
   }
 }
 
+class PageNotifier extends ChangeNotifier {
+  String pageName = 'Countdown';
+
+  void setPage(String pageName_) {
+    pageName = pageName_;
+    notifyListeners();
+  }
+}
+
+class _Pages extends StatelessWidget {
+  _Pages({Key? key}) : super(key: key);
+
+  final _pages = <String, Widget>{
+    'Countdown': const CountdownPage(),
+    'Flights': const FlightsPage(),
+    'Favorites': const FavoritesPage(),
+  };
+
+  @override
+  Widget build(BuildContext context) {
+    final pageNotifier = Provider.of<PageNotifier>(context, listen: true);
+    return _pages[pageNotifier.pageName]!;
+  }
+}
+
 /// A container for all the buttons on all pages
 /// Organised using [Column]s and [Row]s
 class _PageButtons extends StatelessWidget {
@@ -66,8 +94,8 @@ class _PageButtons extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    gotoPage(pageName) =>
-        () => Navigator.of(context).pushReplacementNamed(pageName);
+    gotoPage(pageName) => () =>
+        Provider.of<PageNotifier>(context, listen: false).setPage(pageName);
 
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,

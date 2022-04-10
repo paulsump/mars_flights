@@ -7,7 +7,6 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:mars_flights/buttons/flat_hexagon_button.dart';
 import 'package:mars_flights/fetch_notifier.dart';
 import 'package:mars_flights/screen_adjust.dart';
-import 'package:mars_flights/view/background.dart';
 import 'package:mars_flights/view/screen_adjusted_text.dart';
 import 'package:share_plus/share_plus.dart';
 
@@ -24,22 +23,20 @@ class CountdownPage extends StatelessWidget {
     final DateTime? date = flight?.date;
     final String? name = flight?.name;
 
-    return Background(
-      title: name == null ? 'Next Launch' : 'Upcoming: $name',
-      child: date != null
-          ? Column(
-              children: [
-                if (!isPortrait(context)) Expanded(flex: 2, child: Container()),
-                Expanded(
-                    flex: isPortrait(context) ? 4 : 8, child: _Updater(date)),
-                Expanded(
-                  flex: isPortrait(context) ? 1 : 8,
-                  child: const _ShareButtons(),
-                ),
-              ],
-            )
-          : Center(child: ScreenAdjustedText(fetchNotifier.flightErrorMessage)),
-    );
+    //TODO title: name == null ? 'Next Launch' : 'Upcoming: $name',
+    return date != null
+        ? Column(
+            children: [
+              if (!isPortrait(context)) Expanded(flex: 2, child: Container()),
+              Expanded(
+                  flex: isPortrait(context) ? 4 : 8, child: _Updater(date)),
+              Expanded(
+                flex: isPortrait(context) ? 1 : 8,
+                child: const _ShareButtons(),
+              ),
+            ],
+          )
+        : Center(child: ScreenAdjustedText(fetchNotifier.flightErrorMessage));
   }
 }
 

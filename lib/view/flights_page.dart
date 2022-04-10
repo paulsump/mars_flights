@@ -5,7 +5,6 @@ import 'package:mars_flights/favorites_notifier.dart';
 import 'package:mars_flights/fetch_notifier.dart';
 import 'package:mars_flights/hue.dart';
 import 'package:mars_flights/screen_adjust.dart';
-import 'package:mars_flights/view/background.dart';
 import 'package:mars_flights/view/screen_adjusted_text.dart';
 
 class FlightsPage extends StatelessWidget {
@@ -15,13 +14,11 @@ class FlightsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final fetchNotifier = getFetchNotifier(context, listen: true);
 
-    return Background(
-      title: 'Upcoming Launches',
-      child: fetchNotifier.hasFlights
-          ? _ScrollTable(flights: fetchNotifier.prettyFlights)
-          // TODO DISplay flightsErrorMessage
-          : Container(),
-    );
+    //TODO title: 'Upcoming Launches',
+    return fetchNotifier.hasFlights
+        ? _ScrollTable(flights: fetchNotifier.prettyFlights)
+        // TODO DISplay flightsErrorMessage
+        : Container();
   }
 }
 
@@ -34,14 +31,12 @@ class FavoritesPage extends StatelessWidget {
 
     final favoritesNotifier = getFavoritesNotifier(context, listen: true);
 
-    return Background(
-      title: 'Favorite Upcoming Launches',
-      child: fetchNotifier.hasFlights
-          ? _ScrollTable(
-              flights: favoritesNotifier.filter(fetchNotifier.prettyFlights))
-          // TODO DISplay flightsErrorMessage
-          : Container(),
-    );
+    //TODO title: 'Favorite Upcoming Launches',
+    return fetchNotifier.hasFlights
+        ? _ScrollTable(
+            flights: favoritesNotifier.filter(fetchNotifier.prettyFlights))
+        // TODO DISplay flightsErrorMessage
+        : Container();
   }
 }
 
