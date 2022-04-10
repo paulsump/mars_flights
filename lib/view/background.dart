@@ -16,9 +16,7 @@ double _calcUnitPingPong(double unitValue) => (1 + sin(2 * pi * unitValue)) / 2;
 /// A container frame / scaffold for all pages.
 /// It has the background color and image and a silly little [_Star] animation.
 class Background extends StatelessWidget {
-  const Background({
-    Key? key,
-  }) : super(key: key);
+  const Background({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +42,7 @@ class Background extends StatelessWidget {
                     Column(
                       children: [
                         const CurrentPageButtons(),
-                        SizedBox(height:screenAdjustY(0.02,context)),
+                        SizedBox(height: screenAdjustY(0.02, context)),
                         Expanded(child: Center(child: CurrentPage())),
                       ],
                     ),
@@ -58,7 +56,6 @@ class Background extends StatelessWidget {
     );
   }
 }
-
 
 /// Little animated stars on the [Background]
 class _Star extends StatefulWidget {

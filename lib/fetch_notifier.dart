@@ -310,7 +310,8 @@ const _friendlyHttpStatus = {
 dynamic _getFieldOrNull(String key, Map<String, dynamic> json) =>
     json.containsKey(key) ? json[key] : null;
 
-/// TODO doc
+/// All the info needed about a launch
+/// whether it's the next launch or the upcoming launches
 class Flight {
   Flight.fromJson(Map<String, dynamic> json)
       : details = _getFieldOrNull('details', json),
@@ -329,9 +330,7 @@ class Flight {
   final int? dateUnix;
   final String? datePrecision;
 
-  /// launch time
-  /// TODO convert toLocal.  Maybe use utc to find original zone? (Probably California).
-  /// BST?
+  /// launch date and time
   DateTime? get date => dateUnix == null
       ? null
       : DateTime.fromMillisecondsSinceEpoch(dateUnix! * 1000);

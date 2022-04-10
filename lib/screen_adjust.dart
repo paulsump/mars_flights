@@ -152,8 +152,9 @@ class ScreenAdjustedToolTip extends StatelessWidget {
     return Tooltip(
       message: message,
       child: child,
+      // TODO screen_adjusted tool tip positioning.  (It's good enough without for now.)
       // TODO  size isPortrait()?:
-      // TODO  screenAdjustY
+      // TODO verticalOffset: screenAdjust(0.09,context),
       verticalOffset: 55,
       padding: const EdgeInsets.all(16),
       textStyle: TextStyle(
