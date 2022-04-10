@@ -4,6 +4,10 @@ Details about upcoming rocket launches.
 
 <img src="https://github.com/paulsump/mars_flights/blob/813c01c1b2326f937fc1e4d08a8c52add9d284f9/images/background.jpg" width="1248">
 
+#### UI
+
+- Click on column header to sort
+
 #### Tests
 
 - DateTime tests - check count down maths. DataTable Column titles scroll off when scroll.
