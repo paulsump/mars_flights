@@ -16,15 +16,7 @@ class FlightsPage extends StatelessWidget {
 
     return Stack(
       children: [
-        ScreenAdjust(
-          portrait: const Offset(0.25, -1.5),
-          landscape: const Offset(-0.73, -2.26),
-          child: ScreenAdjustedText(
-            'Upcoming Launches',
-            // 'Favorite Upcoming Launches',
-            size: isPortrait(context) ? 0.022 : 0.06,
-          ),
-        ),
+        const _Title('Upcoming Launches'),
         fetchNotifier.hasFlights
             ? _ScrollTable(flights: fetchNotifier.prettyFlights)
             // TODO DISplay flightsErrorMessage
@@ -43,11 +35,34 @@ class FavoritesPage extends StatelessWidget {
 
     final favoritesNotifier = getFavoritesNotifier(context, listen: true);
 
-    return fetchNotifier.hasFlights
-        ? _ScrollTable(
-            flights: favoritesNotifier.filter(fetchNotifier.prettyFlights))
-        // TODO DISplay flightsErrorMessage
-        : Container();
+    return Stack(
+      children: [
+        const _Title('Favorite Upcoming Launches'),
+        fetchNotifier.hasFlights
+            ? _ScrollTable(
+                flights: favoritesNotifier.filter(fetchNotifier.prettyFlights))
+            // TODO DISplay flightsErrorMessage
+            : Container(),
+      ],
+    );
+  }
+}
+
+class _Title extends StatelessWidget {
+  const _Title(this.title, {Key? key}) : super(key: key);
+
+  final String title;
+
+  @override
+  Widget build(BuildContext context) {
+    return ScreenAdjust(
+      portrait: const Offset(0.25, -1.5),
+      landscape: const Offset(-0.73, -2.26),
+      child: ScreenAdjustedText(
+        title,
+        size: isPortrait(context) ? 0.022 : 0.06,
+      ),
+    );
   }
 }
 
