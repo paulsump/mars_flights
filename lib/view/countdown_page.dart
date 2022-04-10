@@ -25,11 +25,11 @@ class CountdownPage extends StatelessWidget {
     return date != null
         ? Column(
             children: [
-              if (!isPortrait(context)) Expanded(flex: 2, child: Container()),
+              Expanded(flex: isPortrait(context) ? 1 : 5, child: Container()),
               Expanded(
-                  flex: isPortrait(context) ? 4 : 8, child: _Updater(date)),
+                  flex: isPortrait(context) ? 8 : 8, child: _Updater(date)),
               Expanded(
-                flex: isPortrait(context) ? 1 : 8,
+                flex: isPortrait(context) ? 2 : 8,
                 child: const _ShareButton(),
               ),
             ],
@@ -72,7 +72,9 @@ class _UpdaterState extends State<_Updater> {
   }
 
   @override
-  Widget build(BuildContext context) => _Time(widget.date.difference(_nowUtc));
+  Widget build(BuildContext context) {
+    return _Time(widget.date.difference(_nowUtc));
+  }
 }
 
 /// Ui to display time / days left until launch
@@ -84,21 +86,36 @@ class _Time extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final children = <Widget>[
-      _buildNumber('DAYS', duration.inDays, context),
-      _buildNumber('HOURS', duration.inHours - duration.inDays * 24, context),
-      _buildNumber('MINUTES', duration.inMinutes.remainder(60), context),
-      _buildNumber('SECONDS', duration.inSeconds.remainder(60), context),
+      _Number(label: 'DAYS', n: duration.inDays),
+      _Number(label: 'HOURS', n: duration.inHours - duration.inDays * 24),
+      _Number(label: 'MINUTES', n: duration.inMinutes.remainder(60)),
+      _Number(label: 'SECONDS', n: duration.inSeconds.remainder(60)),
     ];
 
     return SizedBox(
       height: screenHeight(context) * (isPortrait(context) ? 0.68 : 0.35),
       child: isPortrait(context)
           ? Column(children: children)
-          : Row(children: children),
+          : SizedBox(
+              width: screenAdjustX(0.7, context),
+              child: Row(children: children),
+            ),
     );
   }
+}
 
-  Widget _buildNumber(String label, int n, BuildContext context) {
+class _Number extends StatelessWidget {
+  const _Number({
+    Key? key,
+    required this.label,
+    required this.n,
+  }) : super(key: key);
+
+  final String label;
+  final int n;
+
+  @override
+  Widget build(BuildContext context) {
     return Expanded(
       child: Column(children: [
         Expanded(
