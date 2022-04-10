@@ -5,6 +5,7 @@ import 'package:http/http.dart' as http;
 import 'package:mars_flights/favorites_notifier.dart';
 import 'package:mars_flights/fetch_notifier.dart';
 import 'package:mars_flights/view/background.dart';
+import 'package:mars_flights/view/current_page.dart';
 import 'package:provider/provider.dart';
 
 /// The main entry point for the flutter app
