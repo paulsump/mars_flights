@@ -2,11 +2,13 @@
 
 import 'package:flutter/material.dart';
 import 'package:mars_flights/buttons/flat_hexagon_button.dart';
+import 'package:mars_flights/fetch_notifier.dart';
 import 'package:mars_flights/hue.dart';
 import 'package:mars_flights/screen_adjust.dart';
 import 'package:mars_flights/view/countdown_page.dart';
 import 'package:mars_flights/view/flights_page.dart';
 import 'package:mars_flights/view/pulsate.dart';
+import 'package:mars_flights/view/screen_adjusted_text.dart';
 import 'package:provider/provider.dart';
 
 const _unitOffset = Offset(1.0, 1.0);
@@ -17,7 +19,6 @@ class Background extends StatelessWidget {
   const Background({
     Key? key,
   }) : super(key: key);
-
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +38,7 @@ class Background extends StatelessWidget {
               left: false,
               child: Stack(
                 children: [
-                  //TODO Move PageTitle() here
+                  _PageTitle(),
                   Column(
                     children: [
                       const _PageButtons(),
@@ -80,6 +81,43 @@ class _Pages extends StatelessWidget {
   }
 }
 
+class _PageTitle extends StatelessWidget {
+  _PageTitle({Key? key}) : super(key: key);
+
+  final _titles = <String, String>{
+    'Flights': 'Upcoming Launches',
+    'Favorites': 'Favorite Upcoming Launches',
+  };
+
+  @override
+  Widget build(BuildContext context) {
+    return ScreenAdjust(
+      portrait: const Offset(0.25, 1.8),
+      landscape: const Offset(0.2, 0.62),
+      child: ScreenAdjustedText(
+        _getTitle(context),
+        size: isPortrait(context) ? 0.022 : 0.06,
+      ),
+    );
+  }
+
+  String _getTitle(BuildContext context) {
+    final pageNotifier = Provider.of<PageNotifier>(context, listen: true);
+
+    if (pageNotifier.pageName == 'Countdown') {
+      final fetchNotifier = getFetchNotifier(context, listen: true);
+
+      final Flight? flight =
+          fetchNotifier.hasFlight ? fetchNotifier.flight : null;
+
+      final String? name = flight?.name;
+      return name == null ? 'Next Launch' : 'Upcoming: $name';
+    }
+
+    return _titles[pageNotifier.pageName]!;
+  }
+}
+
 /// A container for all the buttons on all pages
 /// Organised using [Column]s and [Row]s
 class _PageButtons extends StatelessWidget {
@@ -90,6 +128,7 @@ class _PageButtons extends StatelessWidget {
     gotoPage(pageName) => () =>
         Provider.of<PageNotifier>(context, listen: false).setPage(pageName);
 
+    //todo radio select based on current page
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.end,

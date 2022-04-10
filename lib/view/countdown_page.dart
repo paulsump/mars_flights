@@ -23,16 +23,9 @@ class CountdownPage extends StatelessWidget {
     final DateTime? date = flight?.date;
     final String? name = flight?.name;
 
+    //TODO REMOVE STACK
     return Stack(
       children: [
-        ScreenAdjust(
-          portrait: const Offset(0.25, 0.5),
-          landscape: const Offset(0.19, -2.0),
-          child: ScreenAdjustedText(
-            name == null ? 'Next Launch' : 'Upcoming: $name',
-            size: isPortrait(context) ? 0.022 : 0.06,
-          ),
-        ),
         date != null
             ? Column(
                 children: [
