@@ -4,8 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:mars_flights/favorites_notifier.dart';
 import 'package:mars_flights/fetch_notifier.dart';
-import 'package:mars_flights/hue.dart';
-import 'package:mars_flights/view/background.dart';
 import 'package:mars_flights/view/countdown_page.dart';
 import 'package:mars_flights/view/flights_page.dart';
 import 'package:provider/provider.dart';
@@ -57,11 +55,8 @@ class _App extends StatelessWidget {
               if (!favoritesNotifier.loadHasBeenCalled) {
                 unawaited(favoritesNotifier.loadInitialValues());
               }
-              return Scaffold(
-                extendBody: true,
-                bottomNavigationBar: const _NavigationBar(),
-                body: _Pages(),
-              );
+
+              return const CountdownPage();
             }
           },
         ),
@@ -98,42 +93,4 @@ class _Pages extends StatelessWidget {
     final pageNotifier = Provider.of<_PageNotifier>(context, listen: true);
     return _pages[pageNotifier._pageIndex];
   }
-}
-
-class _NavigationBar extends StatelessWidget {
-  const _NavigationBar({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    final pageNotifier = Provider.of<_PageNotifier>(context, listen: true);
-
-    return BottomNavigationBar(
-        showSelectedLabels: false,
-        showUnselectedLabels: false,
-        elevation: 0,
-        currentIndex: pageNotifier._pageIndex,
-        onTap: (index) => pageNotifier.setPageIndex(index),
-        backgroundColor: Colors.transparent,
-        type: BottomNavigationBarType.fixed,
-        selectedItemColor: Hue.iconSelected,
-        unselectedItemColor: Hue.iconDeselected,
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.timer_rounded),
-            label: '',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.view_list_rounded),
-            label: '',
-          ),
-          BottomNavigationBarItem(
-            icon: IconPair(selected: false),
-            activeIcon: IconPair(selected: true),
-            label: '',
-          ),
-        ]);
-  }
-
-// @override
-// Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 }
