@@ -186,13 +186,11 @@ String _formatDate(DateTime date, String precision) {
           .format(date)
           .replaceFirst('AM', 'am')
           .replaceFirst('PM', 'pm');
-    // return DateFormat('dd MMMM hh').format(date);
     case 'day':
       return DateFormat('MMMM d').format(date);
     case 'month':
       return DateFormat('MMMM').format(date);
     case 'quarter':
-      out('q  ${DateFormat('QQQ').format(date)}');
       return DateFormat('QQQ').format(date);
   }
 
