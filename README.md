@@ -6,26 +6,17 @@ Details about upcoming rocket launches.
 
 #### UI
 
-- Check flight dates against one on the net
-- BST?
-- Convert time to england /// TODO convert toLocal. Maybe use utc to find original zone? (Probably
-  California).
-
 - Retry button (after failed fetch), otherwise there's no point in setting fetchAllHasBeenCalled =
   false //TODO CALL all this in a retry button
 
 - Click on column header to sort by that field.
+- Maybe add year to date?
 
 #### Tests
 
 - Try out on various simulators.
-- DateTime tests - check count down maths. DataTable Column titles scroll off when scroll.
+- DateTime tests - check count down maths.
 - flightErrorMessage and flightErrorMessage - perhaps with widget tests
-- widget tests
-
-#### Runtime error checks
-
-- Check flightErrorMessage and flightErrorMessage when not fetched properly.
 
 #### Finally
 
