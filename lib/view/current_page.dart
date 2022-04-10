@@ -33,6 +33,7 @@ class CurrentPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final currentPageNotifier =
         Provider.of<CurrentPageNotifier>(context, listen: true);
+
     return _pages[currentPageNotifier.pageName]!;
   }
 }
@@ -87,6 +88,7 @@ class CurrentPageButtons extends StatelessWidget {
 
     VoidCallback _gotoPage(pageName) =>
         () => currentPageNotifier.setPage(pageName);
+
     bool _isCurrentPage(pageName) => currentPageNotifier.pageName == pageName;
 
     Color _getColor(pageName) =>

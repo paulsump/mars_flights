@@ -6,9 +6,15 @@ Details about upcoming rocket launches.
 
 #### UI
 
-- retry button (after failed fetch)
+- Text too small on Nexus (and iPhone a bit).
+- Use date accuracy (e.g. quarterly)
+- Check flight dates against one on the net
+
 - Convert time to england /// TODO convert toLocal. Maybe use utc to find original zone? (Probably
   California).
+
+- Retry button (after failed fetch)              //TODO CALL all this in a retry button
+
 - Move the share button in a bit (maybe with padding).
 - Click on column header to sort by that field.
 
