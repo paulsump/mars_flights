@@ -32,6 +32,7 @@ class _App extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (_) => FetchNotifier()),
         ChangeNotifierProvider(create: (_) => FavoritesNotifier()),
+        ChangeNotifierProvider(create: (_) => _PageNotifier()),
       ],
       child: MaterialApp(
         title: 'SpaceX Launches',
@@ -56,10 +57,10 @@ class _App extends StatelessWidget {
               if (!favoritesNotifier.loadHasBeenCalled) {
                 unawaited(favoritesNotifier.loadInitialValues());
               }
-              return const Scaffold(
+              return Scaffold(
                 extendBody: true,
-                bottomNavigationBar: _NavigationBar(),
-                body: CountdownPage(),
+                bottomNavigationBar: const _NavigationBar(),
+                body: _Pages(),
               );
             }
           },
@@ -74,30 +75,44 @@ class _App extends StatelessWidget {
   }
 }
 
-class _NavigationBar extends StatefulWidget {
-  static int _selectedIndex = 0;
+class _PageNotifier extends ChangeNotifier {
+  int _pageIndex = 0;
 
-  const _NavigationBar({Key? key}) : super(key: key);
-
-  @override
-  NavigationBarState createState() => NavigationBarState();
+  void setPageIndex(int index) {
+    _pageIndex = index;
+    notifyListeners();
+  }
 }
 
-class NavigationBarState extends State<_NavigationBar> {
-  void _onTap(int index) {
-    setState(() {
-      _NavigationBar._selectedIndex = index;
-    });
-  }
+class _Pages extends StatelessWidget {
+  _Pages({Key? key}) : super(key: key);
+
+  final _pages = <Widget>[
+    const CountdownPage(),
+    const FlightsPage(),
+    const FavoritesPage(),
+  ];
 
   @override
   Widget build(BuildContext context) {
+    final pageNotifier = Provider.of<_PageNotifier>(context, listen: true);
+    return _pages[pageNotifier._pageIndex];
+  }
+}
+
+class _NavigationBar extends StatelessWidget {
+  const _NavigationBar({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final pageNotifier = Provider.of<_PageNotifier>(context, listen: true);
+
     return BottomNavigationBar(
         showSelectedLabels: false,
         showUnselectedLabels: false,
         elevation: 0,
-        currentIndex: _NavigationBar._selectedIndex,
-        onTap: _onTap,
+        currentIndex: pageNotifier._pageIndex,
+        onTap: (index) => pageNotifier.setPageIndex(index),
         backgroundColor: Colors.transparent,
         type: BottomNavigationBarType.fixed,
         selectedItemColor: Hue.iconSelected,
