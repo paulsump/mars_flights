@@ -39,11 +39,11 @@ class Background extends StatelessWidget {
                 left: false,
                 child: Stack(
                   children: [
-                    _CurrentPageTitle(),
+                    CurrentPageTitle(),
                     Column(
                       children: [
-                        const _PageButtons(),
-                        Expanded(child: Center(child: _CurrentPage())),
+                        const CurrentPageButtons(),
+                        Expanded(child: Center(child: CurrentPage())),
                       ],
                     ),
                   ],
@@ -66,8 +66,8 @@ class PageNotifier extends ChangeNotifier {
   }
 }
 
-class _CurrentPage extends StatelessWidget {
-  _CurrentPage({Key? key}) : super(key: key);
+class CurrentPage extends StatelessWidget {
+  CurrentPage({Key? key}) : super(key: key);
 
   final _pages = <String, Widget>{
     'Countdown': const CountdownPage(),
@@ -82,8 +82,8 @@ class _CurrentPage extends StatelessWidget {
   }
 }
 
-class _CurrentPageTitle extends StatelessWidget {
-  _CurrentPageTitle({Key? key}) : super(key: key);
+class CurrentPageTitle extends StatelessWidget {
+  CurrentPageTitle({Key? key}) : super(key: key);
 
   final _titles = <String, String>{
     'Flights': 'Upcoming Launches',
@@ -121,8 +121,8 @@ class _CurrentPageTitle extends StatelessWidget {
 
 /// A container for all the buttons on all pages
 /// Organised using [Column]s and [Row]s
-class _PageButtons extends StatelessWidget {
-  const _PageButtons({Key? key}) : super(key: key);
+class CurrentPageButtons extends StatelessWidget {
+  const CurrentPageButtons({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
