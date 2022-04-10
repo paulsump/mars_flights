@@ -15,7 +15,7 @@ class FlightsPage extends StatelessWidget {
 
     return fetchNotifier.hasFlights
         ? _ScrollTable(flights: fetchNotifier.prettyFlights)
-        : Center(child: ScreenAdjustedText(fetchNotifier.flightErrorMessage));
+        : ErrorMessage(message: fetchNotifier.flightsErrorMessage);
   }
 }
 
@@ -31,7 +31,7 @@ class FavoritesPage extends StatelessWidget {
     return fetchNotifier.hasFlights
         ? _ScrollTable(
             flights: favoritesNotifier.filter(fetchNotifier.prettyFlights))
-        : Center(child: ScreenAdjustedText(fetchNotifier.flightErrorMessage));
+        : ErrorMessage(message: fetchNotifier.flightsErrorMessage);
   }
 }
 

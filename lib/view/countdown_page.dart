@@ -33,9 +33,7 @@ class CountdownPage extends StatelessWidget {
               ),
             ],
           )
-        : Center(
-            child: ScreenAdjustedText(fetchNotifier.flightErrorMessage,
-                size: isPortrait(context) ? 0.03 : 0.06));
+        : ErrorMessage(message: fetchNotifier.flightErrorMessage);
   }
 }
 

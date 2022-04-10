@@ -1,14 +1,37 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 import 'package:mars_flights/out.dart';
+import 'package:mars_flights/screen_adjust.dart';
 import 'package:provider/provider.dart';
 
 /// Convenience function to get the [FetchNotifier] '[Provider]'.
 FetchNotifier getFetchNotifier(BuildContext context, {required bool listen}) =>
     Provider.of<FetchNotifier>(context, listen: listen);
+
+/// For when fetch fails
+class ErrorMessage extends StatelessWidget {
+  const ErrorMessage({
+    Key? key,
+    required this.message,
+  }) : super(key: key);
+
+  final String message;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: screenAdjustX(0.1, context)),
+      child: Center(
+        child: ScreenAdjustedText(message,
+            size: isPortrait(context) ? 0.02 : 0.06),
+      ),
+    );
+  }
+}
 
 /// Fetches everything that's used from the api (with http)
 /// The [HttpClient] is closed when everything has been fetched.
@@ -170,14 +193,27 @@ class Fetcher {
   Future<List<dynamic>> _getList(String url) async =>
       jsonDecode(await _getJson(url));
 
+  /// Check internet, return [Response]
+  Future<http.Response> _getReponse(String url) async {
+    try {
+      return await client.get(
+        Uri.parse('https://api.spacexdata.com/v4/$url'),
+      );
+    } on SocketException catch (e) {
+      logError(e.message);
+
+      throw Exception(
+          'There was a problem fetching the data.\n\nIs there an internet connection?');
+    }
+  }
+
   /// url = the last bit of the endpoint
   /// i.e. 'upcoming' or 'next'
   Future<String> _getJson(String url) async {
-    final response = await client.get(
-      Uri.parse('https://api.spacexdata.com/v4/$url'),
-    );
+    final http.Response response = await _getReponse(url);
 
     final code = response.statusCode;
+
     if (code == 200) {
       return response.body;
     } else {
@@ -187,6 +223,7 @@ class Fetcher {
         message += ' -  ${_friendlyHttpStatus[code]!}.)';
       } else {
         message += ')';
+
         logError('Unknown http status code $code');
       }
       throw Exception(message);
