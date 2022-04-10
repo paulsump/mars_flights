@@ -16,8 +16,7 @@ class FlightsPage extends StatelessWidget {
 
     return fetchNotifier.hasFlights
         ? _ScrollTable(flights: fetchNotifier.prettyFlights)
-        // TODO DISplay flightsErrorMessage
-        : Container();
+        : Center(child: ScreenAdjustedText(fetchNotifier.flightErrorMessage));
   }
 }
 
@@ -33,8 +32,7 @@ class FavoritesPage extends StatelessWidget {
     return fetchNotifier.hasFlights
         ? _ScrollTable(
             flights: favoritesNotifier.filter(fetchNotifier.prettyFlights))
-        // TODO DISplay flightsErrorMessage
-        : Container();
+        : Center(child: ScreenAdjustedText(fetchNotifier.flightErrorMessage));
   }
 }
 
@@ -62,7 +60,7 @@ class _Table extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = isPortrait(context) ? 0.013 : 0.03;
+    final size = isPortrait(context) ? 0.013 : 0.04;
 
     columnHeader(label) =>
         DataColumn(label: ScreenAdjustedText(label, size: size));

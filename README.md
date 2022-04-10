@@ -4,41 +4,16 @@ Details about upcoming rocket launches.
 
 <img src="https://github.com/paulsump/mars_flights/blob/813c01c1b2326f937fc1e4d08a8c52add9d284f9/images/background.jpg" width="1248">
 
-### To Do
-
-#### Fix
-
-- Position tables better on [FlightsPage] in landscape.
-- Navigation (e.g. buttons redraw)
-
-#### UI
-
-- Move title down in countdown portrait
-- Countdown bits closer together on both portrait and landscape.
-- Implement FavoritesPage again.
-- Remove Favorites from FlightsPage.
-- Bigger text on countdown landscape and closer together
-- Anchor share buttons to bottom of screen
-
-- Replace flat page buttons with elevated radio buttons.
-
-- Check flightErrorMessage when bad internet.
-
-#### UI Later
-
-- Implement share buttons for iOS?
-- Add WhatsApp and Twitter share buttons?
-
-- Animate Transform background image position.
-- Image.network()
-- Videos from api
-- Remove hexagon buttons? They detract from it.
-
 #### Tests
 
 - DateTime tests - check count down maths. DataTable Column titles scroll off when scroll.
   widget_test
 - flightErrorMessage
+- widget tests
+
+#### Runtime error checks
+
+- Check flightErrorMessage and flightErrorMessage when not fetched properly.
 
 #### Finally
 
