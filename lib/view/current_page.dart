@@ -10,6 +10,7 @@ import 'package:mars_flights/view/flights_page.dart';
 import 'package:provider/provider.dart';
 
 const unitOffset = Offset(1.0, 1.0);
+//TODO replace string with PageEnum
 
 class CurrentPageNotifier extends ChangeNotifier {
   String pageName = 'Countdown';

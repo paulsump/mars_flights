@@ -20,7 +20,7 @@ Details about upcoming rocket launches.
 
 #### Finally
 
-- Check all TODOs
+- Check all TODOs //TODO replace string with PageEnum
 - To fit in with spec and API...
 - Rename Flight to NextLaunch
 - Rename Flights to UpcomingLaunches
