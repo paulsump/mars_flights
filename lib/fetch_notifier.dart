@@ -260,8 +260,6 @@ class Flight {
 
   final String? name;
 
-  // final _Links _links;
-
   final String? details;
   final int? dateUnix;
 
@@ -273,17 +271,7 @@ class Flight {
   DateTime? get date => dateUnix == null
       ? null
       : DateTime.fromMillisecondsSinceEpoch(dateUnix! * 1000);
-
-// final _Reddit _reddit;
 }
-
-// class _Reddit {
-//   _Reddit(this.campaign, this.launch);
-//
-//   final String campaign;
-//   final String launch;
-// TODO media, recovery
-// }
 
 class LaunchPad {
   LaunchPad.fromJson(Map<String, dynamic> json)

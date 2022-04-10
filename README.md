@@ -6,6 +6,9 @@ Details about upcoming rocket launches.
 
 #### UI
 
+- Convert time to england /// TODO convert toLocal. Maybe use utc to find original zone? (Probably
+  California).
+- Move the share button in a bit (maybe with padding).
 - Click on column header to sort by that field.
 
 #### Tests
