@@ -16,7 +16,7 @@ class FlightsPage extends StatelessWidget {
     final fetchNotifier = getFetchNotifier(context, listen: true);
 
     return fetchNotifier.hasFlights
-        ? _ScrollTable(flights: fetchNotifier.prettyFlights)
+        ? _ScrollTable(prettyFlights: fetchNotifier.prettyFlights)
         : RetryFetch(message: fetchNotifier.flightsErrorMessage);
   }
 }
@@ -33,33 +33,34 @@ class FavoritesPage extends StatelessWidget {
 
     return fetchNotifier.hasFlights
         ? _ScrollTable(
-            flights: favoritesNotifier.filter(fetchNotifier.prettyFlights))
+            prettyFlights:
+                favoritesNotifier.filter(fetchNotifier.prettyFlights))
         : RetryFetch(message: fetchNotifier.flightsErrorMessage);
   }
 }
 
 /// Allows horizontal scroll of table in portrait only.
 class _ScrollTable extends StatelessWidget {
-  const _ScrollTable({Key? key, required this.flights}) : super(key: key);
+  const _ScrollTable({Key? key, required this.prettyFlights}) : super(key: key);
 
-  final List<PrettyFlight> flights;
+  final List<PrettyFlight> prettyFlights;
 
   @override
   Widget build(BuildContext context) {
     return isPortrait(context)
         ? SingleChildScrollView(
             scrollDirection: Axis.horizontal,
-            child: _Table(flights),
+            child: _Table(prettyFlights),
           )
-        : _Table(flights);
+        : _Table(prettyFlights);
   }
 }
 
 /// A data table showing upcoming launches (all or favorites).
 class _Table extends StatelessWidget {
-  const _Table(this.flights, {Key? key}) : super(key: key);
+  const _Table(this.prettyFlights, {Key? key}) : super(key: key);
 
-  final List<PrettyFlight> flights;
+  final List<PrettyFlight> prettyFlights;
 
   @override
   Widget build(BuildContext context) {
@@ -78,13 +79,13 @@ class _Table extends StatelessWidget {
           columnHeader('Favorite'),
         ],
         rows: <DataRow>[
-          for (final flight in flights)
+          for (final prettyFlight in prettyFlights)
             DataRow(
               cells: <DataCell>[
-                cellText(flight.name),
-                cellText(flight.date),
-                cellText(flight.pad),
-                DataCell(_FavoritesToggleButton(id: flight.id)),
+                cellText(prettyFlight.name),
+                cellText(prettyFlight.date),
+                cellText(prettyFlight.pad),
+                DataCell(_FavoritesToggleButton(id: prettyFlight.id)),
               ],
             ),
         ],

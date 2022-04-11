@@ -24,7 +24,7 @@ void fetchAll(BuildContext context) {
 /// Fetches everything that's used from the api (with http)
 /// The [HttpClient] is closed when everything has been fetched.
 /// First 'flight' (the next available launch),  (renamed because 'nextLaunch' is a confusing name)
-/// then 'flights' (the upcoming launches).
+/// then 'flights'.
 /// This is all done in the [fetchAll]() function.
 class FetchNotifier extends ChangeNotifier {
   FetchNotifier({required http.Client client}) : _client = client;

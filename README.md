@@ -12,8 +12,8 @@ Details about upcoming rocket launches.
 
 #### Rename / Refactor
 
-In order to fit in with spec and API, renamed flights to upcomingLaunches In order to fit in with
-spec and API, renamed Flight to NextLaunch
+- In order to fit in with spec and API, renamed flights to upcomingLaunches
+- In order to fit in with spec and API, renamed Flight to NextLaunch
 
 #### Tests
 
