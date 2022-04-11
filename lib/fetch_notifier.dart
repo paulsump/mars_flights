@@ -162,6 +162,7 @@ String _getPadName(String id, List<LaunchPad> launchPads) {
   return '';
 }
 
+/// Make the data easier for the ui to use.
 class FormattedUpcomingLaunch {
   FormattedUpcomingLaunch.fromLaunch(Launch launch, List<LaunchPad> launchPads)
       : id = launch.id!,
@@ -172,6 +173,7 @@ class FormattedUpcomingLaunch {
   final String id, name, date, pad;
 }
 
+/// Create a string for the ui based on how accurate the date is.
 String _formatDate(DateTime date, String precision) {
   switch (precision) {
     case 'hour':

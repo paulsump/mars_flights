@@ -57,7 +57,7 @@ class Background extends StatelessWidget {
   }
 }
 
-/// Little animated stars on the [Background]
+/// Little animated star on the [Background]
 class _Star extends StatefulWidget {
   const _Star({Key? key}) : super(key: key);
 

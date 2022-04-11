@@ -151,11 +151,7 @@ class _IconPair extends StatelessWidget {
           offset: unitOffset * 0.2 * size,
           child: Transform.scale(
             scale: 0.7,
-            child: Icon(
-              Icons.favorite,
-              color: Hue.favorite,
-              size: size,
-            ),
+            child: Icon(Icons.favorite, color: Hue.favorite, size: size),
           ),
         ),
       ],

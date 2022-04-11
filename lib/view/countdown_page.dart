@@ -109,12 +109,12 @@ class _Time extends StatelessWidget {
 class _Number extends StatelessWidget {
   const _Number({
     Key? key,
-    required this.label,
     required this.n,
+    required this.label,
   }) : super(key: key);
 
-  final String label;
   final int n;
+  final String label;
 
   @override
   Widget build(BuildContext context) {

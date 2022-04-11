@@ -3,7 +3,7 @@ import 'package:mars_flights/buttons/flat_hexagon_button.dart';
 import 'package:mars_flights/fetch_notifier.dart';
 import 'package:mars_flights/screen_adjust.dart';
 
-/// For when fetch fails
+/// For when fetch fails, show an error message and a 'try again' button.
 class RetryFetch extends StatelessWidget {
   const RetryFetch({
     Key? key,
