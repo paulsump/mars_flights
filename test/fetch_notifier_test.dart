@@ -31,7 +31,7 @@ void main() {
     });
   });
 
-  group('fetcher.getFlights()', () {
+  group('fetcher.getUpcomingLaunches()', () {
     test('returns a List if the http call completes successfully', () async {
       final client = MockClient((_) async => http.Response(
               fixture('upcoming_launches.json'), 200, headers: {
@@ -39,7 +39,7 @@ void main() {
           }));
 
       final fetcher = Fetcher(client);
-      final upcomingLaunches_ = await fetcher.getFlights();
+      final upcomingLaunches_ = await fetcher.getUpcomingLaunches();
 
       expect(
           upcomingLaunches_.map((flight) => Flight.fromJson(flight)).toList(),
@@ -50,7 +50,7 @@ void main() {
       final client = MockClient((_) async => http.Response('Not Found', 404));
 
       final fetcher = Fetcher(client);
-      expect(fetcher.getFlights(), throwsException);
+      expect(fetcher.getUpcomingLaunches(), throwsException);
     });
   });
 }

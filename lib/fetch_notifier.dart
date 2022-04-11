@@ -39,7 +39,7 @@ class FetchNotifier extends ChangeNotifier {
   // Dry / Extract this repeated pattern...
 
   final upcomingLaunches = <Flight>[];
-  bool hasFlights = false;
+  bool hasUpcomingLaunches = false;
   String upcomingLaunchesErrorMessage = '';
 
   final launchPads = <LaunchPad>[];
@@ -74,7 +74,7 @@ class FetchNotifier extends ChangeNotifier {
     notifyListeners();
 
     try {
-      final upcomingLaunches_ = await fetcher.getFlights();
+      final upcomingLaunches_ = await fetcher.getUpcomingLaunches();
 
       for (final flight in upcomingLaunches_) {
         try {
@@ -83,7 +83,7 @@ class FetchNotifier extends ChangeNotifier {
           logError('Ignoring bad flight');
         }
       }
-      hasFlights = true;
+      hasUpcomingLaunches = true;
     } catch (error) {
       upcomingLaunchesErrorMessage = _formatError(error);
 
@@ -122,7 +122,7 @@ class FetchNotifier extends ChangeNotifier {
       notifyListeners();
     }
 
-    if (hasFlights) {
+    if (hasUpcomingLaunches) {
       for (final upcomingLaunch in upcomingLaunches) {
         if (upcomingLaunch.isValid) {
           prettyFlights
@@ -194,7 +194,7 @@ String _formatDate(DateTime date, String precision) {
 /// In this API, both JSON lists and JSON objects (maps) are returned, so
 /// [List]s of [Map] are fetched with [_getList]
 /// and a [Map] are fetched with [_getMap]
-/// The [Fetcher] class and [getFlight](), [getFlights]()
+/// The [Fetcher] class and [getFlight](), [getUpcomingLaunches]()
 /// are only public for the tests.
 class Fetcher {
   final http.Client client;
@@ -203,7 +203,8 @@ class Fetcher {
 
   Future<Map<String, dynamic>> getFlight() async => _getMap('launches/next');
 
-  Future<List<dynamic>> getFlights() async => _getList('launches/upcoming');
+  Future<List<dynamic>> getUpcomingLaunches() async =>
+      _getList('launches/upcoming');
 
   //TODO add test for this using test_data/launch_pads.json
   Future<List<dynamic>> getLaunchPads() async => _getList('launchpads');

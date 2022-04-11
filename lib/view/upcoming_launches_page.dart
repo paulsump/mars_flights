@@ -8,14 +8,14 @@ import 'package:mars_flights/screen_adjust.dart';
 import 'package:mars_flights/view/retry_fetch.dart';
 
 /// All the upcoming launches
-class FlightsPage extends StatelessWidget {
-  const FlightsPage({Key? key}) : super(key: key);
+class UpcomingLaunchesPage extends StatelessWidget {
+  const UpcomingLaunchesPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final fetchNotifier = getFetchNotifier(context, listen: true);
 
-    return fetchNotifier.hasFlights
+    return fetchNotifier.hasUpcomingLaunches
         ? _ScrollTable(prettyFlights: fetchNotifier.prettyFlights)
         : RetryFetch(message: fetchNotifier.upcomingLaunchesErrorMessage);
   }
@@ -31,7 +31,7 @@ class FavoritesPage extends StatelessWidget {
 
     final favoritesNotifier = getFavoritesNotifier(context, listen: true);
 
-    return fetchNotifier.hasFlights
+    return fetchNotifier.hasUpcomingLaunches
         ? _ScrollTable(
             prettyFlights:
                 favoritesNotifier.filter(fetchNotifier.prettyFlights))

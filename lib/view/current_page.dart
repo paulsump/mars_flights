@@ -30,7 +30,7 @@ class CurrentPage extends StatelessWidget {
 
   final _pages = <_PageId, Widget>{
     _PageId.countdown: const CountdownPage(),
-    _PageId.upcomingLaunches: const FlightsPage(),
+    _PageId.upcomingLaunches: const UpcomingLaunchesPage(),
     _PageId.favorites: const FavoritesPage(),
   };
 
