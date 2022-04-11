@@ -29,8 +29,9 @@ class FavoritesNotifier extends ChangeNotifier {
 
   bool contains(String flightId) => _flightIds.contains(flightId);
 
-  List<PrettyFlight> filter(List<PrettyFlight> formattedUpcomingLaunches) {
-    final formattedUpcomingLaunches_ = <PrettyFlight>[];
+  List<FormattedUpcomingLaunch> filter(
+      List<FormattedUpcomingLaunch> formattedUpcomingLaunches) {
+    final formattedUpcomingLaunches_ = <FormattedUpcomingLaunch>[];
 
     for (final prettyFlight in formattedUpcomingLaunches) {
       if (_flightIds.contains(prettyFlight.id)) {

@@ -46,7 +46,7 @@ class FetchNotifier extends ChangeNotifier {
   bool hasLaunchPads = false;
   String launchPadsErrorMessage = '';
 
-  final formattedUpcomingLaunches = <PrettyFlight>[];
+  final formattedUpcomingLaunches = <FormattedUpcomingLaunch>[];
 
   String flightMessage = '';
 
@@ -114,10 +114,11 @@ class FetchNotifier extends ChangeNotifier {
     notifyListeners();
 
     if (hasFlight && flight.isValid) {
-      final prettyFlight = PrettyFlight.fromFlight(flight, launchPads);
+      final prettyFlight =
+          FormattedUpcomingLaunch.fromFlight(flight, launchPads);
 
       flightMessage =
-      "Hi!\n\nHere's the details of the next SpaceX launch...\n\nMission: ${prettyFlight.name}.\nLaunch Pad: ${prettyFlight.pad}.\nDate: ${prettyFlight.date}.\n\nShall I book it?!";
+          "Hi!\n\nHere's the details of the next SpaceX launch...\n\nMission: ${prettyFlight.name}.\nLaunch Pad: ${prettyFlight.pad}.\nDate: ${prettyFlight.date}.\n\nShall I book it?!";
 
       notifyListeners();
     }
@@ -125,8 +126,8 @@ class FetchNotifier extends ChangeNotifier {
     if (hasUpcomingLaunches) {
       for (final upcomingLaunch in upcomingLaunches) {
         if (upcomingLaunch.isValid) {
-          formattedUpcomingLaunches
-              .add(PrettyFlight.fromFlight(upcomingLaunch, launchPads));
+          formattedUpcomingLaunches.add(
+              FormattedUpcomingLaunch.fromFlight(upcomingLaunch, launchPads));
         }
       }
 
@@ -161,8 +162,8 @@ String _getPadName(String id, List<LaunchPad> launchPads) {
   return '';
 }
 
-class PrettyFlight {
-  PrettyFlight.fromFlight(Flight flight, List<LaunchPad> launchPads)
+class FormattedUpcomingLaunch {
+  FormattedUpcomingLaunch.fromFlight(Flight flight, List<LaunchPad> launchPads)
       : id = flight.id!,
         name = flight.name!,
         date = _formatDate(flight.date!, flight.datePrecision!),

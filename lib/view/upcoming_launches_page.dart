@@ -45,7 +45,7 @@ class _ScrollTable extends StatelessWidget {
   const _ScrollTable({Key? key, required this.formattedUpcomingLaunches})
       : super(key: key);
 
-  final List<PrettyFlight> formattedUpcomingLaunches;
+  final List<FormattedUpcomingLaunch> formattedUpcomingLaunches;
 
   @override
   Widget build(BuildContext context) {
@@ -62,7 +62,7 @@ class _ScrollTable extends StatelessWidget {
 class _Table extends StatelessWidget {
   const _Table(this.formattedUpcomingLaunches, {Key? key}) : super(key: key);
 
-  final List<PrettyFlight> formattedUpcomingLaunches;
+  final List<FormattedUpcomingLaunch> formattedUpcomingLaunches;
 
   @override
   Widget build(BuildContext context) {
