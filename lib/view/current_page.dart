@@ -24,15 +24,15 @@ class CurrentPageNotifier extends ChangeNotifier {
   }
 }
 
+final _pages = <_PageId, Widget>{
+  _PageId.countdown: const CountdownPage(),
+  _PageId.upcomingLaunches: const UpcomingLaunchesPage(),
+  _PageId.favorites: const FavoritesPage(),
+};
+
 /// the current page that is displayed
 class CurrentPage extends StatelessWidget {
-  CurrentPage({Key? key}) : super(key: key);
-
-  final _pages = <_PageId, Widget>{
-    _PageId.countdown: const CountdownPage(),
-    _PageId.upcomingLaunches: const UpcomingLaunchesPage(),
-    _PageId.favorites: const FavoritesPage(),
-  };
+  const CurrentPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -43,14 +43,14 @@ class CurrentPage extends StatelessWidget {
   }
 }
 
+const _titles = <_PageId, String>{
+  _PageId.upcomingLaunches: 'Upcoming Launches',
+  _PageId.favorites: 'Favorite Upcoming Launches',
+};
+
 /// The title at the top of the current page.
 class CurrentPageTitle extends StatelessWidget {
-  CurrentPageTitle({Key? key}) : super(key: key);
-
-  final _titles = <_PageId, String>{
-    _PageId.upcomingLaunches: 'Upcoming Launches',
-    _PageId.favorites: 'Favorite Upcoming Launches',
-  };
+  const CurrentPageTitle({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
