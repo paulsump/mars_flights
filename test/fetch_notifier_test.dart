@@ -34,7 +34,7 @@ void main() {
   group('fetcher.getFlights()', () {
     test('returns a List if the http call completes successfully', () async {
       final client = MockClient((_) async => http.Response(
-              fixture('flights.json'), 200, headers: {
+              fixture('upcoming_launches.json'), 200, headers: {
             HttpHeaders.contentTypeHeader: 'application/json; charset=utf-8'
           }));
 
