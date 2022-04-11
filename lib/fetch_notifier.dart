@@ -12,11 +12,12 @@ import 'package:provider/provider.dart';
 FetchNotifier getFetchNotifier(BuildContext context, {required bool listen}) =>
     Provider.of<FetchNotifier>(context, listen: listen);
 
-void fetchAll(BuildContext context, {required http.Client client}) {
+/// Fetch all the info from the spaceX API
+void fetchAll(BuildContext context) {
   final fetchNotifier = getFetchNotifier(context, listen: false);
 
   if (!fetchNotifier.fetchAllHasBeenCalled) {
-    unawaited(fetchNotifier.fetchAll(context, client));
+    unawaited(fetchNotifier.fetchAll(context));
   }
 }
 
@@ -26,6 +27,9 @@ void fetchAll(BuildContext context, {required http.Client client}) {
 /// then 'flights' (the upcoming launches).
 /// This is all done in the [fetchAll]() function.
 class FetchNotifier extends ChangeNotifier {
+  FetchNotifier({required http.Client client}) : _client = client;
+
+  final http.Client _client;
   bool fetchAllHasBeenCalled = false;
 
   late Flight flight;
@@ -50,10 +54,10 @@ class FetchNotifier extends ChangeNotifier {
 
   /// The main starting point for the app data.
   /// Called only once.
-  Future<void> fetchAll(BuildContext context, http.Client client) async {
+  Future<void> fetchAll(BuildContext context) async {
     fetchAllHasBeenCalled = true;
 
-    final fetcher = Fetcher(client);
+    final fetcher = Fetcher(_client);
     try {
       final flight_ = await fetcher.getFlight();
 
@@ -129,7 +133,7 @@ class FetchNotifier extends ChangeNotifier {
     }
 
     if (fetchAllHasBeenCalled) {
-      client.close();
+      _client.close();
     }
   }
 
@@ -220,8 +224,7 @@ class Fetcher {
     } on SocketException catch (e) {
       logError(e.message);
 
-      throw Exception(
-          'There was a problem fetching the data from the SpaceX website.');
+      throw Exception('There was a problem fetching the data from the web.');
     }
   }
 

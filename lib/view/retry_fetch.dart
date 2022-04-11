@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mars_flights/buttons/flat_hexagon_button.dart';
+import 'package:mars_flights/fetch_notifier.dart';
 import 'package:mars_flights/screen_adjust.dart';
 
 /// For when fetch fails
@@ -38,7 +39,7 @@ class RetryFetch extends StatelessWidget {
                 child: IconFlatHexagonButton(
                   icon: Icons.refresh_rounded,
                   tip: 'Fetch the data again',
-                  onPressed: () {},
+                  onPressed: () => fetchAll(context),
                 ),
               ),
             ],

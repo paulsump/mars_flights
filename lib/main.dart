@@ -28,7 +28,7 @@ class _App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_) => FetchNotifier()),
+        ChangeNotifierProvider(create: (_) => FetchNotifier(client: _client)),
         ChangeNotifierProvider(create: (_) => FavoritesNotifier()),
         ChangeNotifierProvider(create: (_) => CurrentPageNotifier()),
       ],
@@ -42,7 +42,7 @@ class _App extends StatelessWidget {
             if (constraints.maxHeight == 0) {
               return Container();
             } else {
-              fetchAll(context, client: _client);
+              fetchAll(context);
 
               final favoritesNotifier =
                   getFavoritesNotifier(context, listen: false);
