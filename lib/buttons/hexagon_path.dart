@@ -6,6 +6,19 @@ import 'package:flutter/cupertino.dart';
 import 'package:mars_flights/buttons/position.dart';
 import 'package:mars_flights/buttons/position_to_unit.dart';
 
+/// Used to create various buttons e.g. [HexagonBorderButton]
+Path calcHexagonPath(Offset center, double radius) {
+  return Path()
+    ..addPolygon(
+        getHexagonCornerOffsets()
+            .map((offset) => offset * radius + center)
+            .toList(),
+        true);
+}
+
+UnmodifiableListView<Offset> getHexagonCornerOffsets() => UnmodifiableListView(
+    List<Offset>.generate(6, (i) => positionToUnitOffset(_corners[i + 1])));
+
 /// Cube corners (from Cube Painter)
 const _corners = <Position>[
   Position.zero, // c center
@@ -19,16 +32,3 @@ const _corners = <Position>[
   Position(0, -1), // b bottom
   Position(1, 0), // br
 ];
-
-UnmodifiableListView<Offset> getHexagonCornerOffsets() => UnmodifiableListView(
-    List<Offset>.generate(6, (i) => positionToUnitOffset(_corners[i + 1])));
-
-/// Used to create various buttons e.g. [HexagonBorderButton]
-Path calcHexagonPath(Offset center, double radius) {
-  return Path()
-    ..addPolygon(
-        getHexagonCornerOffsets()
-            .map((offset) => offset * radius + center)
-            .toList(),
-        true);
-}

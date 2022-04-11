@@ -2,6 +2,7 @@
 
 import 'dart:ui';
 
+/// Used to create the hexagon buttons.
 /// Grid position x,y
 /// indices on the triangle grid.
 /// A coordinate space where x is across and

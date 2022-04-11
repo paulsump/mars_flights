@@ -11,9 +11,9 @@ void main() {
   String fixture(String name) => File('test_data/$name').readAsStringSync();
 
   group('fetcher.getNextLaunch()', () {
-    test('returns a Map if the http call completes successfully', () async {
+    _test(fileName) async {
       final client = MockClient((_) async => http.Response(
-              fixture('nextLaunch1.json'), 200, headers: {
+              fixture(fileName), 200, headers: {
             HttpHeaders.contentTypeHeader: 'application/json; charset=utf-8'
           }));
 
@@ -21,6 +21,16 @@ void main() {
       final nextLaunch = await fetcher.getNextLaunch();
 
       expect(Launch.fromJson(nextLaunch), isA<Launch>());
+    }
+
+    test('With file 1, returns a Map if the http call completes successfully',
+        () async {
+      await _test('nextLaunch1.json');
+    });
+
+    test('With file 2, returns a Map if the http call completes successfully',
+        () async {
+      await _test('nextLaunch2.json');
     });
 
     test('throws an exception if the http call completes with an error', () {
