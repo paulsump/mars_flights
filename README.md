@@ -14,7 +14,7 @@ Details about upcoming rocket launches.
 
 - use nextLaunch2.json
 - DateTime tests - check count down maths.
-- nextLaunchErrorMessage and flightsErrorMessage - perhaps with widget tests
+- nextLaunchErrorMessage and upcomingLaunchesErrorMessage - perhaps with widget tests
 
 #### UI
 

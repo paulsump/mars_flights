@@ -151,7 +151,7 @@ class _ShareButton extends StatelessWidget {
               child: IconFlatHexagonButton(
                 onPressed: () => _share(context,
                     subject: 'Launch Details',
-                    message: fetchNotifier.flightMessage),
+                    message: fetchNotifier.nextLaunchMessage),
                 icon: FontAwesomeIcons.share,
                 tip:
                     "Open the device's share dialog to share details of this launch.",

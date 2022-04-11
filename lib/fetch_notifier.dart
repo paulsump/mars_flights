@@ -48,7 +48,7 @@ class FetchNotifier extends ChangeNotifier {
 
   final formattedUpcomingLaunches = <FormattedUpcomingLaunch>[];
 
-  String flightMessage = '';
+  String nextLaunchMessage = '';
 
   bool get hasNextLaunchMessage => hasNextLaunch && hasLaunchPads;
 
@@ -117,7 +117,7 @@ class FetchNotifier extends ChangeNotifier {
       final formattedUpcomingLaunch =
           FormattedUpcomingLaunch.fromLaunch(nextLaunch, launchPads);
 
-      flightMessage =
+      nextLaunchMessage =
           "Hi!\n\nHere's the details of the next SpaceX launch...\n\nMission: ${formattedUpcomingLaunch.name}.\nLaunch Pad: ${formattedUpcomingLaunch.pad}.\nDate: ${formattedUpcomingLaunch.date}.\n\nShall I book it?!";
 
       notifyListeners();
