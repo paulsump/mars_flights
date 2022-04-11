@@ -98,7 +98,7 @@ class _Table extends StatelessWidget {
 }
 
 /// A button with an icon on it, that, when pressed
-/// toggles this flight as a favorite or not.
+/// toggles this launch as a favorite or not.
 class _FavoritesToggleButton extends StatelessWidget {
   const _FavoritesToggleButton({required this.id, Key? key}) : super(key: key);
 
@@ -111,7 +111,7 @@ class _FavoritesToggleButton extends StatelessWidget {
     return Align(
       heightFactor: 0.774,
       child: ScreenAdjustedToolTip(
-        message: 'Add this flight to favorites.',
+        message: 'Add this launch to favorites.',
         child: IconButton(
           onPressed: () => favoritesNotifier.toggle(id),
           icon: Icon(

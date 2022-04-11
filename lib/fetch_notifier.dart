@@ -23,7 +23,7 @@ void fetchAll(BuildContext context) {
 
 /// Fetches everything that's used from the api (with http)
 /// The [HttpClient] is closed when everything has been fetched.
-/// First 'flight' (the next available launch),  (renamed because 'nextLaunch' is a confusing name)
+/// First 'nextLaunch' (the next available launch),
 /// then 'upcomingLaunches'.
 /// This is all done in the [fetchAll]() function.
 class FetchNotifier extends ChangeNotifier {
@@ -34,7 +34,7 @@ class FetchNotifier extends ChangeNotifier {
 
   late Launch flight;
   bool hasNextLaunch = false;
-  String flightErrorMessage = 'Fetching flight info...';
+  String flightErrorMessage = 'Fetching next launch info...';
 
   // Dry / Extract this repeated pattern...
 
@@ -80,7 +80,7 @@ class FetchNotifier extends ChangeNotifier {
         try {
           upcomingLaunches.add(Launch.fromJson(flight));
         } catch (error) {
-          logError('Ignoring bad flight');
+          logError('Ignoring bad next launch info.');
         }
       }
       hasUpcomingLaunches = true;
