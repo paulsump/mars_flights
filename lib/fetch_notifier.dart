@@ -123,9 +123,10 @@ class FetchNotifier extends ChangeNotifier {
     }
 
     if (hasFlights) {
-      for (final flight_ in flights) {
-        if (flight_.isValid) {
-          prettyFlights.add(PrettyFlight.fromFlight(flight_, launchPads));
+      for (final upcomingLaunch in flights) {
+        if (upcomingLaunch.isValid) {
+          prettyFlights
+              .add(PrettyFlight.fromFlight(upcomingLaunch, launchPads));
         }
       }
 
