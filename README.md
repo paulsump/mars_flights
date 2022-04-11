@@ -4,28 +4,29 @@ Details about upcoming rocket launches.
 
 <img src="https://github.com/paulsump/mars_flights/blob/813c01c1b2326f937fc1e4d08a8c52add9d284f9/images/background.jpg" width="1248">
 
-### Left To Do
+### Notes to the user
 
-#### UI
+- The classes are tailored for this app rather than for reuse in other apps.
 
-- Click on column header to sort by that field.
-- Maybe add year to date?
+### To Do
+
+#### Rename / Refactor
+
+- replace string pageName with page enum
+
+- To fit in with spec and API...
+- Rename Flight to NextLaunch
+- Rename Flights to UpcomingLaunches
 
 #### Tests
 
 - DateTime tests - check count down maths.
 - flightErrorMessage and flightErrorMessage - perhaps with widget tests
 
-#### Finally
+#### UI
 
-- Check all TODOs //TODO replace string with PageEnum
-- To fit in with spec and API...
-- Rename Flight to NextLaunch
-- Rename Flights to UpcomingLaunches
-
-### Notes to the user
-
-- The classes are tailored for this app rather than for reuse in other apps.
+- Click on column header to sort by that field.
+- Maybe add year to date?
 
 ## Original Specification...
 
