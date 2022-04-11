@@ -34,7 +34,7 @@ class FetchNotifier extends ChangeNotifier {
 
   late Launch nextLaunch;
   bool hasNextLaunch = false;
-  String flightErrorMessage = 'Fetching next launch info...';
+  String nextLaunchErrorMessage = 'Fetching next launch info...';
 
   // Dry / Extract this repeated pattern...
 
@@ -65,7 +65,7 @@ class FetchNotifier extends ChangeNotifier {
 
       hasNextLaunch = true;
     } catch (error) {
-      flightErrorMessage = _formatError(error);
+      nextLaunchErrorMessage = _formatError(error);
 
       // Allow app to try again later.
       fetchAllHasBeenCalled = false;

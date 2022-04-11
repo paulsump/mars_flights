@@ -12,29 +12,30 @@ FavoritesNotifier getFavoritesNotifier(BuildContext context,
 
 /// Access to the list of favorite upcomingLaunches.
 class FavoritesNotifier extends ChangeNotifier {
-  final _flightIds = <String>[];
+  final _upcomingLaunchIds = <String>[];
 
   bool loadHasBeenCalled = false;
 
-  void toggle(String flightId) {
-    if (_flightIds.contains(flightId)) {
-      _flightIds.remove(flightId);
+  void toggle(String upcomingLaunchId) {
+    if (_upcomingLaunchIds.contains(upcomingLaunchId)) {
+      _upcomingLaunchIds.remove(upcomingLaunchId);
     } else {
-      _flightIds.add(flightId);
+      _upcomingLaunchIds.add(upcomingLaunchId);
     }
 
     notifyListeners();
     unawaited(_save());
   }
 
-  bool contains(String flightId) => _flightIds.contains(flightId);
+  bool contains(String upcomingLaunchId) =>
+      _upcomingLaunchIds.contains(upcomingLaunchId);
 
   List<FormattedUpcomingLaunch> filter(
       List<FormattedUpcomingLaunch> formattedUpcomingLaunches) {
     final formattedUpcomingLaunches_ = <FormattedUpcomingLaunch>[];
 
     for (final formattedUpcomingLaunch in formattedUpcomingLaunches) {
-      if (_flightIds.contains(formattedUpcomingLaunch.id)) {
+      if (_upcomingLaunchIds.contains(formattedUpcomingLaunch.id)) {
         formattedUpcomingLaunches_.add(formattedUpcomingLaunch);
       }
     }
@@ -48,7 +49,7 @@ class FavoritesNotifier extends ChangeNotifier {
     final List<String>? favorites = preferences.getStringList('favorites');
 
     if (favorites != null) {
-      _flightIds.addAll(favorites);
+      _upcomingLaunchIds.addAll(favorites);
     }
 
     loadHasBeenCalled = true;
@@ -57,6 +58,6 @@ class FavoritesNotifier extends ChangeNotifier {
   Future<void> _save() async {
     final preferences = await SharedPreferences.getInstance();
 
-    unawaited(preferences.setStringList('favorites', _flightIds));
+    unawaited(preferences.setStringList('favorites', _upcomingLaunchIds));
   }
 }

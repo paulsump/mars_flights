@@ -35,7 +35,7 @@ class CountdownPage extends StatelessWidget {
               ),
             ],
           )
-        : RetryFetch(message: fetchNotifier.flightErrorMessage);
+        : RetryFetch(message: fetchNotifier.nextLaunchErrorMessage);
   }
 }
 
