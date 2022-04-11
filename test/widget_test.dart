@@ -51,10 +51,6 @@ Future<http.Response> _getEmptyResponse(http.Request url) async {
 }
 
 void main() {
-  final goodApp1 = createApp(client: MockClient(_getGoodResponse1));
-  final goodApp2 = createApp(client: MockClient(_getGoodResponse2));
-  final emptyApp = createApp(client: MockClient(_getEmptyResponse));
-
   _test(app, tester) async {
     await tester.pumpWidget(app);
 
@@ -66,25 +62,15 @@ void main() {
   }
 
   testWidgets('With file 1, Countdown page', (WidgetTester tester) async {
-    _test(goodApp1, tester);
+    _test(createApp(client: MockClient(_getGoodResponse1)), tester);
   });
 
   testWidgets('With file 2, Countdown page', (WidgetTester tester) async {
-    _test(goodApp2, tester);
-  });
-
-  testWidgets('With file 2, Countdown page', (WidgetTester tester) async {
-    await tester.pumpWidget(goodApp1);
-
-    expect(find.byType(CountdownPage), findsOneWidget);
-    expect(find.textContaining('SECONDS'), findsNothing);
-
-    await tester.pump();
-    expect(find.textContaining('SECONDS'), findsOneWidget);
+    _test(createApp(client: MockClient(_getGoodResponse2)), tester);
   });
 
   testWidgets('Countdown page - Empty map', (WidgetTester tester) async {
-    await tester.pumpWidget(emptyApp);
+    await tester.pumpWidget(createApp(client: MockClient(_getEmptyResponse)));
 
     expect(find.byType(CountdownPage), findsOneWidget);
     expect(find.textContaining('problem'), findsNothing);
