@@ -7,6 +7,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:mars_flights/buttons/flat_hexagon_button.dart';
 import 'package:mars_flights/fetch_notifier.dart';
 import 'package:mars_flights/screen_adjust.dart';
+import 'package:mars_flights/view/retry_fetch.dart';
 import 'package:share_plus/share_plus.dart';
 
 class CountdownPage extends StatelessWidget {
@@ -33,7 +34,7 @@ class CountdownPage extends StatelessWidget {
               ),
             ],
           )
-        : ErrorMessage(message: fetchNotifier.flightErrorMessage);
+        : RetryFetch(message: fetchNotifier.flightErrorMessage);
   }
 }
 

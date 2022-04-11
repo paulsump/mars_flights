@@ -5,6 +5,7 @@ import 'package:mars_flights/favorites_notifier.dart';
 import 'package:mars_flights/fetch_notifier.dart';
 import 'package:mars_flights/hue.dart';
 import 'package:mars_flights/screen_adjust.dart';
+import 'package:mars_flights/view/retry_fetch.dart';
 
 class FlightsPage extends StatelessWidget {
   const FlightsPage({Key? key}) : super(key: key);
@@ -15,7 +16,7 @@ class FlightsPage extends StatelessWidget {
 
     return fetchNotifier.hasFlights
         ? _ScrollTable(flights: fetchNotifier.prettyFlights)
-        : ErrorMessage(message: fetchNotifier.flightsErrorMessage);
+        : RetryFetch(message: fetchNotifier.flightsErrorMessage);
   }
 }
 
@@ -31,7 +32,7 @@ class FavoritesPage extends StatelessWidget {
     return fetchNotifier.hasFlights
         ? _ScrollTable(
             flights: favoritesNotifier.filter(fetchNotifier.prettyFlights))
-        : ErrorMessage(message: fetchNotifier.flightsErrorMessage);
+        : RetryFetch(message: fetchNotifier.flightsErrorMessage);
   }
 }
 
