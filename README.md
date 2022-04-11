@@ -10,7 +10,8 @@ Details about upcoming rocket launches.
 
 - Retry button (after failed fetch), otherwise there's no point in setting fetchAllHasBeenCalled =
   false //TODO CALL all this in a retry button
-
+- Separate view from model e.g. ErrorMessage
+  
 - Click on column header to sort by that field.
 - Maybe add year to date?
 
@@ -25,6 +26,10 @@ Details about upcoming rocket launches.
 - To fit in with spec and API...
 - Rename Flight to NextLaunch
 - Rename Flights to UpcomingLaunches
+
+### Notes to the user
+
+- The classes are tailored for this app rather than for reuse in other apps.
 
 ## Original Specification...
 

@@ -42,7 +42,6 @@ class _App extends StatelessWidget {
             if (constraints.maxHeight == 0) {
               return Container();
             } else {
-              //TODO CALL all this in a retry button
               final fetchNotifier = getFetchNotifier(context, listen: false);
 
               if (!fetchNotifier.fetchAllHasBeenCalled) {

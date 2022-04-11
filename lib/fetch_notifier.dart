@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
+import 'package:mars_flights/buttons/flat_hexagon_button.dart';
 import 'package:mars_flights/out.dart';
 import 'package:mars_flights/screen_adjust.dart';
 import 'package:provider/provider.dart';
@@ -23,11 +24,37 @@ class ErrorMessage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final textSize = isPortrait(context) ? 0.02 : 0.05;
+
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: screenAdjustX(0.1, context)),
-      child: Center(
-        child: ScreenAdjustedText(message,
-            size: isPortrait(context) ? 0.02 : 0.05),
+      child: Padding(
+        padding: EdgeInsets.symmetric(
+          horizontal: screenAdjustX(isPortrait(context) ? 0.05 : 0.1, context),
+          vertical: screenAdjustY(isPortrait(context) ? 0.22 : 0.1, context),
+        ),
+        child: Center(
+          child: Column(
+            children: [
+              Expanded(
+                flex: 4,
+                child: ScreenAdjustedText(message, size: textSize),
+              ),
+              Expanded(
+                flex: 2,
+                child: ScreenAdjustedText('Try again?', size: textSize),
+              ),
+              Expanded(
+                flex: 3,
+                child: IconFlatHexagonButton(
+                  icon: Icons.refresh_rounded,
+                  tip: 'Fetch the data again',
+                  onPressed: () {},
+                ),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
@@ -234,7 +261,7 @@ class Fetcher {
       logError(e.message);
 
       throw Exception(
-          'There was a problem fetching the data.\n\nIs there an internet connection?');
+          'There was a problem fetching the data from the SpaceX website.');
     }
   }
 
