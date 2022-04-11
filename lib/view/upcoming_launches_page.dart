@@ -17,7 +17,7 @@ class FlightsPage extends StatelessWidget {
 
     return fetchNotifier.hasFlights
         ? _ScrollTable(prettyFlights: fetchNotifier.prettyFlights)
-        : RetryFetch(message: fetchNotifier.flightsErrorMessage);
+        : RetryFetch(message: fetchNotifier.upcomingLaunchesErrorMessage);
   }
 }
 
@@ -35,7 +35,7 @@ class FavoritesPage extends StatelessWidget {
         ? _ScrollTable(
             prettyFlights:
                 favoritesNotifier.filter(fetchNotifier.prettyFlights))
-        : RetryFetch(message: fetchNotifier.flightsErrorMessage);
+        : RetryFetch(message: fetchNotifier.upcomingLaunchesErrorMessage);
   }
 }
 

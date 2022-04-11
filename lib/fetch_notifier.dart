@@ -40,7 +40,7 @@ class FetchNotifier extends ChangeNotifier {
 
   final upcomingLaunches = <Flight>[];
   bool hasFlights = false;
-  String flightsErrorMessage = '';
+  String upcomingLaunchesErrorMessage = '';
 
   final launchPads = <LaunchPad>[];
   bool hasLaunchPads = false;
@@ -74,9 +74,9 @@ class FetchNotifier extends ChangeNotifier {
     notifyListeners();
 
     try {
-      final flights_ = await fetcher.getFlights();
+      final upcomingLaunches_ = await fetcher.getFlights();
 
-      for (final flight in flights_) {
+      for (final flight in upcomingLaunches_) {
         try {
           upcomingLaunches.add(Flight.fromJson(flight));
         } catch (error) {
@@ -85,7 +85,7 @@ class FetchNotifier extends ChangeNotifier {
       }
       hasFlights = true;
     } catch (error) {
-      flightsErrorMessage = _formatError(error);
+      upcomingLaunchesErrorMessage = _formatError(error);
 
       // Allow app to try again later.
       fetchAllHasBeenCalled = false;

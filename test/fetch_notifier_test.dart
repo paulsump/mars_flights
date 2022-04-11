@@ -39,9 +39,10 @@ void main() {
           }));
 
       final fetcher = Fetcher(client);
-      final flights_ = await fetcher.getFlights();
+      final upcomingLaunches_ = await fetcher.getFlights();
 
-      expect(flights_.map((flight) => Flight.fromJson(flight)).toList(),
+      expect(
+          upcomingLaunches_.map((flight) => Flight.fromJson(flight)).toList(),
           isA<List<Flight>>());
     });
 
