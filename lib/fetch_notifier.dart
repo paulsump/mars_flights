@@ -114,11 +114,11 @@ class FetchNotifier extends ChangeNotifier {
     notifyListeners();
 
     if (hasFlight && flight.isValid) {
-      final prettyFlight =
+      final formattedUpcomingLaunch =
           FormattedUpcomingLaunch.fromFlight(flight, launchPads);
 
       flightMessage =
-          "Hi!\n\nHere's the details of the next SpaceX launch...\n\nMission: ${prettyFlight.name}.\nLaunch Pad: ${prettyFlight.pad}.\nDate: ${prettyFlight.date}.\n\nShall I book it?!";
+          "Hi!\n\nHere's the details of the next SpaceX launch...\n\nMission: ${formattedUpcomingLaunch.name}.\nLaunch Pad: ${formattedUpcomingLaunch.pad}.\nDate: ${formattedUpcomingLaunch.date}.\n\nShall I book it?!";
 
       notifyListeners();
     }

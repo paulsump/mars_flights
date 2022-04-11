@@ -81,13 +81,14 @@ class _Table extends StatelessWidget {
           columnHeader('Favorite'),
         ],
         rows: <DataRow>[
-          for (final prettyFlight in formattedUpcomingLaunches)
+          for (final formattedUpcomingLaunch in formattedUpcomingLaunches)
             DataRow(
               cells: <DataCell>[
-                cellText(prettyFlight.name),
-                cellText(prettyFlight.date),
-                cellText(prettyFlight.pad),
-                DataCell(_FavoritesToggleButton(id: prettyFlight.id)),
+                cellText(formattedUpcomingLaunch.name),
+                cellText(formattedUpcomingLaunch.date),
+                cellText(formattedUpcomingLaunch.pad),
+                DataCell(
+                    _FavoritesToggleButton(id: formattedUpcomingLaunch.id)),
               ],
             ),
         ],

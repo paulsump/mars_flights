@@ -33,9 +33,9 @@ class FavoritesNotifier extends ChangeNotifier {
       List<FormattedUpcomingLaunch> formattedUpcomingLaunches) {
     final formattedUpcomingLaunches_ = <FormattedUpcomingLaunch>[];
 
-    for (final prettyFlight in formattedUpcomingLaunches) {
-      if (_flightIds.contains(prettyFlight.id)) {
-        formattedUpcomingLaunches_.add(prettyFlight);
+    for (final formattedUpcomingLaunch in formattedUpcomingLaunches) {
+      if (_flightIds.contains(formattedUpcomingLaunch.id)) {
+        formattedUpcomingLaunches_.add(formattedUpcomingLaunch);
       }
     }
 
