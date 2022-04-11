@@ -10,7 +10,7 @@ import 'package:mars_flights/fetch_notifier.dart';
 void main() {
   String fixture(String name) => File('test_data/$name').readAsStringSync();
 
-  group('fetcher.getFlight()', () {
+  group('fetcher.getNextLaunch()', () {
     test('returns a Map if the http call completes successfully', () async {
       final client = MockClient((_) async => http.Response(
               fixture('flight.json'), 200, headers: {
@@ -18,7 +18,7 @@ void main() {
           }));
 
       final fetcher = Fetcher(client);
-      final flight = await fetcher.getFlight();
+      final flight = await fetcher.getNextLaunch();
 
       expect(Launch.fromJson(flight), isA<Launch>());
     });
@@ -27,7 +27,7 @@ void main() {
       final client = MockClient((_) async => http.Response('Not Found', 404));
 
       final fetcher = Fetcher(client);
-      expect(fetcher.getFlight(), throwsException);
+      expect(fetcher.getNextLaunch(), throwsException);
     });
   });
 

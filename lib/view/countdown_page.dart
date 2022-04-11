@@ -19,7 +19,7 @@ class CountdownPage extends StatelessWidget {
     final fetchNotifier = getFetchNotifier(context, listen: true);
 
     final Launch? flight =
-        fetchNotifier.hasFlight ? fetchNotifier.flight : null;
+        fetchNotifier.hasNextLaunch ? fetchNotifier.flight : null;
 
     final DateTime? date = flight?.date;
 
@@ -142,11 +142,11 @@ class _ShareButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final fetchNotifier = getFetchNotifier(context, listen: true);
 
-    return !fetchNotifier.hasFlightMessage
+    return !fetchNotifier.hasNextLaunchMessage
         ? Container()
         : Padding(
-          padding: EdgeInsets.all(screenAdjust(0.045, context)),
-          child: Align(
+            padding: EdgeInsets.all(screenAdjust(0.045, context)),
+            child: Align(
               alignment: AlignmentDirectional.bottomEnd,
               child: IconFlatHexagonButton(
                 onPressed: () => _share(context,

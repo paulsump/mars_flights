@@ -72,7 +72,7 @@ class CurrentPageTitle extends StatelessWidget {
       final fetchNotifier = getFetchNotifier(context, listen: true);
 
       final Launch? flight =
-          fetchNotifier.hasFlight ? fetchNotifier.flight : null;
+          fetchNotifier.hasNextLaunch ? fetchNotifier.flight : null;
 
       final String? name = flight?.name;
       return name == null ? 'Next Launch' : 'Upcoming: $name';

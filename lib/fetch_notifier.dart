@@ -33,7 +33,7 @@ class FetchNotifier extends ChangeNotifier {
   bool fetchAllHasBeenCalled = false;
 
   late Launch flight;
-  bool hasFlight = false;
+  bool hasNextLaunch = false;
   String flightErrorMessage = 'Fetching flight info...';
 
   // Dry / Extract this repeated pattern...
@@ -50,7 +50,7 @@ class FetchNotifier extends ChangeNotifier {
 
   String flightMessage = '';
 
-  bool get hasFlightMessage => hasFlight && hasLaunchPads;
+  bool get hasNextLaunchMessage => hasNextLaunch && hasLaunchPads;
 
   /// The main starting point for the app data.
   /// Called only once.
@@ -59,11 +59,11 @@ class FetchNotifier extends ChangeNotifier {
 
     final fetcher = Fetcher(_client);
     try {
-      final flight_ = await fetcher.getFlight();
+      final flight_ = await fetcher.getNextLaunch();
 
       flight = Launch.fromJson(flight_);
 
-      hasFlight = true;
+      hasNextLaunch = true;
     } catch (error) {
       flightErrorMessage = _formatError(error);
 
@@ -113,7 +113,7 @@ class FetchNotifier extends ChangeNotifier {
 
     notifyListeners();
 
-    if (hasFlight && flight.isValid) {
+    if (hasNextLaunch && flight.isValid) {
       final formattedUpcomingLaunch =
           FormattedUpcomingLaunch.fromFlight(flight, launchPads);
 
@@ -195,14 +195,15 @@ String _formatDate(DateTime date, String precision) {
 /// In this API, both JSON lists and JSON objects (maps) are returned, so
 /// [List]s of [Map] are fetched with [_getList]
 /// and a [Map] are fetched with [_getMap]
-/// The [Fetcher] class and [getFlight](), [getUpcomingLaunches]()
+/// The [Fetcher] class and [getNextLaunch](), [getUpcomingLaunches]()
 /// are only public for the tests.
 class Fetcher {
   final http.Client client;
 
   Fetcher(this.client);
 
-  Future<Map<String, dynamic>> getFlight() async => _getMap('launches/next');
+  Future<Map<String, dynamic>> getNextLaunch() async =>
+      _getMap('launches/next');
 
   Future<List<dynamic>> getUpcomingLaunches() async =>
       _getList('launches/upcoming');
