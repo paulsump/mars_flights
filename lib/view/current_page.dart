@@ -59,7 +59,11 @@ class CurrentPageTitle extends StatelessWidget {
       landscape: const Offset(0.3, 0.79),
       child: ScreenAdjustedText(
         _getTitle(context),
-        size: isPortrait(context) ? 0.025 : 0.07,
+        size: isSquare(context)
+            ? 0.04
+            : isPortrait(context)
+                ? 0.025
+                : 0.07,
       ),
     );
   }

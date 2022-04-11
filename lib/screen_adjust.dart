@@ -13,6 +13,14 @@ Size getScreenSize(BuildContext context) => MediaQuery.of(context).size;
 bool isPortrait(BuildContext context) =>
     MediaQuery.of(context).orientation == Orientation.portrait;
 
+/// e.g. for screen text size on tablets and web,
+bool isSquare(BuildContext context) {
+  final screen = getScreenSize(context);
+
+  final difference = (screen.width - screen.height).abs();
+  return difference < 258;
+}
+
 /// Widget dimensions calculated using the width of the screen.
 double screenAdjustX(double length, BuildContext context) =>
     length * screenWidth(context);
