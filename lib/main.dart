@@ -42,11 +42,7 @@ class _App extends StatelessWidget {
             if (constraints.maxHeight == 0) {
               return Container();
             } else {
-              final fetchNotifier = getFetchNotifier(context, listen: false);
-
-              if (!fetchNotifier.fetchAllHasBeenCalled) {
-                unawaited(fetchNotifier.fetchAll(context, _client));
-              }
+              fetchAll(context, client: _client);
 
               final favoritesNotifier =
                   getFavoritesNotifier(context, listen: false);

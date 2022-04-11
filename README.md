@@ -8,7 +8,6 @@ Details about upcoming rocket launches.
 
 #### UI
 
-Extracted initialise() functions for a RetryFetch
 - Separate view from model e.g. ErrorMessage
   
 - Click on column header to sort by that field.

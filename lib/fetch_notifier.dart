@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
@@ -11,6 +12,13 @@ import 'package:provider/provider.dart';
 FetchNotifier getFetchNotifier(BuildContext context, {required bool listen}) =>
     Provider.of<FetchNotifier>(context, listen: listen);
 
+void fetchAll(BuildContext context, {required http.Client client}) {
+  final fetchNotifier = getFetchNotifier(context, listen: false);
+
+  if (!fetchNotifier.fetchAllHasBeenCalled) {
+    unawaited(fetchNotifier.fetchAll(context, client));
+  }
+}
 
 /// Fetches everything that's used from the api (with http)
 /// The [HttpClient] is closed when everything has been fetched.
@@ -105,7 +113,7 @@ class FetchNotifier extends ChangeNotifier {
       final prettyFlight = PrettyFlight.fromFlight(flight, launchPads);
 
       flightMessage =
-          "Hi!\n\nHere's the details of the next SpaceX launch...\n\nMission: ${prettyFlight.name}.\nLaunch Pad: ${prettyFlight.pad}.\nDate: ${prettyFlight.date}.\n\nShall I book it?!";
+      "Hi!\n\nHere's the details of the next SpaceX launch...\n\nMission: ${prettyFlight.name}.\nLaunch Pad: ${prettyFlight.pad}.\nDate: ${prettyFlight.date}.\n\nShall I book it?!";
 
       notifyListeners();
     }
@@ -317,10 +325,10 @@ class Flight {
   /// check if the fields are all valid (loaded correctly).
   bool get isValid =>
       id != null &&
-      name != null &&
-      dateUnix != null &&
-      datePrecision != null &&
-      launchPad != null;
+          name != null &&
+          dateUnix != null &&
+          datePrecision != null &&
+          launchPad != null;
 }
 
 class LaunchPad {
