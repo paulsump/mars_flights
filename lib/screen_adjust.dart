@@ -135,6 +135,7 @@ class ScreenAdjustedText extends StatelessWidget {
   }
 }
 
+/// Size and offset is adjusted depending on the device's size
 class ScreenAdjustedToolTip extends StatelessWidget {
   const ScreenAdjustedToolTip({
     Key? key,

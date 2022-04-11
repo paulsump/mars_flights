@@ -334,6 +334,7 @@ class Flight {
           launchPad != null;
 }
 
+/// Access to the launch pad's name via it's id
 class LaunchPad {
   LaunchPad.fromJson(Map<String, dynamic> json)
       : name = json['name'],

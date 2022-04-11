@@ -8,8 +8,6 @@ Details about upcoming rocket launches.
 
 #### UI
 
-- Separate view from model e.g. ErrorMessage
-  
 - Click on column header to sort by that field.
 - Maybe add year to date?
 

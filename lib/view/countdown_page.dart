@@ -10,6 +10,7 @@ import 'package:mars_flights/screen_adjust.dart';
 import 'package:mars_flights/view/retry_fetch.dart';
 import 'package:share_plus/share_plus.dart';
 
+/// The time until the next launch
 class CountdownPage extends StatelessWidget {
   const CountdownPage({Key? key}) : super(key: key);
 
@@ -104,6 +105,7 @@ class _Time extends StatelessWidget {
   }
 }
 
+/// A number and a label e.g. '5' 'days'.
 class _Number extends StatelessWidget {
   const _Number({
     Key? key,

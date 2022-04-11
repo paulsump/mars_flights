@@ -7,6 +7,7 @@ import 'package:mars_flights/hue.dart';
 import 'package:mars_flights/screen_adjust.dart';
 import 'package:mars_flights/view/retry_fetch.dart';
 
+/// All the upcoming launches
 class FlightsPage extends StatelessWidget {
   const FlightsPage({Key? key}) : super(key: key);
 
@@ -20,6 +21,7 @@ class FlightsPage extends StatelessWidget {
   }
 }
 
+/// The users favorite (bookmarked) upcoming launches.
 class FavoritesPage extends StatelessWidget {
   const FavoritesPage({Key? key}) : super(key: key);
 
@@ -53,6 +55,7 @@ class _ScrollTable extends StatelessWidget {
   }
 }
 
+/// A data table showing upcoming launches (all or favorites).
 class _Table extends StatelessWidget {
   const _Table(this.flights, {Key? key}) : super(key: key);
 

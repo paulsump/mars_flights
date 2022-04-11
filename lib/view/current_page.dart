@@ -10,9 +10,10 @@ import 'package:mars_flights/view/flights_page.dart';
 import 'package:provider/provider.dart';
 
 const unitOffset = Offset(1.0, 1.0);
-//TODO replace string with PageEnum
 
+/// Instead of Navigator, this class changes the current page displayed
 class CurrentPageNotifier extends ChangeNotifier {
+//TODO replace string pageName with page enum
   String pageName = 'Countdown';
 
   void setPage(String pageName_) {
@@ -21,6 +22,7 @@ class CurrentPageNotifier extends ChangeNotifier {
   }
 }
 
+/// the current page displayed
 class CurrentPage extends StatelessWidget {
   CurrentPage({Key? key}) : super(key: key);
 
@@ -39,6 +41,7 @@ class CurrentPage extends StatelessWidget {
   }
 }
 
+/// The title at the top of the current page.
 class CurrentPageTitle extends StatelessWidget {
   CurrentPageTitle({Key? key}) : super(key: key);
 
