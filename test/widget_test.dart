@@ -21,7 +21,8 @@ Future<http.Response> _getGoodResponse(http.Request url) async {
     case base + 'launches/next':
       return http.Response(fixture('flight.json'), 200, headers: headers);
     case base + 'launches/upcoming':
-      return http.Response(fixture('flights.json'), 200, headers: headers);
+      return http.Response(fixture('upcoming_launches.json'), 200,
+          headers: headers);
     case base + 'launchpads':
       return http.Response(fixture('launch_pads.json'), 200, headers: headers);
   }

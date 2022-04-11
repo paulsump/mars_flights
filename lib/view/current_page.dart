@@ -6,7 +6,7 @@ import 'package:mars_flights/fetch_notifier.dart';
 import 'package:mars_flights/hue.dart';
 import 'package:mars_flights/screen_adjust.dart';
 import 'package:mars_flights/view/countdown_page.dart';
-import 'package:mars_flights/view/flights_page.dart';
+import 'package:mars_flights/view/upcoming_launches_page.dart';
 import 'package:provider/provider.dart';
 
 const unitOffset = Offset(1.0, 1.0);
