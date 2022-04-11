@@ -10,13 +10,9 @@ Details about upcoming rocket launches.
 
 ### To Do
 
-#### Rename / Refactor
-
-- In order to fit in with spec and API, renamed flight to nextLaunch
-
 #### Tests
 
-- use flight2.json
+- use nextLaunch2.json
 - DateTime tests - check count down maths.
 - flightErrorMessage and flightErrorMessage - perhaps with widget tests
 

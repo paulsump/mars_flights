@@ -19,7 +19,7 @@ Future<http.Response> _getGoodResponse(http.Request url) async {
 
   switch (url.toString()) {
     case base + 'launches/next':
-      return http.Response(fixture('flight.json'), 200, headers: headers);
+      return http.Response(fixture('nextLaunch1.json'), 200, headers: headers);
     case base + 'launches/upcoming':
       return http.Response(fixture('upcoming_launches.json'), 200,
           headers: headers);

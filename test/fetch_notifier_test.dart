@@ -13,7 +13,7 @@ void main() {
   group('fetcher.getNextLaunch()', () {
     test('returns a Map if the http call completes successfully', () async {
       final client = MockClient((_) async => http.Response(
-              fixture('flight.json'), 200, headers: {
+              fixture('nextLaunch1.json'), 200, headers: {
             HttpHeaders.contentTypeHeader: 'application/json; charset=utf-8'
           }));
 
