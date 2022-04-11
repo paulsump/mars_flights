@@ -12,7 +12,7 @@ import 'package:provider/provider.dart';
 const unitOffset = Offset(1.0, 1.0);
 
 /// For switching the current page
-enum _PageId { countdown, flights, favorites }
+enum _PageId { countdown, upcomingLaunches, favorites }
 
 /// Instead of Navigator, this class changes the current page displayed
 class CurrentPageNotifier extends ChangeNotifier {
@@ -30,7 +30,7 @@ class CurrentPage extends StatelessWidget {
 
   final _pages = <_PageId, Widget>{
     _PageId.countdown: const CountdownPage(),
-    _PageId.flights: const FlightsPage(),
+    _PageId.upcomingLaunches: const FlightsPage(),
     _PageId.favorites: const FavoritesPage(),
   };
 
@@ -48,7 +48,7 @@ class CurrentPageTitle extends StatelessWidget {
   CurrentPageTitle({Key? key}) : super(key: key);
 
   final _titles = <_PageId, String>{
-    _PageId.flights: 'Upcoming Launches',
+    _PageId.upcomingLaunches: 'Upcoming Launches',
     _PageId.favorites: 'Favorite Upcoming Launches',
   };
 
@@ -110,10 +110,10 @@ class CurrentPageButtons extends StatelessWidget {
           color: _getColor(_PageId.countdown),
         ),
         IconFlatHexagonButton(
-          onPressed: _gotoPage(_PageId.flights),
+          onPressed: _gotoPage(_PageId.upcomingLaunches),
           icon: Icons.view_list_rounded,
           tip: 'Show all the upcoming launches.',
-          color: _getColor(_PageId.flights),
+          color: _getColor(_PageId.upcomingLaunches),
         ),
         FlatHexagonButton(
           onPressed: _gotoPage(_PageId.favorites),

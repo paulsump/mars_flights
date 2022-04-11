@@ -24,7 +24,7 @@ void fetchAll(BuildContext context) {
 /// Fetches everything that's used from the api (with http)
 /// The [HttpClient] is closed when everything has been fetched.
 /// First 'flight' (the next available launch),  (renamed because 'nextLaunch' is a confusing name)
-/// then 'flights'.
+/// then 'upcomingLaunches'.
 /// This is all done in the [fetchAll]() function.
 class FetchNotifier extends ChangeNotifier {
   FetchNotifier({required http.Client client}) : _client = client;
@@ -38,7 +38,7 @@ class FetchNotifier extends ChangeNotifier {
 
   // Dry / Extract this repeated pattern...
 
-  final flights = <Flight>[];
+  final upcomingLaunches = <Flight>[];
   bool hasFlights = false;
   String flightsErrorMessage = '';
 
@@ -78,7 +78,7 @@ class FetchNotifier extends ChangeNotifier {
 
       for (final flight in flights_) {
         try {
-          flights.add(Flight.fromJson(flight));
+          upcomingLaunches.add(Flight.fromJson(flight));
         } catch (error) {
           logError('Ignoring bad flight');
         }
@@ -123,7 +123,7 @@ class FetchNotifier extends ChangeNotifier {
     }
 
     if (hasFlights) {
-      for (final upcomingLaunch in flights) {
+      for (final upcomingLaunch in upcomingLaunches) {
         if (upcomingLaunch.isValid) {
           prettyFlights
               .add(PrettyFlight.fromFlight(upcomingLaunch, launchPads));

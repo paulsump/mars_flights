@@ -10,7 +10,7 @@ FavoritesNotifier getFavoritesNotifier(BuildContext context,
         {required bool listen}) =>
     Provider.of<FavoritesNotifier>(context, listen: listen);
 
-/// Access to the list of favorite flights.
+/// Access to the list of favorite upcomingLaunches.
 class FavoritesNotifier extends ChangeNotifier {
   final _flightIds = <String>[];
 
