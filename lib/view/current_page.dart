@@ -71,10 +71,10 @@ class CurrentPageTitle extends StatelessWidget {
     if (currentPageNotifier.pageId == _PageId.countdown) {
       final fetchNotifier = getFetchNotifier(context, listen: true);
 
-      final Launch? flight =
-          fetchNotifier.hasNextLaunch ? fetchNotifier.flight : null;
+      final Launch? nextLaunch =
+          fetchNotifier.hasNextLaunch ? fetchNotifier.nextLaunch : null;
 
-      final String? name = flight?.name;
+      final String? name = nextLaunch?.name;
       return name == null ? 'Next Launch' : 'Upcoming: $name';
     }
 

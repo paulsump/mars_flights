@@ -18,9 +18,9 @@ void main() {
           }));
 
       final fetcher = Fetcher(client);
-      final flight = await fetcher.getNextLaunch();
+      final nextLaunch = await fetcher.getNextLaunch();
 
-      expect(Launch.fromJson(flight), isA<Launch>());
+      expect(Launch.fromJson(nextLaunch), isA<Launch>());
     });
 
     test('throws an exception if the http call completes with an error', () {
@@ -42,7 +42,9 @@ void main() {
       final upcomingLaunches_ = await fetcher.getUpcomingLaunches();
 
       expect(
-          upcomingLaunches_.map((flight) => Launch.fromJson(flight)).toList(),
+          upcomingLaunches_
+              .map((upcomingLaunch) => Launch.fromJson(upcomingLaunch))
+              .toList(),
           isA<List<Launch>>());
     });
 

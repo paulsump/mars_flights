@@ -32,7 +32,7 @@ class FetchNotifier extends ChangeNotifier {
   final http.Client _client;
   bool fetchAllHasBeenCalled = false;
 
-  late Launch flight;
+  late Launch nextLaunch;
   bool hasNextLaunch = false;
   String flightErrorMessage = 'Fetching next launch info...';
 
@@ -59,9 +59,9 @@ class FetchNotifier extends ChangeNotifier {
 
     final fetcher = Fetcher(_client);
     try {
-      final flight_ = await fetcher.getNextLaunch();
+      final nextLaunch_ = await fetcher.getNextLaunch();
 
-      flight = Launch.fromJson(flight_);
+      nextLaunch = Launch.fromJson(nextLaunch_);
 
       hasNextLaunch = true;
     } catch (error) {
@@ -76,9 +76,9 @@ class FetchNotifier extends ChangeNotifier {
     try {
       final upcomingLaunches_ = await fetcher.getUpcomingLaunches();
 
-      for (final flight in upcomingLaunches_) {
+      for (final upcomingLaunch in upcomingLaunches_) {
         try {
-          upcomingLaunches.add(Launch.fromJson(flight));
+          upcomingLaunches.add(Launch.fromJson(upcomingLaunch));
         } catch (error) {
           logError('Ignoring bad next launch info.');
         }
@@ -113,9 +113,9 @@ class FetchNotifier extends ChangeNotifier {
 
     notifyListeners();
 
-    if (hasNextLaunch && flight.isValid) {
+    if (hasNextLaunch && nextLaunch.isValid) {
       final formattedUpcomingLaunch =
-          FormattedUpcomingLaunch.fromLaunch(flight, launchPads);
+          FormattedUpcomingLaunch.fromLaunch(nextLaunch, launchPads);
 
       flightMessage =
           "Hi!\n\nHere's the details of the next SpaceX launch...\n\nMission: ${formattedUpcomingLaunch.name}.\nLaunch Pad: ${formattedUpcomingLaunch.pad}.\nDate: ${formattedUpcomingLaunch.date}.\n\nShall I book it?!";
@@ -163,11 +163,11 @@ String _getPadName(String id, List<LaunchPad> launchPads) {
 }
 
 class FormattedUpcomingLaunch {
-  FormattedUpcomingLaunch.fromLaunch(Launch flight, List<LaunchPad> launchPads)
-      : id = flight.id!,
-        name = flight.name!,
-        date = _formatDate(flight.date!, flight.datePrecision!),
-        pad = _getPadName(flight.launchPad!, launchPads);
+  FormattedUpcomingLaunch.fromLaunch(Launch launch, List<LaunchPad> launchPads)
+      : id = launch.id!,
+        name = launch.name!,
+        date = _formatDate(launch.date!, launch.datePrecision!),
+        pad = _getPadName(launch.launchPad!, launchPads);
 
   final String id, name, date, pad;
 }
