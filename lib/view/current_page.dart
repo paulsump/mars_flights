@@ -11,25 +11,27 @@ import 'package:provider/provider.dart';
 
 const unitOffset = Offset(1.0, 1.0);
 
+/// For switching the current page
+enum _PageId { countdown, flights, favorites }
+
 /// Instead of Navigator, this class changes the current page displayed
 class CurrentPageNotifier extends ChangeNotifier {
-//TODO replace string pageName with page enum
-  String pageName = 'Countdown';
+  _PageId pageId = _PageId.countdown;
 
-  void setPage(String pageName_) {
-    pageName = pageName_;
+  void setPage(_PageId pageId_) {
+    pageId = pageId_;
     notifyListeners();
   }
 }
 
-/// the current page displayed
+/// the current page that is displayed
 class CurrentPage extends StatelessWidget {
   CurrentPage({Key? key}) : super(key: key);
 
-  final _pages = <String, Widget>{
-    'Countdown': const CountdownPage(),
-    'Flights': const FlightsPage(),
-    'Favorites': const FavoritesPage(),
+  final _pages = <_PageId, Widget>{
+    _PageId.countdown: const CountdownPage(),
+    _PageId.flights: const FlightsPage(),
+    _PageId.favorites: const FavoritesPage(),
   };
 
   @override
@@ -37,7 +39,7 @@ class CurrentPage extends StatelessWidget {
     final currentPageNotifier =
         Provider.of<CurrentPageNotifier>(context, listen: true);
 
-    return _pages[currentPageNotifier.pageName]!;
+    return _pages[currentPageNotifier.pageId]!;
   }
 }
 
@@ -45,9 +47,9 @@ class CurrentPage extends StatelessWidget {
 class CurrentPageTitle extends StatelessWidget {
   CurrentPageTitle({Key? key}) : super(key: key);
 
-  final _titles = <String, String>{
-    'Flights': 'Upcoming Launches',
-    'Favorites': 'Favorite Upcoming Launches',
+  final _titles = <_PageId, String>{
+    _PageId.flights: 'Upcoming Launches',
+    _PageId.favorites: 'Favorite Upcoming Launches',
   };
 
   @override
@@ -66,7 +68,7 @@ class CurrentPageTitle extends StatelessWidget {
     final currentPageNotifier =
         Provider.of<CurrentPageNotifier>(context, listen: true);
 
-    if (currentPageNotifier.pageName == 'Countdown') {
+    if (currentPageNotifier.pageId == _PageId.countdown) {
       final fetchNotifier = getFetchNotifier(context, listen: true);
 
       final Flight? flight =
@@ -76,7 +78,7 @@ class CurrentPageTitle extends StatelessWidget {
       return name == null ? 'Next Launch' : 'Upcoming: $name';
     }
 
-    return _titles[currentPageNotifier.pageName]!;
+    return _titles[currentPageNotifier.pageId]!;
   }
 }
 
@@ -90,34 +92,33 @@ class CurrentPageButtons extends StatelessWidget {
     final currentPageNotifier =
         Provider.of<CurrentPageNotifier>(context, listen: true);
 
-    VoidCallback _gotoPage(pageName) =>
-        () => currentPageNotifier.setPage(pageName);
+    VoidCallback _gotoPage(pageId) => () => currentPageNotifier.setPage(pageId);
 
-    bool _isCurrentPage(pageName) => currentPageNotifier.pageName == pageName;
+    bool _isCurrentPage(pageId) => currentPageNotifier.pageId == pageId;
 
-    Color _getColor(pageName) =>
-        _isCurrentPage(pageName) ? Hue.iconSelected : Hue.iconDeselected;
+    Color _getColor(pageId) =>
+        _isCurrentPage(pageId) ? Hue.iconSelected : Hue.iconDeselected;
 
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
         IconFlatHexagonButton(
-          onPressed: _gotoPage('Countdown'),
+          onPressed: _gotoPage(_PageId.countdown),
           icon: Icons.timer_rounded,
           tip: 'Show the time left until the next launch.',
-          color: _getColor('Countdown'),
+          color: _getColor(_PageId.countdown),
         ),
         IconFlatHexagonButton(
-          onPressed: _gotoPage('Flights'),
+          onPressed: _gotoPage(_PageId.flights),
           icon: Icons.view_list_rounded,
           tip: 'Show all the upcoming launches.',
-          color: _getColor('Flights'),
+          color: _getColor(_PageId.flights),
         ),
         FlatHexagonButton(
-          onPressed: _gotoPage('Favorites'),
+          onPressed: _gotoPage(_PageId.favorites),
           tip: 'Show your favorite upcoming launches',
-          child: _IconPair(selected: _isCurrentPage('Favorites')),
+          child: _IconPair(selected: _isCurrentPage(_PageId.favorites)),
         ),
       ],
     );

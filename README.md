@@ -12,11 +12,8 @@ Details about upcoming rocket launches.
 
 #### Rename / Refactor
 
-- replace string pageName with page enum
-
-- To fit in with spec and API...
-- Rename Flight to NextLaunch
-- Rename Flights to UpcomingLaunches
+In order to fit in with spec and API, renamed flights to upcomingLaunches In order to fit in with
+spec and API, renamed Flight to NextLaunch
 
 #### Tests
 
