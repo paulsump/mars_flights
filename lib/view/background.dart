@@ -38,12 +38,12 @@ class Background extends StatelessWidget {
                 left: false,
                 child: Stack(
                   children: [
-                    CurrentPageTitle(),
+                    const CurrentPageTitle(),
                     Column(
                       children: [
                         const CurrentPageButtons(),
                         SizedBox(height: screenAdjustY(0.02, context)),
-                        Expanded(child: Center(child: CurrentPage())),
+                        const Expanded(child: Center(child: CurrentPage())),
                       ],
                     ),
                   ],
