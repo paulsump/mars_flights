@@ -18,7 +18,7 @@ class CountdownPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final fetchNotifier = getFetchNotifier(context, listen: true);
 
-    final Flight? flight =
+    final Launch? flight =
         fetchNotifier.hasFlight ? fetchNotifier.flight : null;
 
     final DateTime? date = flight?.date;

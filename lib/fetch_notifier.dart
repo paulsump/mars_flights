@@ -32,13 +32,13 @@ class FetchNotifier extends ChangeNotifier {
   final http.Client _client;
   bool fetchAllHasBeenCalled = false;
 
-  late Flight flight;
+  late Launch flight;
   bool hasFlight = false;
   String flightErrorMessage = 'Fetching flight info...';
 
   // Dry / Extract this repeated pattern...
 
-  final upcomingLaunches = <Flight>[];
+  final upcomingLaunches = <Launch>[];
   bool hasUpcomingLaunches = false;
   String upcomingLaunchesErrorMessage = '';
 
@@ -61,7 +61,7 @@ class FetchNotifier extends ChangeNotifier {
     try {
       final flight_ = await fetcher.getFlight();
 
-      flight = Flight.fromJson(flight_);
+      flight = Launch.fromJson(flight_);
 
       hasFlight = true;
     } catch (error) {
@@ -78,7 +78,7 @@ class FetchNotifier extends ChangeNotifier {
 
       for (final flight in upcomingLaunches_) {
         try {
-          upcomingLaunches.add(Flight.fromJson(flight));
+          upcomingLaunches.add(Launch.fromJson(flight));
         } catch (error) {
           logError('Ignoring bad flight');
         }
@@ -163,7 +163,7 @@ String _getPadName(String id, List<LaunchPad> launchPads) {
 }
 
 class FormattedUpcomingLaunch {
-  FormattedUpcomingLaunch.fromFlight(Flight flight, List<LaunchPad> launchPads)
+  FormattedUpcomingLaunch.fromFlight(Launch flight, List<LaunchPad> launchPads)
       : id = flight.id!,
         name = flight.name!,
         date = _formatDate(flight.date!, flight.datePrecision!),
@@ -305,8 +305,8 @@ dynamic _getFieldOrNull(String key, Map<String, dynamic> json) =>
 
 /// All the info needed about a launch
 /// whether it's the next launch or the upcoming launches
-class Flight {
-  Flight.fromJson(Map<String, dynamic> json)
+class Launch {
+  Launch.fromJson(Map<String, dynamic> json)
       : details = _getFieldOrNull('details', json),
         dateUnix = _getFieldOrNull('date_unix', json),
         datePrecision = _getFieldOrNull('date_precision', json),

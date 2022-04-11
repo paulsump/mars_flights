@@ -71,7 +71,7 @@ class CurrentPageTitle extends StatelessWidget {
     if (currentPageNotifier.pageId == _PageId.countdown) {
       final fetchNotifier = getFetchNotifier(context, listen: true);
 
-      final Flight? flight =
+      final Launch? flight =
           fetchNotifier.hasFlight ? fetchNotifier.flight : null;
 
       final String? name = flight?.name;
