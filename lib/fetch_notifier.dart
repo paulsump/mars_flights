@@ -46,7 +46,7 @@ class FetchNotifier extends ChangeNotifier {
   bool hasLaunchPads = false;
   String launchPadsErrorMessage = '';
 
-  final prettyFlights = <PrettyFlight>[];
+  final formattedUpcomingLaunches = <PrettyFlight>[];
 
   String flightMessage = '';
 
@@ -125,7 +125,7 @@ class FetchNotifier extends ChangeNotifier {
     if (hasUpcomingLaunches) {
       for (final upcomingLaunch in upcomingLaunches) {
         if (upcomingLaunch.isValid) {
-          prettyFlights
+          formattedUpcomingLaunches
               .add(PrettyFlight.fromFlight(upcomingLaunch, launchPads));
         }
       }

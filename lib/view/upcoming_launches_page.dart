@@ -16,7 +16,8 @@ class UpcomingLaunchesPage extends StatelessWidget {
     final fetchNotifier = getFetchNotifier(context, listen: true);
 
     return fetchNotifier.hasUpcomingLaunches
-        ? _ScrollTable(prettyFlights: fetchNotifier.prettyFlights)
+        ? _ScrollTable(
+            formattedUpcomingLaunches: fetchNotifier.formattedUpcomingLaunches)
         : RetryFetch(message: fetchNotifier.upcomingLaunchesErrorMessage);
   }
 }
@@ -33,34 +34,35 @@ class FavoritesPage extends StatelessWidget {
 
     return fetchNotifier.hasUpcomingLaunches
         ? _ScrollTable(
-            prettyFlights:
-                favoritesNotifier.filter(fetchNotifier.prettyFlights))
+            formattedUpcomingLaunches: favoritesNotifier
+                .filter(fetchNotifier.formattedUpcomingLaunches))
         : RetryFetch(message: fetchNotifier.upcomingLaunchesErrorMessage);
   }
 }
 
 /// Allows horizontal scroll of table in portrait only.
 class _ScrollTable extends StatelessWidget {
-  const _ScrollTable({Key? key, required this.prettyFlights}) : super(key: key);
+  const _ScrollTable({Key? key, required this.formattedUpcomingLaunches})
+      : super(key: key);
 
-  final List<PrettyFlight> prettyFlights;
+  final List<PrettyFlight> formattedUpcomingLaunches;
 
   @override
   Widget build(BuildContext context) {
     return isPortrait(context)
         ? SingleChildScrollView(
             scrollDirection: Axis.horizontal,
-            child: _Table(prettyFlights),
+            child: _Table(formattedUpcomingLaunches),
           )
-        : _Table(prettyFlights);
+        : _Table(formattedUpcomingLaunches);
   }
 }
 
 /// A data table showing upcoming launches (all or favorites).
 class _Table extends StatelessWidget {
-  const _Table(this.prettyFlights, {Key? key}) : super(key: key);
+  const _Table(this.formattedUpcomingLaunches, {Key? key}) : super(key: key);
 
-  final List<PrettyFlight> prettyFlights;
+  final List<PrettyFlight> formattedUpcomingLaunches;
 
   @override
   Widget build(BuildContext context) {
@@ -79,7 +81,7 @@ class _Table extends StatelessWidget {
           columnHeader('Favorite'),
         ],
         rows: <DataRow>[
-          for (final prettyFlight in prettyFlights)
+          for (final prettyFlight in formattedUpcomingLaunches)
             DataRow(
               cells: <DataCell>[
                 cellText(prettyFlight.name),
