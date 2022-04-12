@@ -36,7 +36,7 @@ class FetchNotifier extends ChangeNotifier {
   bool hasNextLaunch = false;
   String nextLaunchErrorMessage = 'Fetching next launch info...';
 
-  // Dry / Extract this repeated pattern...
+  // TODO Dry / Extract this repeated pattern...
 
   final upcomingLaunches = <Launch>[];
   bool hasUpcomingLaunches = false;
@@ -151,7 +151,7 @@ class FetchNotifier extends ChangeNotifier {
   }
 }
 
-String _getPadName(String id, List<LaunchPad> launchPads) {
+String _findPadName(String id, List<LaunchPad> launchPads) {
   for (final launchPad in launchPads) {
     if (launchPad.id == id) {
       return launchPad.name;
@@ -168,7 +168,7 @@ class FormattedUpcomingLaunch {
       : id = launch.id!,
         name = launch.name!,
         date = _formatDate(launch.date!, launch.datePrecision!),
-        pad = _getPadName(launch.launchPad!, launchPads);
+        pad = _findPadName(launch.launchPad!, launchPads);
 
   final String id, name, date, pad;
 }
