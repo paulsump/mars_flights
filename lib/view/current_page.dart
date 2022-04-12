@@ -39,7 +39,10 @@ class CurrentPage extends StatelessWidget {
     final currentPageNotifier =
         Provider.of<CurrentPageNotifier>(context, listen: true);
 
-    return _pages[currentPageNotifier.pageId]!;
+    return AnimatedSwitcher(
+      duration: const Duration(milliseconds: 500),
+      child: _pages[currentPageNotifier.pageId]!,
+    );
   }
 }
 
